@@ -1,2 +1,1 @@
-# website
-🖥️ HastePaste app website
+# 🖥️ HastePaste App Website
