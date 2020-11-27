@@ -1,30 +1,30 @@
 declare module "*.jpg" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 
 declare module "*.jpeg" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 
 declare module "*.png" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 
 declare module "*.gif" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 
 declare module "*.ico" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 
 declare module "*.webp" {
-	const image: unknown;
+	const image: string;
 	export default image;
 }
 

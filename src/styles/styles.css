@@ -4,8 +4,23 @@ body {
 	color: #444;
 }
 
-.Home:before {
-	content: "Global style";
+.home {
+	text-align: center;
+	min-height: 100vh;
+	display: flex;
+	flex: 1 1;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.home:before {
+	content: "HastePaste";
+	font-size: smaller;
+	opacity: 0.5;
+}
+
+.home:after {
+	content: "Coming Soon";
 	font-size: smaller;
 	opacity: 0.5;
 }
