@@ -10,6 +10,7 @@ class CustomDocument extends Document {
 			<Html>
 				<Head>
 					<link rel="icon" href={Favicon} />
+					<link rel="canonical" href="https://hastepaste.xyz/" />
 					<meta name="author" content="Barış DEMİRCİ, demirci.baris38@gmail.com" />
 					<meta
 						name="description"

@@ -7,7 +7,7 @@ import Home from "@components/Home";
 
 const IndexPage: React.FC & NextPage = () => (
 	<>
-		<NextSeo title="Home" description="" />
+		<NextSeo title="Home" />
 		<Home />
 	</>
 );
