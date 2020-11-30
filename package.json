@@ -14,7 +14,7 @@
 		"build": "next build ./src",
 		"build:analyze": "cross-env ANALYZE=true yarpm run build",
 		"build:maxify": "cross-env ANALYZE=true MINIFY=false yarpm run build",
-		"start": "next start ./src",
+		"start": "next start ./dist",
 		"test": "jest",
 		"check": "tsc --noEmit",
 		"lint": "eslint --fix ./src",
