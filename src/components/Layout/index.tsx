@@ -1,29 +1,16 @@
-import Navbar from "@components/NavBar";
-import classnames from "classnames";
+import Navbar from "@components/Navbar/index";
 
-const Layout = (Page) => {
-	const PageLayout = () => (
-		<>
-			<header className={classnames("w-full", "fixed")}>
-				<Navbar
-					links={[{ name: "Github", url: "https://github.com/HastePasteApp" }]}
-				/>
-			</header>
-			<main
-				className={classnames(
-					"flex",
-					"flex-col",
-					"justify-center",
-					"items-center",
-					"w-full",
-					"h-screen",
-				)}
-			>
-				<Page />
-			</main>
-		</>
+export default function Layout({ children }) {
+	return (
+		<div>
+			<div className="flex flex-col">
+				<div className="w-full bg-lapis-500">
+					<div className="flex flex-wrap w-full">
+						<Navbar />
+					</div>
+				</div>
+				<div className="w-full -mt-24">{children}</div>
+			</div>
+		</div>
 	);
-	return PageLayout;
-};
-
-export default Layout;
+}

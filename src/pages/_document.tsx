@@ -1,4 +1,3 @@
-import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import Favicon from "@brand-kit/icons/default-defaultnobg2048.png";
 import TwitterImage from "@brand-kit/icons/default-default2048.png";
@@ -9,8 +8,11 @@ class CustomDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<link rel="icon" href={Favicon} />
-					<link rel="canonical" href="https://hastepaste.xyz/" />
+					<meta charSet="utf-8" />
+    				<meta name="HandheldFriendly" content="true" />
+					<meta name="robots" content="INDEX, FOLLOW" />
+					<meta name="copyright" content="Barış DEMİRCİ | HastePaste" />
+					<meta name="theme-color" content="#ff414d" />
 					<meta name="author" content="Barış DEMİRCİ, demirci.baris38@gmail.com" />
 					<meta
 						name="description"
@@ -25,6 +27,12 @@ class CustomDocument extends Document {
 					/>
 					<meta name="og:image" content={Banner} />
 					<meta name="twitter:image" content={TwitterImage} />
+					<link rel="icon" href={Favicon} />
+					<link rel="canonical" href="https://hastepaste.xyz/" />
+					<link
+						href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+						rel="stylesheet"
+					/>
 				</Head>
 				<body>
 					<Main />
