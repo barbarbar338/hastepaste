@@ -30,7 +30,7 @@ class App extends NextApp {
 					buttonText="Close"
 					cookieName="cookie_alert_disable"
 					style={{
-						background: "#f56a79",
+						background: "#ff414d",
 					}}
 					buttonStyle={{
 						background: "white",
@@ -40,17 +40,7 @@ class App extends NextApp {
 				>
 					This website uses cookies to enhance the user experience.
 				</CookieConsent>
-				<ToastContainer
-					position="bottom-right"
-					autoClose={5000}
-					hideProgressBar={false}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-				/>
+				<ToastContainer position="bottom-right" />
 			</>
 		);
 	}

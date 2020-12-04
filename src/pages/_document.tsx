@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Favicon from "@brand-kit/icons/default-defaultnobg2048.png";
-import TwitterImage from "@brand-kit/icons/default-default2048.png";
-import Banner from "@brand-kit/banners/default-wavewhite1024x512.png";
+import Favicon from "@assets/icons/default-defaultnobg2048.png";
+import TwitterImage from "@assets/icons/default-default2048.png";
+import Banner from "@assets/banners/default-wavewhite1024x512.png";
 
 class CustomDocument extends Document {
 	render(): JSX.Element {

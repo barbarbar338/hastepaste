@@ -6,7 +6,7 @@ import CONFIG from "src/config";
 import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
 
-export default function IndexPage() {
+export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [paste, setPaste] = useState("");
@@ -31,7 +31,7 @@ export default function IndexPage() {
 			return toast.error("❌ An error occured. Please try again later");
 		const body = await res.json();
 		setLoading(false);
-		router.push(`/explore/${body.data.id}`);
+		router.push(`/explore?id=${encodeURIComponent(body.data.id)}`);
 	};
 
 	return (
@@ -82,7 +82,7 @@ export default function IndexPage() {
 								<span>
 									<Loader
 										type="ThreeDots"
-										color="#00b300"
+										color="#fff"
 										style={{
 											width: "8%",
 											margin: "auto",

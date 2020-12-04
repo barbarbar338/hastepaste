@@ -22,8 +22,7 @@
 		"lint-config": "eslint --print-config .eslintrc.js",
 		"format": "prettier --write ./src",
 		"format:all": "prettier --write .",
-		"format:watch": "onchange . -- prettier --write {{changed}}",
-		"submodule": "git submodule init && git submodule update"
+		"format:watch": "onchange . -- prettier --write {{changed}}"
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.11.2",
@@ -64,7 +63,6 @@
 		"jest": "^26.6.3",
 		"less": "^3.12.2",
 		"next-compose-plugins": "^2.2.1",
-		"next-progressbar": "^1.0.0",
 		"node-sass": "^5.0.0",
 		"onchange": "^7.1.0",
 		"prettier": "^2.2.0",

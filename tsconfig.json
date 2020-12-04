@@ -18,7 +18,6 @@
 		"paths": {
 			"@styles/*": [ "src/styles/*" ],
 			"@assets/*": [ "src/assets/*" ],
-			"@brand-kit/*": [ "src/assets/brand-kit/*" ],
 			"@components/*": [ "src/components/*" ],
 			"@libs/*": [ "src/libs/*" ]
 		}

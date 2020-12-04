@@ -1,5 +1,6 @@
 import { NextSeo } from "next-seo";
 import { useFetchUser } from "@libs/useFetchUser";
+import { useEffect, useState } from "react";
 
 import HeroCards from "@components/HeroCards/index";
 import HeroCardsSkeleton from "@components/HeroCards/skeleton";
@@ -8,38 +9,25 @@ import CardsSkeleton from "@components/Cards/skeleton";
 import Hero from "@components/Hero/index";
 import HeroSkeleton from "@components/Hero/skeleton";
 
-export default function ProfilePage() {
-	const { loading } = useFetchUser();
+export default function ProfilePage(): JSX.Element {
+	const { user, loading } = useFetchUser(true);
+	const [paste, setPaste] = useState([]);
 
-	if (loading)
-		return (
-			<>
-				<NextSeo title="Loading" />
-				<div>
-					<div className="w-full bg-pink-500">
-						<HeroSkeleton />
-					</div>
-					<div className="container max-w-screen-xl mx-auto -mt-24">
-						<div className="px-5 lg:px-0">
-							<HeroCardsSkeleton />
-							<CardsSkeleton />
-						</div>
-					</div>
-				</div>
-			</>
-		);
+	useEffect(() => {
+		if (user) setPaste(user.paste as unknown[]);
+	});
 
 	return (
 		<>
-			<NextSeo title="Profile" />
+			<NextSeo title={loading ? "Loading" : "Profile"} />
 			<div>
 				<div className="w-full bg-pink-500">
-					<Hero />
+					{loading || !user ? <HeroSkeleton /> : <Hero mail={(user.user.mail as string).split("@")[0]} />}
 				</div>
 				<div className="container max-w-screen-xl mx-auto -mt-24">
 					<div className="px-5 lg:px-0">
-						<HeroCards />
-						<Cards />
+						{loading || !user ? <HeroCardsSkeleton /> : <HeroCards paste={paste} />}
+						{loading || !user ? <CardsSkeleton /> : <Cards paste={paste} />}
 					</div>
 				</div>
 			</div>

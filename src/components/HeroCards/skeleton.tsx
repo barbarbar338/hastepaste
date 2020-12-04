@@ -1,8 +1,8 @@
 import { Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-let arr = new Array(24).fill("a");
+const array = new Array(24).fill("a");
 
-function BulletLoader() {
+function BulletLoader(): JSX.Element {
 	return (
 		<div>
 			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 rounded-md">
@@ -14,14 +14,12 @@ function BulletLoader() {
 				</span>
 				<h1 className="text-gray-700">
 					<Skeleton>
-						<Typography>{arr.join("")}</Typography>
+						<Typography>{array.join("")}</Typography>
 					</Skeleton>
 				</h1>
-				<p className="text-sm text-gray-400">
-					<Skeleton>
-						<Typography>{arr.join("")}</Typography>
-					</Skeleton>
-				</p>
+				<Skeleton>
+					<Typography>{array.join("")}</Typography>
+				</Skeleton>
 				<a className="flex items-center justify-end flex-1">
 					<div className="flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md">
 						<span
@@ -37,7 +35,7 @@ function BulletLoader() {
 	);
 }
 
-export default function HeroCards() {
+export default function HeroCards(): JSX.Element {
 	return (
 		<div className="flex flex-col space-y-6 md:space-x-6 md:space-y-0 md:flex-row">
 			<div className="flex flex-col w-full bg-white rounded-md shadow md:w-4/6">

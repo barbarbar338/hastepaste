@@ -1,23 +1,25 @@
-export default function Hero() {
+import { FC } from "react";
+import PropTypes from "prop-types";
+
+export interface HeroProps {
+	mail: string;
+}
+
+const Hero: FC<HeroProps> = ({ mail }) => {
 	return (
 		<div className="container flex flex-col items-center max-w-screen-xl px-16 pt-10 pb-32 mx-auto sm:flex-row">
 			<div className="flex flex-col w-full pb-10 text-center sm:pb-0 sm:text-left">
 				<h1 className="text-4xl text-white">
-					Hello <span className="font-semibold">Roi</span>
+					Hello <span className="font-semibold">{mail}</span>
 				</h1>
 				<p className="text-xl text-white">Welcome to the island of HastePaste.</p>
-			</div>
-			<div className="flex items-center justify-center w-full sm:justify-end">
-				<div className="box-border flex flex-col items-center justify-center h-48 px-5 py-5 transition duration-150 transform bg-opacity-50 border-4 border-dashed rounded-lg cursor-pointer hover:scale-105 w-80 bg-pink-300 border-pink-200">
-					<span
-						className="material-icons-round text-pink-100"
-						style={{ fontSize: "64px" }}
-					>
-						add
-					</span>
-					<p className="text-pink-200 text-md">Drop file or click and create</p>
-				</div>
 			</div>
 		</div>
 	);
 }
+
+Hero.propTypes = {
+	mail: PropTypes.string.isRequired,
+};
+
+export default Hero;

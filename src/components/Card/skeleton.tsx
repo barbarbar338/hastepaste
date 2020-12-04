@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
-export default function Card() {
+export default function Card(): JSX.Element {
 	return (
 		<a
 			target="_blank"

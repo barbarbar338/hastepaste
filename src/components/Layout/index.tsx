@@ -1,7 +1,8 @@
 import Navbar from "@components/Navbar/index";
 import Footer from "@components/Footer/index";
+import { FC } from "react";
 
-export default function Layout({ children }) {
+const Layout: FC = ({ children }) => {
 	return (
 		<div>
 			<div className="flex flex-col">
@@ -18,3 +19,5 @@ export default function Layout({ children }) {
 		</div>
 	);
 }
+
+export default Layout; 
