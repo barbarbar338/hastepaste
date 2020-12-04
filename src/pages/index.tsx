@@ -1,16 +1,6 @@
 import { NextSeo } from "next-seo";
-import { Cookies } from "react-cookie";
-
-const cookie = new Cookies();
 
 export default function Add() {
-
-	cookie.set("access_token", "231321", {
-		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30)
-	})
-	const token = cookie.get("access_token");
-	console.log(token);
-
 	return (
 		<>
 			<NextSeo title="Create Paste" />
