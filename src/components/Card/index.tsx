@@ -15,13 +15,13 @@ const Card: FC<CardProps> = (props) => {
 			className="flex flex-col items-center justify-center bg-white rounded-md shadow"
 		>
 			<span
-				className="hidden text-blue-500 material-icons-round md:block"
+				className="hidden text-pink-500 material-icons-round md:block"
 				style={{ fontSize: "128px" }}
 			>
 				folder
 			</span>
 			<span
-				className="block text-blue-500 material-icons-round md:hidden"
+				className="block text-pink-500 material-icons-round md:hidden"
 				style={{ fontSize: "72px" }}
 			>
 				folder

@@ -11,9 +11,9 @@ const Published: FC<PublishedProps> = (props) => {
 	const { name, description, link } = props;
 	return (
 		<div>
-			<div className="flex items-center px-3 py-3 space-x-6 bg-blue-100 rounded-md">
+			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 rounded-md">
 				<span
-					className="text-blue-500 select-none material-icons-round"
+					className="text-pink-500 select-none material-icons-round"
 					style={{ fontSize: "28px" }}
 				>
 					folder
@@ -23,7 +23,7 @@ const Published: FC<PublishedProps> = (props) => {
 				<a href={link} className="flex items-center justify-end flex-1">
 					<div className="flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md">
 						<span
-							className="text-blue-500 material-icons-round"
+							className="text-pink-500 material-icons-round"
 							style={{ fontSize: "24px" }}
 						>
 							content_copy

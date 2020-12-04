@@ -3,38 +3,38 @@ import { Skeleton } from "@material-ui/lab";
 let arr = new Array(24).fill("a");
 
 function BulletLoader() {
-    return (
-        <div>
-            <div className="flex items-center px-3 py-3 space-x-6 bg-blue-100 rounded-md">
-                <span
-                    className="text-blue-500 select-none material-icons-round"
-                    style={{ fontSize: "28px" }}
-                >
-                    folder
-                </span>
-                <h1 className="text-gray-700">
-                    <Skeleton>
-                        <Typography>{arr.join("")}</Typography>
-                    </Skeleton>   
-                </h1>
-                <p className="text-sm text-gray-400">
-                    <Skeleton>
-                        <Typography>{arr.join("")}</Typography>
-                    </Skeleton>  
-                </p>
-                <a className="flex items-center justify-end flex-1">
-                    <div className="flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md">
-                        <span
-                            className="text-blue-500 material-icons-round"
-                            style={{ fontSize: "24px" }}
-                        >
-                            content_copy
-                        </span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    )
+	return (
+		<div>
+			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 rounded-md">
+				<span
+					className="text-pink-500 select-none material-icons-round"
+					style={{ fontSize: "28px" }}
+				>
+					folder
+				</span>
+				<h1 className="text-gray-700">
+					<Skeleton>
+						<Typography>{arr.join("")}</Typography>
+					</Skeleton>
+				</h1>
+				<p className="text-sm text-gray-400">
+					<Skeleton>
+						<Typography>{arr.join("")}</Typography>
+					</Skeleton>
+				</p>
+				<a className="flex items-center justify-end flex-1">
+					<div className="flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md">
+						<span
+							className="text-pink-500 material-icons-round"
+							style={{ fontSize: "24px" }}
+						>
+							content_copy
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	);
 }
 
 export default function HeroCards() {
@@ -45,10 +45,10 @@ export default function HeroCards() {
 					Your published last files
 				</p>
 				<div className="flex flex-col h-64 px-5 py-5 space-y-3 overflow-y-auto">
-                    <BulletLoader />
-                    <BulletLoader />
-                    <BulletLoader />
-                    <BulletLoader />
+					<BulletLoader />
+					<BulletLoader />
+					<BulletLoader />
+					<BulletLoader />
 				</div>
 			</div>
 			<div className="flex flex-wrap bg-white rounded-md shadow md:w-1/2">
@@ -57,8 +57,8 @@ export default function HeroCards() {
 				</p>
 				<div className="flex flex-col h-64 px-5 py-5 space-y-3 overflow-y-auto">
 					<BulletLoader />
-                    <BulletLoader />
-                    <BulletLoader />
+					<BulletLoader />
+					<BulletLoader />
 				</div>
 			</div>
 		</div>

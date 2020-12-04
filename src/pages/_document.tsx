@@ -9,7 +9,7 @@ class CustomDocument extends Document {
 			<Html>
 				<Head>
 					<meta charSet="utf-8" />
-    				<meta name="HandheldFriendly" content="true" />
+					<meta name="HandheldFriendly" content="true" />
 					<meta name="robots" content="INDEX, FOLLOW" />
 					<meta name="copyright" content="Barış DEMİRCİ | HastePaste" />
 					<meta name="theme-color" content="#ff414d" />

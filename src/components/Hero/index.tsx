@@ -8,14 +8,14 @@ export default function Hero() {
 				<p className="text-xl text-white">Welcome to the island of HastePaste.</p>
 			</div>
 			<div className="flex items-center justify-center w-full sm:justify-end">
-				<div className="box-border flex flex-col items-center justify-center h-48 px-5 py-5 transition duration-150 transform bg-opacity-50 border-4 border-dashed rounded-lg cursor-pointer hover:scale-105 w-80 bg-lapis-300 border-lapis-200">
+				<div className="box-border flex flex-col items-center justify-center h-48 px-5 py-5 transition duration-150 transform bg-opacity-50 border-4 border-dashed rounded-lg cursor-pointer hover:scale-105 w-80 bg-pink-300 border-pink-200">
 					<span
-						className="material-icons-round text-lapis-100"
+						className="material-icons-round text-pink-100"
 						style={{ fontSize: "64px" }}
 					>
 						add
 					</span>
-					<p className="text-lapis-200 text-md">Drop file or click and create</p>
+					<p className="text-pink-200 text-md">Drop file or click and create</p>
 				</div>
 			</div>
 		</div>

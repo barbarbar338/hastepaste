@@ -6,16 +6,8 @@ const links = [
 		to: "/",
 	},
 	{
-		label: "Files",
-		to: "/files",
-	},
-	{
-		label: "Discover",
-		to: "/discover",
-	},
-	{
-		label: "Support",
-		to: "/support",
+		label: "GitHub",
+		to: "https://github.com/HastePasteApp/",
 	},
 ];
 
