@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Cookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import CONFIG from "src/config";
-
-const cookie = new Cookies();
 
 export interface LooseObject {
 	[key: string]: unknown;
@@ -14,8 +12,7 @@ export interface IUser {
 	is_banned?: boolean;
 }
 
-export async function fetchUser(): Promise<IUser | null> {
-	const access_token = cookie.get("access_token");
+export async function fetchUser(access_token?: string): Promise<IUser | null> {
 	if (access_token) {
 		return fetch(`${CONFIG.API_URL}/auth/@me`, {
 			headers: {
@@ -25,7 +22,6 @@ export async function fetchUser(): Promise<IUser | null> {
 			.then((res) => res.json())
 			.then((body) => {
 				if (body.statusCode !== 200) {
-					cookie.remove("access_token");
 					return null;
 				}
 				return body.data;
@@ -36,15 +32,17 @@ export async function fetchUser(): Promise<IUser | null> {
 export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
 	const [loading, setLoading] = useState(() => typeof window !== "undefined");
 	const [user, setUser] = useState<IUser>(null);
-	const access_token = cookie.get("access_token");
+	const [cookies, , removeCookie] = useCookies();
+	const access_token = cookies["access_token"];
 
 	useEffect(() => {
 		if (!loading && user) return;
 		setLoading(true);
 		if (access_token) {
-			fetchUser().then((userData) => {
+			fetchUser(access_token).then((userData) => {
 				if (!userData) {
-					if (strict) window.location.href = "/login";
+					removeCookie("access_token");
+					if (strict) return (window.location.href = "/login");
 				} else {
 					setUser({ ...userData, access_token });
 					setLoading(false);

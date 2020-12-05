@@ -4,13 +4,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CONFIG from "src/config";
-import { Cookies } from "react-cookie";
-import Loader from "react-loader-spinner";
+import { useCookies } from "react-cookie";
 import Recaptcha from "react-recaptcha";
 import Link from "next/link";
 import BarLoader from "@components/BarLoader";
-
-const cookie = new Cookies();
 
 export default function Signup(): JSX.Element {
 	const [mail, setMail] = useState("");
@@ -18,6 +15,7 @@ export default function Signup(): JSX.Element {
 	const [loading, setLoading] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
 	const [isChecked, setIsChecked] = useState(false);
+	const [, setCookie] = useCookies();
 	const { user } = useFetchUser(false);
 	const router = useRouter();
 
@@ -46,7 +44,7 @@ export default function Signup(): JSX.Element {
 		setLoading(false);
 		if (body.message === "This mail is already registered")
 			return toast.error("❌ This e-mail is already in use.");
-		cookie.set("access_token", body.data.access_token);
+		setCookie("access_token", body.data.access_token);
 		router.push("/profile");
 	};
 

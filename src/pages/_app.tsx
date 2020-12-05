@@ -2,8 +2,8 @@ import NextApp from "next/app";
 import { DefaultSeo } from "next-seo";
 import CookieConsent from "react-cookie-consent";
 import { ToastContainer } from "react-toastify";
+import { CookiesProvider } from "react-cookie";
 
-import Navbar from "@components/Navbar";
 import Layout from "@components/Layout/index";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -14,7 +14,7 @@ class App extends NextApp {
 	render(): JSX.Element {
 		const { Component, pageProps } = this.props;
 		return (
-			<>
+			<CookiesProvider>
 				<DefaultSeo titleTemplate="%s - HastePaste" />
 				<Layout>
 					<Component {...pageProps} />
@@ -35,7 +35,7 @@ class App extends NextApp {
 					This website uses cookies to enhance the user experience.
 				</CookieConsent>
 				<ToastContainer position="bottom-right" />
-			</>
+			</CookiesProvider>
 		);
 	}
 }

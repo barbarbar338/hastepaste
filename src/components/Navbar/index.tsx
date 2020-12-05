@@ -2,9 +2,8 @@ import ActiveClass from "@components/ActiveClass/index";
 import { useFetchUser } from "@libs/useFetchUser";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Cookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 
-const cookie = new Cookies();
 const links = [
 	{
 		label: "Home",
@@ -22,10 +21,11 @@ const links = [
 
 export default function Navbar(): JSX.Element {
 	const { user, loading } = useFetchUser(false);
+	const [, , removeCookie] = useCookies();
 	const router = useRouter();
 
 	const handleLogOut = () => {
-		cookie.remove("access_token");
+		removeCookie("access_token");
 		router.push("/");
 	};
 
