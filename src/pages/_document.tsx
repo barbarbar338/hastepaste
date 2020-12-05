@@ -33,6 +33,11 @@ class CustomDocument extends Document {
 						href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
 						rel="stylesheet"
 					/>
+					<script
+						src="https://www.google.com/recaptcha/api.js?render=explicit"
+						async
+						defer
+					></script>
 				</Head>
 				<body>
 					<Main />

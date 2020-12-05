@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import CONFIG from "src/config";
 import { Cookies } from "react-cookie";
 import Loader from "react-loader-spinner";
+import Recaptcha from "react-recaptcha";
+import Link from "next/link";
 
 const cookie = new Cookies();
 
@@ -13,6 +15,8 @@ export default function Signup(): JSX.Element {
 	const [mail, setMail] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [isVerified, setIsVerified] = useState(false);
+	const [isChecked, setIsChecked] = useState(false);
 	const { user } = useFetchUser(false);
 	const router = useRouter();
 
@@ -23,6 +27,9 @@ export default function Signup(): JSX.Element {
 	const handleForm = async (e) => {
 		if (loading) return;
 		e.preventDefault();
+		if (!isChecked)
+			return toast.error("❌ Confirm that you accept the terms of use.");
+		if (!isVerified) return toast.error("❌ Are you a robot?");
 		if (!mail) return toast.error("❌ Please provide a valid e-mail address.");
 		if (!password) return toast.error("❌ Please provide your password.");
 		if (password.length < 8)
@@ -75,6 +82,30 @@ export default function Signup(): JSX.Element {
 									onChange={(e) => setPassword(e.target.value)}
 									required
 								/>
+								<span className="text-xs text-red-400">* Required.</span>
+							</li>
+							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
+								<Recaptcha
+									sitekey={CONFIG.GRECAPTCHA_KEY}
+									render="explicit"
+									verifyCallback={() => setIsVerified(true)}
+									expiredCallback={() => setIsVerified(false)}
+								/>
+								<label className="inline-flex items-center mt-3">
+									<input
+										type="checkbox"
+										className="form-checkbox h-5 w-5 text-gray-600"
+										onClick={() => setIsChecked(!isChecked)}
+										defaultChecked={isChecked}
+									/>
+									<span className="ml-2 text-gray-700">
+										I have read and accept the{" "}
+										<Link href="/tos">
+											<span className="text-pink-400">terms of use</span>
+										</Link>
+										.
+									</span>
+								</label>
 								<span className="text-xs text-red-400">* Required.</span>
 							</li>
 							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none">
