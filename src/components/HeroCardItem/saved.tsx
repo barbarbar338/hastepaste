@@ -11,7 +11,7 @@ const Saved: FC<SavedProps> = (props) => {
 	const { name, description, link } = props;
 	return (
 		<Link href={link}>
-			<div className="relative flex items-center px-3 py-3 space-x-6 bg-pink-100 cursor-pointer rounded-md">
+			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 cursor-pointer rounded-md">
 				<span
 					className="text-pink-500 select-none material-icons-round"
 					style={{ fontSize: "28px" }}

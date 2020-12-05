@@ -1,6 +1,10 @@
 import ActiveClass from "@components/ActiveClass/index";
 import { useFetchUser } from "@libs/useFetchUser";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Cookies } from "react-cookie";
 
+const cookie = new Cookies();
 const links = [
 	{
 		label: "Home",
@@ -18,44 +22,58 @@ const links = [
 
 export default function Navbar(): JSX.Element {
 	const { user, loading } = useFetchUser(false);
+	const router = useRouter();
+
+	const handleLogOut = () => {
+		cookie.remove("access_token");
+		router.push("/");
+	};
 
 	return (
-		<div className="flex w-full px-5 py-6">
-			<div className="container flex items-center max-w-screen-xl mx-auto space-x-12">
-				<h1 className="text-2xl font-semibold text-white">HastePaste</h1>
-				<ul className="flex items-center space-x-6">
-					{links.map((link, i) => (
-						<li key={i}>
-							<ActiveClass activeClassName="text-white" href={link.to}>
-								<span className="text-sm text-white cursor-pointer">{link.label}</span>
-							</ActiveClass>
-						</li>
-					))}
-				</ul>
-				<div className="flex items-center justify-end flex-1">
-					<ul className="flex items-center space-x-6">
-						{loading || !user ? (
-							<>
-								<li>
-									<ActiveClass activeClassName="text-white" href="/login">
-										<span className="text-sm text-white cursor-pointer">Login</span>
-									</ActiveClass>
-								</li>
-								<li>
-									<ActiveClass activeClassName="text-white" href="/signup">
-										<span className="text-sm text-white cursor-pointer">Sign Up</span>
-									</ActiveClass>
-								</li>
-							</>
-						) : (
-							<li>
-								<ActiveClass activeClassName="text-white" href="/profile">
-									<span className="text-sm text-white cursor-pointer">Profile</span>
-								</ActiveClass>
-							</li>
-						)}
-					</ul>
+		<div className="nav">
+			<input type="checkbox" id="nav-check" />
+			<div className="nav-header">
+				<div className="nav-title">
+					<Link href="/">
+						<span className="cursor-pointer">HastePaste</span>
+					</Link>
 				</div>
+			</div>
+			<div className="nav-btn">
+				<label htmlFor="nav-check">
+					<span></span>
+					<span></span>
+					<span></span>
+				</label>
+			</div>
+			<div className="nav-links">
+				{links.map((data, i) => (
+					<ActiveClass key={i} activeClassName="text-white" href={data.to}>
+						<span className="link-item cursor-pointer">{data.label}</span>
+					</ActiveClass>
+				))}
+				{loading || !user ? (
+					<>
+						<ActiveClass activeClassName="text-white" href="/login">
+							<span className="link-item cursor-pointer">Login</span>
+						</ActiveClass>
+						<ActiveClass activeClassName="text-white" href="/signup">
+							<span className="link-item cursor-pointer">Sign Up</span>
+						</ActiveClass>
+					</>
+				) : (
+					<>
+						<ActiveClass activeClassName="text-white" href="/profile">
+							<span className="link-item cursor-pointer">Profile</span>
+						</ActiveClass>
+						<span
+							className="text-white link-item cursor-pointer"
+							onClick={handleLogOut}
+						>
+							Logout
+						</span>
+					</>
+				)}
 			</div>
 		</div>
 	);

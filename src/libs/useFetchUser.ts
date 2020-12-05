@@ -14,6 +14,25 @@ export interface IUser {
 	is_banned?: boolean;
 }
 
+export async function fetchUser(): Promise<IUser | null> {
+	const access_token = cookie.get("access_token");
+	if (access_token) {
+		return fetch(`${CONFIG.API_URL}/auth/@me`, {
+			headers: {
+				Authorization: access_token,
+			},
+		})
+			.then((res) => res.json())
+			.then((body) => {
+				if (body.statusCode !== 200) {
+					cookie.remove("access_token");
+					return null;
+				}
+				return body.data;
+			});
+	} else return null;
+}
+
 export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
 	const [loading, setLoading] = useState(() => typeof window !== "undefined");
 	const [user, setUser] = useState<IUser>(null);
@@ -23,21 +42,14 @@ export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
 		if (!loading && user) return;
 		setLoading(true);
 		if (access_token) {
-			fetch(`${CONFIG.API_URL}/auth/@me`, {
-				headers: {
-					Authorization: access_token,
-				},
-			})
-				.then((res) => res.json())
-				.then((body) => {
-					if (body.statusCode !== 200) {
-						cookie.remove("access_token");
-						if (strict) window.location.href = "/login";
-						return;
-					}
-					setUser({ ...body.data, access_token });
+			fetchUser().then((userData) => {
+				if (!userData) {
+					if (strict) window.location.href = "/login";
+				} else {
+					setUser({ ...userData, access_token });
 					setLoading(false);
-				});
+				}
+			});
 		} else if (strict) window.location.href = "/login";
 	}, []);
 

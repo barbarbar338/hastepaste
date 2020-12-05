@@ -17,11 +17,6 @@ class App extends NextApp {
 			<>
 				<DefaultSeo titleTemplate="%s - HastePaste" />
 				<Layout>
-					<div className="w-full bg-pink-500">
-						<div className="flex flex-wrap w-full">
-							<Navbar />
-						</div>
-					</div>
 					<Component {...pageProps} />
 				</Layout>
 				<CookieConsent

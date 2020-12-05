@@ -44,7 +44,9 @@ export default function Login(): JSX.Element {
 			return toast.error(
 				"❌ Make sure you enter your email and password correctly.",
 			);
-		cookie.set("access_token", body.data.access_token);
+		cookie.set("access_token", body.data.access_token, {
+			maxAge: 60 * 60 * 24 * 365,
+		});
 		router.push("/profile");
 	};
 
