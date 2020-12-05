@@ -101,7 +101,7 @@ export default function Signup(): JSX.Element {
 									<span className="ml-2 text-gray-700">
 										I have read and accept the{" "}
 										<Link href="/tos">
-											<span className="text-pink-400">terms of use</span>
+											<span className="text-pink-400 cursor-pointer">terms of use</span>
 										</Link>
 										.
 									</span>
