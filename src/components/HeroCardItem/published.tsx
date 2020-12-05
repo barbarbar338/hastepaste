@@ -1,5 +1,6 @@
 import { FC } from "react";
 import PropTypes from "prop-types";
+import Link from "next/link";
 
 export interface PublishedProps {
 	name: string;
@@ -10,8 +11,8 @@ export interface PublishedProps {
 const Published: FC<PublishedProps> = (props) => {
 	const { name, description, link } = props;
 	return (
-		<div>
-			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 rounded-md">
+		<Link href={link}>
+			<div className="flex items-center px-3 py-3 space-x-6 bg-pink-100 cursor-pointer rounded-md">
 				<span
 					className="text-pink-500 select-none material-icons-round"
 					style={{ fontSize: "28px" }}
@@ -19,9 +20,15 @@ const Published: FC<PublishedProps> = (props) => {
 					folder
 				</span>
 				<h1 className="text-gray-700">{name}</h1>
-				<p className="text-sm text-gray-400">{description}</p>
-				<a href={link} className="flex items-center justify-end flex-1">
-					<div className="flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md">
+				<p className="text-sm text-gray-400">
+					{description
+						? description.length > 30
+							? description.slice(0, 30) + "..."
+							: description
+						: "My awesome file!"}
+				</p>
+				<div className="flex items-center justify-end flex-1">
+					<div className="flex items-center justify-center p-1.5 bg-white rounded-md">
 						<span
 							className="text-pink-500 material-icons-round"
 							style={{ fontSize: "24px" }}
@@ -29,9 +36,9 @@ const Published: FC<PublishedProps> = (props) => {
 							content_copy
 						</span>
 					</div>
-				</a>
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 };
 

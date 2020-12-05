@@ -3,10 +3,7 @@ import { Skeleton } from "@material-ui/lab";
 
 export default function Card(): JSX.Element {
 	return (
-		<a
-			target="_blank"
-			className="flex flex-col items-center justify-center bg-white rounded-md shadow"
-		>
+		<div className="flex flex-col items-center justify-center bg-white rounded-md shadow">
 			<span
 				className="hidden text-pink-500 material-icons-round md:block"
 				style={{ fontSize: "128px" }}
@@ -24,6 +21,6 @@ export default function Card(): JSX.Element {
 					<Skeleton />
 				</Typography>
 			</div>
-		</a>
+		</div>
 	);
 }

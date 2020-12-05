@@ -11,12 +11,11 @@ import Link from "next/link";
 
 const cookie = new Cookies();
 
-export default function Signup(): JSX.Element {
+export default function Login(): JSX.Element {
 	const [mail, setMail] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [isVerified, setIsVerified] = useState(false);
-	const [isChecked, setIsChecked] = useState(false);
 	const { user } = useFetchUser(false);
 	const router = useRouter();
 
@@ -27,8 +26,6 @@ export default function Signup(): JSX.Element {
 	const handleForm = async (e) => {
 		if (loading) return;
 		e.preventDefault();
-		if (!isChecked)
-			return toast.error("❌ Confirm that you accept the terms of use.");
 		if (!isVerified) return toast.error("❌ Are you a robot?");
 		if (!mail) return toast.error("❌ Please provide a valid e-mail address.");
 		if (!password) return toast.error("❌ Please provide your password.");
@@ -36,27 +33,31 @@ export default function Signup(): JSX.Element {
 			return toast.error("❌ Your password must be longer than 8 characters.");
 		setLoading(true);
 		const headers = { "Content-Type": "application/json" };
-		const res = await fetch(`${CONFIG.API_URL}/auth/signup`, {
+		const res = await fetch(`${CONFIG.API_URL}/auth/login`, {
 			method: "POST",
 			headers,
 			body: JSON.stringify({ mail, password }),
 		});
 		const body = await res.json();
 		setLoading(false);
-		if (body.message === "This mail is already registered")
-			return toast.error("❌ This e-mail is already in use.");
+		if (body.message === "Invalid mail or password")
+			return toast.error(
+				"❌ Make sure you enter your email and password correctly.",
+			);
 		cookie.set("access_token", body.data.access_token);
 		router.push("/profile");
 	};
 
 	return (
 		<>
-			<NextSeo title="Sign Up" />
+			<NextSeo title="Login" />
 			<div>
 				<div className="bg-pink-500">
 					<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
-						<h1 className="text-3xl font-medium text-white">Sign Up</h1>
-						<p className="text-pink-100 ">Join the magical world of HastePaste!</p>
+						<h1 className="text-3xl font-medium text-white">Login</h1>
+						<p className="text-pink-100 ">
+							Welcome back to HastePaste's magical world!
+						</p>
 					</div>
 				</div>
 				<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
@@ -91,21 +92,6 @@ export default function Signup(): JSX.Element {
 									verifyCallback={() => setIsVerified(true)}
 									expiredCallback={() => setIsVerified(false)}
 								/>
-								<label className="inline-flex items-center mt-3">
-									<input
-										type="checkbox"
-										className="form-checkbox h-5 w-5 text-gray-600"
-										onClick={() => setIsChecked(!isChecked)}
-										defaultChecked={isChecked}
-									/>
-									<span className="ml-2 text-gray-700">
-										I have read and accept the{" "}
-										<Link href="/tos">
-											<span className="text-pink-400 cursor-pointer">terms of use</span>
-										</Link>
-										.
-									</span>
-								</label>
 								<span className="text-xs text-red-400">* Required.</span>
 							</li>
 							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none">
@@ -121,15 +107,15 @@ export default function Signup(): JSX.Element {
 										/>
 									</span>
 								) : (
-									"Sign Up"
+									"Login"
 								)}
 							</button>
 							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg items-center">
 								<span className="text-xs">
-									Already have an account?{" "}
-									<Link href="/login">
+									Don't have an account?{" "}
+									<Link href="/signup">
 										<span className="text-pink-600 cursor-pointer hover:text-pink-400">
-											Login
+											Sign Up
 										</span>
 									</Link>
 								</span>

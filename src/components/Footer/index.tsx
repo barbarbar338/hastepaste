@@ -56,21 +56,17 @@ export default function Footer(): JSX.Element {
 						<p className="text-sm mb-2">
 							<span className="text-pink-300">HastePaste</span> © 2020 | Back-end &
 							front-end by{" "}
-							<a
-								href="https://github.com/barbarbar338"
-								target="_blank"
-								className="text-pink-300 hover:text-pink-200"
-							>
-								barbarbar338
-							</a>{" "}
+							<Link href="https://github.com/barbarbar338">
+								<span className="text-pink-300 cursor-pointer hover:text-pink-200">
+									barbarbar338
+								</span>
+							</Link>{" "}
 							- Design by{" "}
-							<a
-								href="https://github.com/thisisroi"
-								target="_blank"
-								className="text-pink-300 hover:text-pink-200"
-							>
-								Roi
-							</a>
+							<Link href="https://github.com/thisisroi">
+								<span className="text-pink-300 cursor-pointer hover:text-pink-200">
+									Roi
+								</span>
+							</Link>
 						</p>
 					</div>
 				</div>
