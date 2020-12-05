@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import CONFIG from "src/config";
 import { Cookies } from "react-cookie";
-import Loader from "react-loader-spinner";
 import Recaptcha from "react-recaptcha";
 import Link from "next/link";
+import BarLoader from "@components/BarLoader";
 
 const cookie = new Cookies();
 
@@ -95,20 +95,7 @@ export default function Login(): JSX.Element {
 								<span className="text-xs text-red-400">* Required.</span>
 							</li>
 							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none">
-								{loading ? (
-									<span>
-										<Loader
-											type="ThreeDots"
-											color="#fff"
-											style={{
-												width: "8%",
-												margin: "auto",
-											}}
-										/>
-									</span>
-								) : (
-									"Login"
-								)}
+								{loading ? <BarLoader /> : "Login"}
 							</button>
 							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg items-center">
 								<span className="text-xs">

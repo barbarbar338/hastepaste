@@ -1,16 +1,16 @@
 import { NextSeo } from "next-seo";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import Loader from "react-loader-spinner";
-import CONFIG from "src/config";
 import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
+import BarLoader from "@components/BarLoader";
+import CONFIG from "src/config";
 
 export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [paste, setPaste] = useState("");
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const { user } = useFetchUser(false);
 	const router = useRouter();
 
@@ -78,20 +78,7 @@ export default function IndexPage(): JSX.Element {
 							onClick={createPaste}
 							className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none"
 						>
-							{loading ? (
-								<span>
-									<Loader
-										type="ThreeDots"
-										color="#fff"
-										style={{
-											width: "8%",
-											margin: "auto",
-										}}
-									/>
-								</span>
-							) : (
-								"Create!"
-							)}
+							{loading ? <BarLoader /> : "Create!"}
 						</button>
 					</ul>
 				</div>

@@ -7,7 +7,6 @@ import Navbar from "@components/Navbar";
 import Layout from "@components/Layout/index";
 
 import "react-toastify/dist/ReactToastify.css";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "@styles/tailwind.css";
 import "@styles/styles.css";
 
