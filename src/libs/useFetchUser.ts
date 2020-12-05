@@ -4,10 +4,16 @@ import CONFIG from "src/config";
 
 const cookie = new Cookies();
 
-export interface LooseObject { [key: string]: unknown; }
-export interface IUser { access_token: string; paste: unknown[]; user: LooseObject }
+export interface LooseObject {
+	[key: string]: unknown;
+}
+export interface IUser {
+	access_token: string;
+	paste: unknown[];
+	user: LooseObject;
+}
 
-export function useFetchUser(strict = true): { user: IUser; loading: boolean; } {
+export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
 	const [loading, setLoading] = useState(() => typeof window !== "undefined");
 	const [user, setUser] = useState<IUser>(null);
 	const access_token = cookie.get("access_token");

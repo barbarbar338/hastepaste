@@ -16,22 +16,12 @@
 		"typeRoots": ["node_modules/@types", "src/@types", "src/node-env.d.ts"],
 		"baseUrl": ".",
 		"paths": {
-			"@styles/*": [ "src/styles/*" ],
-			"@assets/*": [ "src/assets/*" ],
-			"@components/*": [ "src/components/*" ],
-			"@libs/*": [ "src/libs/*" ]
+			"@styles/*": ["src/styles/*"],
+			"@assets/*": ["src/assets/*"],
+			"@components/*": ["src/components/*"],
+			"@libs/*": ["src/libs/*"]
 		}
 	},
-	"exclude": [
-		"dist",
-		"node_modules",
-		"**/__mocks__",
-		"**/*.spec.ts",
-		"**/*.spec.tsx",
-		"**/*.test.ts",
-		"**/*.test.tsx",
-		"**/~~**/*",
-		"**/**~~/*"
-	],
+	"exclude": ["dist", "node_modules"],
 	"include": ["src/**/*.ts", "src/**/*.tsx"]
 }

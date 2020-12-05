@@ -22,7 +22,11 @@ export default function ProfilePage(): JSX.Element {
 			<NextSeo title={loading ? "Loading" : "Profile"} />
 			<div>
 				<div className="w-full bg-pink-500">
-					{loading || !user ? <HeroSkeleton /> : <Hero mail={(user.user.mail as string).split("@")[0]} />}
+					{loading || !user ? (
+						<HeroSkeleton />
+					) : (
+						<Hero mail={(user.user.mail as string).split("@")[0]} />
+					)}
 				</div>
 				<div className="container max-w-screen-xl mx-auto -mt-24">
 					<div className="px-5 lg:px-0">

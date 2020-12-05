@@ -16,7 +16,7 @@ const Hero: FC<HeroProps> = ({ mail }) => {
 			</div>
 		</div>
 	);
-}
+};
 
 Hero.propTypes = {
 	mail: PropTypes.string.isRequired,

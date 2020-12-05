@@ -21,7 +21,7 @@ const links = {
 			to: "/signup",
 		},
 	],
-}
+};
 
 export default function Navbar(): JSX.Element {
 	return (

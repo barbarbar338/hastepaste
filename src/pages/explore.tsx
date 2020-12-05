@@ -52,9 +52,15 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 	);
 };
 
-FilePage.getInitialProps = async ({ query: { id } }: NextPageContext): Promise<IFilePage> => {
-    if (!id) return { error: true };
-	const res = await fetch(`${CONFIG.API_URL}/paste?id=${encodeURIComponent(typeof id === "string" ? id : id[0])}`);
+FilePage.getInitialProps = async ({
+	query: { id },
+}: NextPageContext): Promise<IFilePage> => {
+	if (!id) return { error: true };
+	const res = await fetch(
+		`${CONFIG.API_URL}/paste?id=${encodeURIComponent(
+			typeof id === "string" ? id : id[0],
+		)}`,
+	);
 	if (!res.ok) return { error: true };
 	const { data } = await res.json();
 	return { pasteData: data };

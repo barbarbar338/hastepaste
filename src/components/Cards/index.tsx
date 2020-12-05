@@ -7,7 +7,7 @@ export interface ICards {
 		id: string;
 		title: string;
 		description?: string;
-		[ key: string ]: unknown;
+		[key: string]: unknown;
 	}[];
 }
 
@@ -22,10 +22,10 @@ const Cards: FC<ICards> = ({ paste }) => {
 			</div>
 		</div>
 	);
-}
+};
 
 Cards.propTypes = {
-	paste: PropTypes.array.isRequired
-}
+	paste: PropTypes.array.isRequired,
+};
 
 export default Cards;
