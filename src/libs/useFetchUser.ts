@@ -11,6 +11,7 @@ export interface IUser {
 	access_token: string;
 	paste: unknown[];
 	user: LooseObject;
+	is_banned?: boolean;
 }
 
 export function useFetchUser(strict = true): { user: IUser; loading: boolean } {

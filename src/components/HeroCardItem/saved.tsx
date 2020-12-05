@@ -1,10 +1,9 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
 import Link from "next/link";
 
 export interface SavedProps {
 	name: string;
-	description: string;
+	description?: string;
 	link: string;
 }
 
@@ -40,12 +39,6 @@ const Saved: FC<SavedProps> = (props) => {
 			</div>
 		</Link>
 	);
-};
-
-Saved.propTypes = {
-	name: PropTypes.string.isRequired,
-	link: PropTypes.string.isRequired,
-	description: PropTypes.string.isRequired,
 };
 
 export default Saved;

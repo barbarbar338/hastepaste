@@ -1,6 +1,5 @@
 import Card from "@components/Card/index";
 import { FC } from "react";
-import PropTypes from "prop-types";
 
 export interface ICards {
 	paste: {
@@ -22,10 +21,6 @@ const Cards: FC<ICards> = ({ paste }) => {
 			</div>
 		</div>
 	);
-};
-
-Cards.propTypes = {
-	paste: PropTypes.array.isRequired,
 };
 
 export default Cards;

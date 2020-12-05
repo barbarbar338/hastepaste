@@ -1,7 +1,6 @@
 import Published from "@components/HeroCardItem/published";
 import Saved from "@components/HeroCardItem/saved";
 import { FC } from "react";
-import PropTypes from "prop-types";
 
 export interface IHeroCard {
 	paste: {
@@ -57,10 +56,6 @@ const HeroCards: FC<IHeroCard> = ({ paste }) => {
 			</div>
 		</div>
 	);
-};
-
-HeroCards.propTypes = {
-	paste: PropTypes.array.isRequired,
 };
 
 export default HeroCards;

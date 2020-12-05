@@ -1,5 +1,4 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
 
 export interface HeroProps {
 	mail: string;
@@ -16,10 +15,6 @@ const Hero: FC<HeroProps> = ({ mail }) => {
 			</div>
 		</div>
 	);
-};
-
-Hero.propTypes = {
-	mail: PropTypes.string.isRequired,
 };
 
 export default Hero;

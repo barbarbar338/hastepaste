@@ -1,10 +1,9 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
 import Link from "next/link";
 
 export interface PublishedProps {
 	name: string;
-	description: string;
+	description?: string;
 	link: string;
 }
 
@@ -40,12 +39,6 @@ const Published: FC<PublishedProps> = (props) => {
 			</div>
 		</Link>
 	);
-};
-
-Published.propTypes = {
-	name: PropTypes.string.isRequired,
-	link: PropTypes.string.isRequired,
-	description: PropTypes.string.isRequired,
 };
 
 export default Published;

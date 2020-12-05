@@ -1,5 +1,4 @@
 import { FC } from "react";
-import PropTypes from "prop-types";
 import Link from "next/link";
 
 export interface CardProps {
@@ -30,11 +29,6 @@ const Card: FC<CardProps> = (props) => {
 			</div>
 		</Link>
 	);
-};
-
-Card.propTypes = {
-	name: PropTypes.string.isRequired,
-	link: PropTypes.string.isRequired,
 };
 
 export default Card;

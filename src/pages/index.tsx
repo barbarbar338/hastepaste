@@ -10,7 +10,7 @@ export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [paste, setPaste] = useState("");
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const { user } = useFetchUser(false);
 	const router = useRouter();
 

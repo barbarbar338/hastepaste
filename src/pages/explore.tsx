@@ -3,6 +3,8 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { NextSeo } from "next-seo";
 import { NextPage, NextPageContext } from "next";
+import { useFetchUser } from "@libs/useFetchUser";
+import { useRouter } from "next/router";
 import CONFIG from "src/config";
 
 export interface IFilePage {
@@ -19,6 +21,9 @@ export interface IFilePage {
 }
 
 const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
+	const router = useRouter();
+	const { user } = useFetchUser(false);
+
 	return (
 		<>
 			<NextSeo title="Explore Paste" />
@@ -30,7 +35,14 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 							? "We searched quite a lot for the paste you were looking for but couldn't find it"
 							: pasteData.description || "My awesome file!"
 					}
-					canFork={pasteData && pasteData.is_reported ? false : !error}
+					canFork={
+						(pasteData && pasteData.is_reported) || !user || user.is_banned
+							? false
+							: error
+							? false
+							: pasteData.owner !== user.user.id
+					}
+					id={router.query.id as string}
 				/>
 				<div className="container max-w-screen-xl px-2 mx-auto lg:px-0">
 					<div className="px-5 py-5 -mt-5 text-sm text-black bg-white rounded-lg shadow ">
