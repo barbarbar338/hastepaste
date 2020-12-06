@@ -8,6 +8,7 @@ import Cards from "@components/Cards/index";
 import CardsSkeleton from "@components/Cards/skeleton";
 import Hero from "@components/Hero/index";
 import HeroSkeleton from "@components/Hero/skeleton";
+import Layout from "@components/Layout/index";
 
 export default function ProfilePage(): JSX.Element {
 	const { user, loading } = useFetchUser(true);
@@ -18,7 +19,7 @@ export default function ProfilePage(): JSX.Element {
 	});
 
 	return (
-		<>
+		<Layout user={user} loading={loading}>
 			<NextSeo title={loading ? "Loading" : "Profile"} />
 			<div>
 				<div className="w-full bg-pink-500">
@@ -35,6 +36,6 @@ export default function ProfilePage(): JSX.Element {
 					</div>
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 }

@@ -6,6 +6,7 @@ import { NextPage, NextPageContext } from "next";
 import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
 import CONFIG from "src/config";
+import Layout from "@components/Layout/index";
 
 export interface IFilePage {
 	error?: boolean;
@@ -22,10 +23,10 @@ export interface IFilePage {
 
 const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 	const router = useRouter();
-	const { user } = useFetchUser(false);
+	const { user, loading } = useFetchUser(false);
 
 	return (
-		<>
+		<Layout user={user} loading={loading}>
 			<NextSeo title="Explore Paste" />
 			<div>
 				<FileHeader
@@ -60,7 +61,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 };
 

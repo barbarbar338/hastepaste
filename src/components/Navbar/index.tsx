@@ -1,7 +1,8 @@
 import ActiveClass from "@components/ActiveClass/index";
-import { useFetchUser } from "@libs/useFetchUser";
+import { IUser } from "@libs/useFetchUser";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FC } from "react";
 import { useCookies } from "react-cookie";
 
 const links = [
@@ -19,9 +20,14 @@ const links = [
 	},
 ];
 
-export default function Navbar(): JSX.Element {
-	const { user, loading } = useFetchUser(false);
-	const [, , removeCookie] = useCookies();
+export interface INavbarProps {
+	user?: IUser;
+	loading: boolean;
+}
+
+const Navbar: FC<INavbarProps> = (props) => {
+	const { user, loading } = props;
+	const [, , removeCookie] = useCookies(["access_token"]);
 	const router = useRouter();
 
 	const handleLogOut = () => {
@@ -77,4 +83,6 @@ export default function Navbar(): JSX.Element {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Navbar;

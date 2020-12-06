@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 import Recaptcha from "react-recaptcha";
 import Link from "next/link";
 import BarLoader from "@components/BarLoader";
+import Layout from "@components/Layout/index";
 
 export default function Login(): JSX.Element {
 	const [mail, setMail] = useState("");
@@ -16,7 +17,7 @@ export default function Login(): JSX.Element {
 	const [isVerified, setIsVerified] = useState(false);
 
 	const [, setCookie] = useCookies();
-	const { user } = useFetchUser(false);
+	const { user, loading: userLoading } = useFetchUser(false);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -51,7 +52,7 @@ export default function Login(): JSX.Element {
 	};
 
 	return (
-		<>
+		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Login" />
 			<div>
 				<div className="bg-pink-500">
@@ -113,6 +114,6 @@ export default function Login(): JSX.Element {
 					</form>
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useCookies } from "react-cookie";
 import CONFIG from "src/config";
 
@@ -29,7 +29,8 @@ export async function fetchUser(access_token?: string): Promise<IUser | null> {
 	} else return null;
 }
 
-export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
+/*
+export function useFetchUser(strict = true): { user: IUser; loading: boolean; setUser: Dispatch<SetStateAction<IUser>>; setLoading: Dispatch<SetStateAction<boolean>>; } {
 	const [loading, setLoading] = useState(() => typeof window !== "undefined");
 	const [user, setUser] = useState<IUser>(null);
 	const [cookies, , removeCookie] = useCookies();
@@ -51,5 +52,42 @@ export function useFetchUser(strict = true): { user: IUser; loading: boolean } {
 		} else if (strict) window.location.href = "/login";
 	}, []);
 
-	return { user, loading };
+	return { user, loading, setUser, setLoading };
+}
+*/
+export function useFetchUser(
+	strict = true,
+): {
+	user: IUser;
+	loading: boolean;
+	setUser: Dispatch<SetStateAction<IUser>>;
+	setLoading: Dispatch<SetStateAction<boolean>>;
+} {
+	const [loading, setLoading] = useState(() => !(typeof window !== "undefined"));
+	const [user, setUser] = useState(null);
+	const [cookies, , removeCookie] = useCookies();
+	const { access_token } = cookies;
+
+	useEffect(() => {
+		if (!loading && user) return;
+		setLoading(true);
+		let isMounted = true;
+
+		fetchUser(access_token).then((user) => {
+			if (isMounted) {
+				if (strict && !user) {
+					removeCookie("access_token");
+					window.location.href = "/login";
+					return;
+				}
+				setUser(user);
+				setLoading(false);
+			}
+		});
+		return () => {
+			isMounted = false;
+		};
+	}, []);
+
+	return { user, loading, setUser, setLoading };
 }

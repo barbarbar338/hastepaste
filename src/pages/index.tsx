@@ -5,13 +5,14 @@ import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
 import BarLoader from "@components/BarLoader";
 import CONFIG from "src/config";
+import Layout from "@components/Layout/index";
 
 export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [paste, setPaste] = useState("");
 	const [loading, setLoading] = useState(false);
-	const { user } = useFetchUser(false);
+	const { user, loading: userLoading } = useFetchUser(false);
 	const router = useRouter();
 
 	const createPaste = async () => {
@@ -35,7 +36,7 @@ export default function IndexPage(): JSX.Element {
 	};
 
 	return (
-		<>
+		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Create Paste" />
 			<div>
 				<div className="bg-pink-500">
@@ -83,6 +84,6 @@ export default function IndexPage(): JSX.Element {
 					</ul>
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 }

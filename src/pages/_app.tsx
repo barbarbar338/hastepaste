@@ -4,8 +4,6 @@ import CookieConsent from "react-cookie-consent";
 import { ToastContainer } from "react-toastify";
 import { CookiesProvider } from "react-cookie";
 
-import Layout from "@components/Layout/index";
-
 import "react-toastify/dist/ReactToastify.css";
 import "@styles/tailwind.css";
 import "@styles/styles.css";
@@ -16,9 +14,7 @@ class App extends NextApp {
 		return (
 			<CookiesProvider>
 				<DefaultSeo titleTemplate="%s - HastePaste" />
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<Component {...pageProps} />
 				<CookieConsent
 					location="bottom"
 					buttonText="Close"
