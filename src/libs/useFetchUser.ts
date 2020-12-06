@@ -54,7 +54,7 @@ export function useFetchUser(
 					window.location.href = "/login";
 					return;
 				}
-				setUser({ ...user, access_token });
+				setUser(user ? { ...user, access_token } : null);
 				setLoading(false);
 			}
 		});
