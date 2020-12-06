@@ -44,7 +44,7 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 			return toast.error("❌ You cannot fork your paste.");
 		if (!res.ok)
 			return toast.error("❌ An error occured. Please try again later");
-		router.push(`/explore?id=${body.data.id}`);
+		router.push(`/explore?id=${encodeURIComponent(body.data.id)}`);
 	};
 
 	return (

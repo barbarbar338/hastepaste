@@ -38,21 +38,30 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 		}
 	});
 
+	const handleEdit = () => {
+		if (loading) return;
+		if (!canEdit) return toast.error("❌ You can't edit this paste.");
+		router.push(`/edit?id=${router.query.id}`);
+	};
+
 	const handleReport = async () => {
 		if (loading) return;
 		if (!canReport) return toast.error("❌ You can't report this paste.");
 		setLoading(true);
-		const res = await fetch(`${CONFIG.API_URL}/paste/report?id=${router.query.id}`, {
-			headers: {
-				"Authorization": user.access_token
-			}
-		});
+		const res = await fetch(
+			`${CONFIG.API_URL}/paste/report?id=${router.query.id}`,
+			{
+				headers: {
+					Authorization: user.access_token,
+				},
+			},
+		);
 		const body = await res.json();
 		setLoading(false);
-		if (!body.data) return toast.error("❌ Please try again later."); 
+		if (!body.data) return toast.error("❌ Please try again later.");
 		toast.success("✔️ Thank you for reporting!");
 		router.push("/profile");
-	}
+	};
 
 	const handleDelete = async () => {
 		if (loading) return;
@@ -62,17 +71,17 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
-				"Authorization": user.access_token
+				Authorization: user.access_token,
 			},
 			body: JSON.stringify({
-				id: router.query.id
-			})
+				id: router.query.id,
+			}),
 		});
 		const body = await res.json();
 		setLoading(false);
 		if (!body.data) return toast.error("❌ Please try again later.");
 		router.push("/profile");
-	}
+	};
 
 	return (
 		<Layout user={user} loading={userLoading}>
@@ -111,6 +120,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 						</li>
 						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
 							<button
+								onClick={handleEdit}
 								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none ${
 									!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer"
 								}`}

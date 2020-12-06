@@ -70,7 +70,7 @@ export default function IndexPage(): JSX.Element {
 							<p className="text-gray-900">Paste Content</p>
 							<textarea
 								className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md h-72 text-md focus:outline-none"
-								placeholder="bla bla bla"
+								placeholder="Hey take a look at this"
 								onChange={(e) => setPaste(e.target.value)}
 							/>
 							<span className="text-xs text-red-400">* Required.</span>

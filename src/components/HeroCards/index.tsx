@@ -34,7 +34,7 @@ const HeroCards: FC<IHeroCard> = ({ paste }) => {
 							key={idx}
 							name={i.title}
 							description={i.description}
-							link={`/explore?id=${i.id}`}
+							link={`/explore?id=${encodeURIComponent(i.id)}`}
 						/>
 					))}
 				</div>
@@ -49,7 +49,7 @@ const HeroCards: FC<IHeroCard> = ({ paste }) => {
 							key={idx}
 							name={i.title}
 							description={i.description}
-							link={`/explore?id=${i.id}`}
+							link={`/explore?id=${encodeURIComponent(i.id)}`}
 						/>
 					))}
 				</div>
