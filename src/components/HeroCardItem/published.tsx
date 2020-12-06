@@ -16,7 +16,7 @@ const Published: FC<PublishedProps> = (props) => {
 					className="text-pink-500 select-none material-icons-round"
 					style={{ fontSize: "28px" }}
 				>
-					folder
+					text_snippet
 				</span>
 				<h1 className="text-gray-700">{name}</h1>
 				<p className="text-sm text-gray-400">

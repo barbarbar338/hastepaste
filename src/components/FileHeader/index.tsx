@@ -55,7 +55,7 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 						className="text-white material-icons-round"
 						style={{ fontSize: "100px" }}
 					>
-						folder
+						text_snippet
 					</span>
 					<div className="flex w-full">
 						<div className="flex flex-col">

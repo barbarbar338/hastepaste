@@ -10,7 +10,7 @@ function BulletLoader(): JSX.Element {
 					className="text-pink-500 select-none material-icons-round"
 					style={{ fontSize: "28px" }}
 				>
-					folder
+					text_snippet
 				</span>
 				<h1 className="text-gray-700">
 					<Skeleton>
