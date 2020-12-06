@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useFetchUser } from "@libs/useFetchUser";
 import CONFIG from "src/config";
 import { useRouter } from "next/router";
+import styles from "./index.module.scss";
 
 export interface FileHeaderProps {
 	name: string;
@@ -48,35 +49,24 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 	};
 
 	return (
-		<div className="bg-pink-500">
-			<div className="container max-w-screen-xl px-4 py-12 mx-auto md:px-0">
-				<div className="flex items-center space-x-4">
-					<span
-						className="text-white material-icons-round"
-						style={{ fontSize: "100px" }}
-					>
-						text_snippet
-					</span>
-					<div className="flex w-full">
-						<div className="flex flex-col">
-							<h1 className="text-2xl font-semibold text-white">{name}</h1>
-							<p className="text-sm font-normal text-pink-100">{description}</p>
+		<div className={styles.bg}>
+			<div className={styles.wrapper}>
+				<div className={styles.myCont}>
+					<span className={`${styles.icon} material-icons-round`}>text_snippet</span>
+					<div className={styles.content}>
+						<div className={styles.details}>
+							<h1>{name}</h1>
+							<p>{description}</p>
 						</div>
-						<div className="flex items-center justify-end flex-1">
+						<div className={styles.button}>
 							<button
-								className={`text-pink-500 text-sm bg-white flex items-center rounded-lg px-4 md:px-8 py-2.5 focus:outline-none ${
-									canFork ? "cursor-pointer" : "cursor-not-allowed"
-								}`}
+								className={canFork ? "cursor-pointer" : "cursor-not-allowed"}
 								onClick={handleButton}
 							>
 								{canFork ? (
-									<span className="mr-1 text-pink-500 material-icons-round">
-										bookmark
-									</span>
+									<span className="material-icons-round">bookmark</span>
 								) : (
-									<span className="mr-1 text-pink-500 material-icons-round">
-										highlight_off
-									</span>
+									<span className="material-icons-round">highlight_off</span>
 								)}
 								{canFork ? loading ? <BarLoader dark /> : "Fork" : "Can't Fork"}
 							</button>

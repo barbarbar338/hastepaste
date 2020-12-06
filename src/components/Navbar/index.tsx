@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { useCookies } from "react-cookie";
+import styles from "./index.module.scss";
 
 const links = [
 	{
@@ -36,46 +37,43 @@ const Navbar: FC<INavbarProps> = (props) => {
 	};
 
 	return (
-		<div className="nav">
-			<input type="checkbox" id="nav-check" />
-			<div className="nav-header">
-				<div className="nav-title">
+		<div className={styles.nav}>
+			<input type="checkbox" id="nav-check" className={styles.navCheck} />
+			<div className={styles.navHeader}>
+				<div className={styles.navTitle}>
 					<Link href="/">
-						<span className="cursor-pointer">HastePaste</span>
+						<span>HastePaste</span>
 					</Link>
 				</div>
 			</div>
-			<div className="nav-btn">
+			<div className={styles.navButton}>
 				<label htmlFor="nav-check">
 					<span></span>
 					<span></span>
 					<span></span>
 				</label>
 			</div>
-			<div className="nav-links">
+			<div className={styles.navLinks}>
 				{links.map((data, i) => (
 					<ActiveClass key={i} activeClassName="text-white" href={data.to}>
-						<span className="link-item cursor-pointer">{data.label}</span>
+						<span className={styles.linkItem}>{data.label}</span>
 					</ActiveClass>
 				))}
 				{loading || !user ? (
 					<>
 						<ActiveClass activeClassName="text-white" href="/login">
-							<span className="link-item cursor-pointer">Login</span>
+							<span className={styles.linkItem}>Login</span>
 						</ActiveClass>
 						<ActiveClass activeClassName="text-white" href="/signup">
-							<span className="link-item cursor-pointer">Sign Up</span>
+							<span className={styles.linkItem}>Sign Up</span>
 						</ActiveClass>
 					</>
 				) : (
 					<>
 						<ActiveClass activeClassName="text-white" href="/profile">
-							<span className="link-item cursor-pointer">Profile</span>
+							<span className={styles.linkItem}>Profile</span>
 						</ActiveClass>
-						<span
-							className="text-white link-item cursor-pointer"
-							onClick={handleLogOut}
-						>
+						<span className={styles.linkItem} onClick={handleLogOut}>
 							Logout
 						</span>
 					</>

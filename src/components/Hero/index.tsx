@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styles from "./index.module.scss";
 
 export interface HeroProps {
 	mail: string;
@@ -6,12 +7,12 @@ export interface HeroProps {
 
 const Hero: FC<HeroProps> = ({ mail }) => {
 	return (
-		<div className="container flex flex-col items-center max-w-screen-xl px-16 pt-10 pb-32 mx-auto sm:flex-row">
-			<div className="flex flex-col w-full pb-10 text-center sm:pb-0 sm:text-left">
-				<h1 className="text-4xl text-white">
-					Hello <span className="font-semibold">{mail}</span>
+		<div className={styles.wrapper}>
+			<div className={styles.container}>
+				<h1>
+					Hello <span>{mail}</span>
 				</h1>
-				<p className="text-xl text-white">Welcome to the island of HastePaste.</p>
+				<p>Welcome to the island of HastePaste.</p>
 			</div>
 		</div>
 	);

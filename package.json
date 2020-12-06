@@ -38,6 +38,7 @@
 		"react-recaptcha": "^2.3.10",
 		"react-syntax-highlighter": "^15.3.1",
 		"react-toastify": "^6.1.0",
+		"stylelint-scss": "^3.18.0",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat"
 	},
 	"devDependencies": {
@@ -46,8 +47,6 @@
 		"@types/react-recaptcha": "^2.3.3",
 		"@typescript-eslint/eslint-plugin": "^4.8.2",
 		"@typescript-eslint/parser": "^4.8.2",
-		"@zeit/next-css": "^1.0.1",
-		"@zeit/next-sass": "^1.0.1",
 		"cross-env": "^7.0.2",
 		"css-loader": "^5.0.1",
 		"eslint": "^7.14.0",
@@ -58,6 +57,7 @@
 		"node-sass": "^5.0.0",
 		"onchange": "^7.1.0",
 		"prettier": "^2.2.0",
+		"stylelint": "^13.8.0",
 		"stylelint-config-recommended": "^3.0.0",
 		"typescript": "^4.1.2",
 		"yarpm": "^0.2.1"

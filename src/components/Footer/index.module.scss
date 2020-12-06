@@ -1,0 +1,41 @@
+.footer {
+	@apply bg-white relative pt-1 mt-6;
+	.wrapper {
+		@apply container mx-auto px-6;
+	}
+
+	.upper {
+		@apply sm:flex sm:mt-8;
+		.wrapper {
+			@apply mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between;
+			.column {
+				@apply flex flex-col;
+				.header {
+					@apply font-bold text-gray-700 uppercase;
+				}
+				.link {
+					@apply my-2;
+					span {
+						@apply text-pink-600 cursor-pointer hover:text-pink-400;
+					}
+				}
+			}
+		}
+	}
+
+	.lower {
+		@apply mt-16 border-t-2 border-gray-300 flex flex-col items-center;
+		.wrapper {
+			@apply sm:w-2/3 text-center py-6;
+			p {
+				@apply text-sm mb-2;
+				.copy {
+					@apply text-pink-300;
+				}
+				.link {
+					@apply text-pink-300 cursor-pointer hover:text-pink-200;
+				}
+			}
+		}
+	}
+}

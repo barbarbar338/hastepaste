@@ -1,0 +1,15 @@
+.wrapper {
+	@apply container flex flex-col items-center max-w-screen-xl px-16 pt-10 pb-32 mx-auto sm:flex-row;
+	.container {
+		@apply flex flex-col w-full pb-10 text-center sm:pb-0 sm:text-left;
+		h1 {
+			@apply text-4xl text-white;
+			span {
+				@apply font-semibold;
+			}
+		}
+		p {
+			@apply text-xl text-white;
+		}
+	}
+}

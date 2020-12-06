@@ -1,0 +1,9 @@
+.wrapper {
+	@apply flex flex-col;
+	.navWrapper {
+		@apply w-full bg-pink-500;
+		.nav {
+			@apply flex flex-wrap w-full;
+		}
+	}
+}

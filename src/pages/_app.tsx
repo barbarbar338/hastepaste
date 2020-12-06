@@ -6,7 +6,7 @@ import { CookiesProvider } from "react-cookie";
 
 import "react-toastify/dist/ReactToastify.css";
 import "@styles/tailwind.css";
-import "@styles/styles.css";
+import "@styles/index.scss";
 
 class App extends NextApp {
 	render(): JSX.Element {

@@ -1,0 +1,42 @@
+.wrapper {
+	@apply flex flex-col space-y-6 md:space-x-6 md:space-y-0 md:flex-row;
+	.publishedWrapper {
+		@apply flex flex-col w-full bg-white rounded-md shadow md:w-4/6;
+		.header {
+			@apply px-5 py-5 text-2xl text-gray-600 border-b border-gray-300;
+		}
+		.cards {
+			@apply flex flex-col h-64 px-5 py-5 space-y-3 overflow-y-auto;
+		}
+	}
+	.forkedWrapper {
+		@apply flex flex-wrap bg-white rounded-md shadow md:w-1/2;
+		.header {
+			@apply w-full px-5 py-5 text-2xl text-gray-600 border-b border-gray-300;
+		}
+		.cards {
+			@apply flex flex-col h-64 px-5 py-5 space-y-3 overflow-y-auto;
+		}
+	}
+}
+
+.bulletSkeleton {
+	@apply flex items-center px-3 py-3 space-x-6 bg-pink-100 rounded-md;
+	.icon {
+		font-size: 28px;
+		@apply text-pink-500 select-none;
+	}
+	.header {
+		@apply text-gray-700;
+	}
+	.copy {
+		@apply flex items-center justify-end flex-1;
+		.wrapper {
+			@apply flex cursor-pointer items-center justify-center p-1.5 bg-white rounded-md;
+			.icon {
+				font-size: 24px;
+				@apply text-pink-500;
+			}
+		}
+	}
+}

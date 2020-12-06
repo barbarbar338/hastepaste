@@ -1,5 +1,6 @@
+/* eslint-disable */
 module.exports = {
-	extends: ["stylelint-config-recommended"],
+	extends: ["stylelint-config-recommended", "stylelint-scss"],
 	rules: {
 		"at-rule-no-unknown": [
 			true,
