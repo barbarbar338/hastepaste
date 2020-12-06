@@ -22,7 +22,7 @@ export default function IndexPage(): JSX.Element {
 			return toast.error("❌ Please specify the content of your paste.");
 		setLoading(true);
 		const headers = { "Content-Type": "application/json" };
-		if (user.access_token) headers["Authorization"] = user.access_token;
+		if (user && user.access_token) headers["Authorization"] = user.access_token;
 		const res = await fetch(`${CONFIG.API_URL}/paste`, {
 			method: "POST",
 			headers,
