@@ -7,6 +7,7 @@ import BarLoader from "@components/BarLoader";
 import CONFIG from "src/config";
 import Layout from "@components/Layout/index";
 import { NextPage, NextPageContext } from "next";
+import styles from "@styles/modules/edit.module.scss";
 
 export interface IEditPage {
 	error?: boolean;
@@ -80,12 +81,12 @@ const EditPage: NextPage<IEditPage> = (props) => {
 	return (
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Edit Paste" />
-			<div className="bg-dust-500">
-				<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
-					<h1 className="text-3xl font-medium text-white">
+			<div className={styles.hero}>
+				<div>
+					<h1>
 						{!pasteData || !canEdit || error ? "Paste Not Found" : "Edit Paste"}
 					</h1>
-					<p className="text-dust-100 ">
+					<p>
 						{!pasteData || error
 							? "We searched quite a lot for the paste you were looking for but couldn't find it"
 							: canEdit
@@ -94,18 +95,18 @@ const EditPage: NextPage<IEditPage> = (props) => {
 					</p>
 				</div>
 			</div>
-			<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
-				<ul className="grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-2 -gap-4">
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-						<p className="text-gray-900">Paste Name</p>
+			<div className={styles.content}>
+				<ul>
+					<li className={styles.smInput}>
+						<p>Paste Name</p>
 						<input
-							className={`w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none ${
+							className={
 								!pasteData || error
 									? "cursor-not-allowed"
 									: canEdit
 									? "cursor-not-pointer"
 									: "cursor-not-allowed"
-							}`}
+							}
 							placeholder={
 								!pasteData || error
 									? "You Can't Edit This Paste"
@@ -118,16 +119,16 @@ const EditPage: NextPage<IEditPage> = (props) => {
 							onChange={(e) => setTitle(e.target.value)}
 						/>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-						<p className="text-gray-900">Description</p>
+					<li className={styles.smInput}>
+						<p>Description</p>
 						<input
-							className={`w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none ${
+							className={
 								!pasteData || error
 									? "cursor-not-allowed"
 									: canEdit
 									? "cursor-not-pointer"
 									: "cursor-not-allowed"
-							}`}
+							}
 							placeholder={
 								!pasteData || error
 									? "You Can't Edit This Paste"
@@ -142,16 +143,16 @@ const EditPage: NextPage<IEditPage> = (props) => {
 							onChange={(e) => setDescription(e.target.value)}
 						/>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<p className="text-gray-900">Paste Content</p>
+					<li className={styles.lgInput}>
+						<p>Paste Content</p>
 						<textarea
-							className={`w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md h-72 text-md focus:outline-none ${
+							className={
 								!pasteData || error
 									? "cursor-not-allowed"
 									: canEdit
 									? "cursor-not-pointer"
 									: "cursor-not-allowed"
-							}`}
+							}
 							placeholder={
 								!pasteData || error
 									? "You Can't Edit This Paste"
@@ -166,13 +167,13 @@ const EditPage: NextPage<IEditPage> = (props) => {
 					</li>
 					<button
 						onClick={editPaste}
-						className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-dust-500 rounded-lg hover:bg-dust-600 focus:outline-none ${
+						className={
 							!pasteData || error
 								? "cursor-not-allowed"
 								: canEdit
 								? "cursor-not-pointer"
 								: "cursor-not-allowed"
-						}`}
+						}
 					>
 						{loading ? <BarLoader /> : "Update!"}
 					</button>

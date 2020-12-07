@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import BarLoader from "@components/BarLoader";
 import CONFIG from "src/config";
 import Layout from "@components/Layout/index";
-import styles from "@styles/index.module.scss";
+import styles from "@styles/modules/index.module.scss";
 
 export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");

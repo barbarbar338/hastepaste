@@ -9,6 +9,7 @@ import Recaptcha from "react-recaptcha";
 import Link from "next/link";
 import BarLoader from "@components/BarLoader";
 import Layout from "@components/Layout/index";
+import styles from "@styles/modules/login.module.scss";
 
 export default function Login(): JSX.Element {
 	const [mail, setMail] = useState("");
@@ -54,65 +55,55 @@ export default function Login(): JSX.Element {
 	return (
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Login" />
-			<div>
-				<div className="bg-dust-500">
-					<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
-						<h1 className="text-3xl font-medium text-white">Login</h1>
-						<p className="text-dust-100 ">
-							Welcome back to HastePaste's magical world!
-						</p>
-					</div>
+			<div className={styles.hero}>
+				<div>
+					<h1>Login</h1>
+					<p>Welcome back to HastePaste's magical world!</p>
 				</div>
-				<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
-					<form onSubmit={handleForm}>
-						<ul className="grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-2 -gap-4">
-							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-								<p className="text-gray-900">E-Mail</p>
-								<input
-									className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none"
-									placeholder="account@hastepaste.xyz"
-									type="email"
-									onChange={(e) => setMail(e.target.value)}
-									required
-								/>
-								<span className="text-xs text-red-400">* Required.</span>
-							</li>
-							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-								<p className="text-gray-900">Password</p>
-								<input
-									className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none"
-									placeholder="●●●●●●●●"
-									type="password"
-									onChange={(e) => setPassword(e.target.value)}
-									required
-								/>
-								<span className="text-xs text-red-400">* Required.</span>
-							</li>
-							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-								<Recaptcha
-									sitekey={CONFIG.GRECAPTCHA_KEY}
-									render="explicit"
-									verifyCallback={() => setIsVerified(true)}
-									expiredCallback={() => setIsVerified(false)}
-								/>
-								<span className="text-xs text-red-400">* Required.</span>
-							</li>
-							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-dust-500 rounded-lg hover:bg-dust-600 focus:outline-none">
-								{loading ? <BarLoader /> : "Login"}
-							</button>
-							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg items-center">
-								<span className="text-xs">
-									Don't have an account?{" "}
-									<Link href="/signup">
-										<span className="text-dust-600 cursor-pointer hover:text-dust-400">
-											Sign Up
-										</span>
-									</Link>
-								</span>
-							</li>
-						</ul>
-					</form>
-				</div>
+			</div>
+			<div className={styles.content}>
+				<form onSubmit={handleForm}>
+					<ul>
+						<li>
+							<p>E-Mail</p>
+							<input
+								placeholder="account@hastepaste.xyz"
+								type="email"
+								onChange={(e) => setMail(e.target.value)}
+								required
+							/>
+							<span className={styles.required}>* Required.</span>
+						</li>
+						<li>
+							<p>Password</p>
+							<input
+								placeholder="●●●●●●●●"
+								type="password"
+								onChange={(e) => setPassword(e.target.value)}
+								required
+							/>
+							<span className={styles.required}>* Required.</span>
+						</li>
+						<li>
+							<Recaptcha
+								sitekey={CONFIG.GRECAPTCHA_KEY}
+								render="explicit"
+								verifyCallback={() => setIsVerified(true)}
+								expiredCallback={() => setIsVerified(false)}
+							/>
+							<span className={styles.required}>* Required.</span>
+						</li>
+						<button>{loading ? <BarLoader /> : "Login"}</button>
+						<li className="items-center">
+							<span className={styles.lower}>
+								Don't have an account?{" "}
+								<Link href="/signup">
+									<span>Sign Up</span>
+								</Link>
+							</span>
+						</li>
+					</ul>
+				</form>
 			</div>
 		</Layout>
 	);

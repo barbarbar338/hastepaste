@@ -10,6 +10,7 @@ import Layout from "@components/Layout/index";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BarLoader from "@components/BarLoader";
+import styles from "@styles/modules/explore.module.scss";
 
 export interface IFilePage {
 	error?: boolean;
@@ -86,70 +87,71 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 	return (
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Explore Paste" />
-			<div>
-				<FileHeader
-					name={error ? "Paste not found..." : pasteData.title}
-					description={
-						error
-							? "We searched quite a lot for the paste you were looking for but couldn't find it"
-							: pasteData.description || "My awesome file!"
-					}
-					canFork={
-						(pasteData && pasteData.is_reported) || !user || user.is_banned
-							? false
-							: error
-							? false
-							: pasteData.owner !== user.user.id
-					}
-					id={router.query.id as string}
-				/>
-				<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
-					<ul className="grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-3 -gap-4">
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-							<SyntaxHighlighter
-								style={tomorrowNight}
-								showLineNumbers={true}
-								wrapLongLines={true}
-							>
-								{pasteData && pasteData.is_reported
-									? "This paste is reported and unavailable for now"
-									: error
-									? "There must have been some very cool and meaningful things written here... Anyways, why don't try something else?"
-									: pasteData.paste}
-							</SyntaxHighlighter>
-						</li>
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-							<button
-								onClick={handleEdit}
-								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none ${
-									!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer"
-								}`}
-							>
-								{loading ? <BarLoader /> : "Edit"}
-							</button>
-						</li>
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-							<button
-								onClick={handleDelete}
-								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none ${
-									!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer"
-								}`}
-							>
-								{loading ? <BarLoader /> : "Delete"}
-							</button>
-						</li>
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-							<button
-								onClick={handleReport}
-								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:outline-none ${
-									!canReport || loading ? "cursor-not-allowed" : "cursor-pointer"
-								}`}
-							>
-								{loading ? <BarLoader /> : "Report"}
-							</button>
-						</li>
-					</ul>
-				</div>
+			<FileHeader
+				name={error ? "Paste not found..." : pasteData.title}
+				description={
+					error
+						? "We searched quite a lot for the paste you were looking for but couldn't find it"
+						: pasteData.description || "My awesome file!"
+				}
+				canFork={
+					(pasteData && pasteData.is_reported) || !user || user.is_banned
+						? false
+						: error
+						? false
+						: pasteData.owner !== user.user.id
+				}
+				id={router.query.id as string}
+			/>
+			<div className={styles.wrapper}>
+				<ul>
+					<li className={styles.code}>
+						<SyntaxHighlighter
+							style={tomorrowNight}
+							showLineNumbers={true}
+							wrapLongLines={true}
+						>
+							{pasteData && pasteData.is_reported
+								? "This paste is reported and unavailable for now"
+								: error
+								? "There must have been some very cool and meaningful things written here... Anyways, why don't try something else?"
+								: pasteData.paste}
+						</SyntaxHighlighter>
+					</li>
+					<li className={styles.buttonWrapper}>
+						<button
+							onClick={handleEdit}
+							className={
+								(!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer") +
+								" bg-green-500 hover:bg-green-600"
+							}
+						>
+							{loading ? <BarLoader /> : "Edit"}
+						</button>
+					</li>
+					<li className={styles.buttonWrapper}>
+						<button
+							onClick={handleDelete}
+							className={
+								(!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer") +
+								" bg-red-500 hover:bg-red-600"
+							}
+						>
+							{loading ? <BarLoader /> : "Delete"}
+						</button>
+					</li>
+					<li className={styles.buttonWrapper}>
+						<button
+							onClick={handleReport}
+							className={
+								(!canReport || loading ? "cursor-not-allowed" : "cursor-pointer") +
+								" bg-yellow-500 hover:bg-yellow-600"
+							}
+						>
+							{loading ? <BarLoader /> : "Report"}
+						</button>
+					</li>
+				</ul>
 			</div>
 		</Layout>
 	);

@@ -1,0 +1,10 @@
+.hero {
+	@apply w-full bg-dust-500;
+}
+
+.content {
+	@apply container max-w-screen-xl mx-auto -mt-24;
+	.cards {
+		@apply px-5 lg:px-0;
+	}
+}

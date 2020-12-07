@@ -1,6 +1,7 @@
 import Layout from "@components/Layout";
 import { useFetchUser } from "@libs/useFetchUser";
 import { NextSeo } from "next-seo";
+import styles from "@styles/modules/tos.module.scss";
 
 export default function ToS(): JSX.Element {
 	const { user, loading } = useFetchUser(false);
@@ -8,20 +9,20 @@ export default function ToS(): JSX.Element {
 	return (
 		<Layout user={user} loading={loading}>
 			<NextSeo title="Terms Of Service" />
-			<div className="bg-dust-500">
-				<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
-					<h1 className="text-3xl font-medium text-white">Terms Of Service</h1>
-					<p className="text-dust-100 ">
+			<div className={styles.hero}>
+				<div>
+					<h1>Terms Of Service</h1>
+					<p>
 						By posting content on this site, you agree to comply with the following
 						terms. (Last Edit: 07/12/2020)
 					</p>
 				</div>
 			</div>
-			<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
-				<ul className="grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-2 -gap-4">
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Terms</h1>
-						<p className="text-gray-600">
+			<div className={styles.content}>
+				<ul className={styles.listWrapper}>
+					<li className={styles.listItem}>
+						<h1>Terms</h1>
+						<p>
 							By accessing this Website, accessible at https://hastepaste.xyz, you
 							agree to be bound by these Website Terms and Conditions of Use and to be
 							responsible for the agreement with all applicable local laws. If you do
@@ -31,41 +32,41 @@ export default function ToS(): JSX.Element {
 							Terms of Service Generator and the Terms and Conditions Example.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">License</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>License</h1>
+						<p>
 							HastePaste users are permitted to temporarily download one copy of the
 							contents on the Website for personal, non-commercial transitory viewing
 							only. This is a license grant, not a transfer of ownership, and under
 							this license you cannot:
 						</p>
-						<ul className="list-disc">
-							<li className="text-gray-500">modify or copy the contents</li>
-							<li className="text-gray-500">
+						<ul className={styles.discList}>
+							<li>modify or copy the contents</li>
+							<li>
 								use the contents for any commercial purpose or for any public display
 							</li>
-							<li className="text-gray-500">
+							<li>
 								attempt to reverse engineer any software contained on HastePaste's
 								website
 							</li>
-							<li className="text-gray-500">
+							<li>
 								remove any copyright or other proprietary notations from the contents
 							</li>
-							<li className="text-gray-500">
+							<li>
 								transferring the contents to another person or "mirror" the contents on
 								any other server.
 							</li>
 						</ul>
-						<p className="text-gray-600">
+						<p>
 							This will let HastePaste to terminate upon violations of any of these
 							restrictions. Upon termination, your viewing right will also be
 							terminated and you should destroy any downloaded contents in your
 							possession whether it is printed or electronic format.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Disclaimer</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Disclaimer</h1>
+						<p>
 							All the contents on HastePaste's are provided "as is". HastePaste makes
 							no warranties, may it be expressed or implied, therefore negates all
 							other warranties. Furthermore, HastePaste does not make any
@@ -74,9 +75,9 @@ export default function ToS(): JSX.Element {
 							sites linked to this Website.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Limitations</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Limitations</h1>
+						<p>
 							HastePaste or its suppliers will not be hold accountable for any damages
 							that will arise with the use or inability to use the contents on
 							HastePaste’s Website, even if HastePaste or an authorize representative
@@ -86,9 +87,9 @@ export default function ToS(): JSX.Element {
 							limitations may not apply to you.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Revisions</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Revisions</h1>
+						<p>
 							All content shared on HastePaste is checked periodically, but it should
 							be remembered that these contents can change after the check. HastePaste
 							will not promise that any of the contents in this Website are accurate,
@@ -97,33 +98,33 @@ export default function ToS(): JSX.Element {
 							commitment to update the contents.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Links</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Links</h1>
+						<p>
 							HastePaste has not reviewed all of the sites linked to its Website and is
 							not responsible for the contents of any such linked site. The presence of
 							any link does not imply endorsement by HastePaste of the site. The use of
 							any linked website is at the user’s own risk.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Terms of Use Modifications</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Terms of Use Modifications</h1>
+						<p>
 							HastePaste may revise these Terms of Use for the Website at any time
 							without prior notice. By using this Website, you agree to be bound by the
 							current version of these Terms and Conditions of Use.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Governing Law</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Governing Law</h1>
+						<p>
 							Any claim related to HastePaste's Website shall be governed by the laws
 							of Turkey without regards to its conflict of law provisions.
 						</p>
 					</li>
-					<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-						<h1 className="text-gray-900 text-xl">Your Privacy</h1>
-						<p className="text-gray-600">
+					<li className={styles.listItem}>
+						<h1>Your Privacy</h1>
+						<p>
 							The e-mail and password you used while registering on the site are
 							encrypted on our servers and stored in our database after being
 							encrypted. The e-mail you use while registering on the site is used only

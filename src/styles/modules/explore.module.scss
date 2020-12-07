@@ -1,0 +1,15 @@
+.wrapper {
+	@apply container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0;
+	ul {
+		@apply grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-3;
+		.code {
+			@apply flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg;
+		}
+		.buttonWrapper {
+			@apply flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1;
+			button {
+				@apply w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 rounded-lg focus:outline-none;
+			}
+		}
+	}
+}
