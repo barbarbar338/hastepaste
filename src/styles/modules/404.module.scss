@@ -1,0 +1,12 @@
+.hero {
+	@apply bg-dust-500;
+	div {
+		@apply container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0;
+		h1 {
+			@apply text-3xl font-medium text-white;
+		}
+		p {
+			@apply text-dust-100;
+		}
+	}
+}
