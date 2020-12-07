@@ -22,7 +22,7 @@ export default function ProfilePage(): JSX.Element {
 		<Layout user={user} loading={loading}>
 			<NextSeo title={loading ? "Loading" : "Profile"} />
 			<div>
-				<div className="w-full bg-pink-500">
+				<div className="w-full bg-dust-500">
 					{loading || !user ? (
 						<HeroSkeleton />
 					) : (

@@ -1,8 +1,8 @@
 .wrapper {
-	@apply flex items-center px-3 py-3 space-x-6 bg-pink-100 cursor-pointer rounded-md;
+	@apply flex items-center px-3 py-3 space-x-6 bg-dust-100 cursor-pointer rounded-md;
 	.icon {
 		font-size: 28px;
-		@apply text-pink-500 select-none;
+		@apply text-dust-500 select-none;
 	}
 	.header {
 		@apply text-gray-700;
@@ -16,7 +16,7 @@
 			@apply flex items-center justify-center p-1.5 bg-white rounded-md;
 			.icon {
 				font-size: 24px;
-				@apply text-pink-500;
+				@apply text-dust-500;
 			}
 		}
 	}

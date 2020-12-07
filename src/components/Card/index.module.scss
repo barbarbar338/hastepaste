@@ -2,11 +2,11 @@
 	@apply flex flex-col cursor-pointer items-center justify-center bg-white rounded-md shadow;
 	.iconHidden {
 		font-size: 128px;
-		@apply hidden text-pink-500 md:block;
+		@apply hidden text-dust-500 md:block;
 	}
 	.icon {
 		font-size: 78px;
-		@apply block text-pink-500 md:hidden;
+		@apply block text-dust-500 md:hidden;
 	}
 	.name {
 		@apply flex items-center justify-center w-full px-2 py-2 border-t border-gray-200 rounded-b-md;

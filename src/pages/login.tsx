@@ -55,10 +55,10 @@ export default function Login(): JSX.Element {
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Login" />
 			<div>
-				<div className="bg-pink-500">
+				<div className="bg-dust-500">
 					<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
 						<h1 className="text-3xl font-medium text-white">Login</h1>
-						<p className="text-pink-100 ">
+						<p className="text-dust-100 ">
 							Welcome back to HastePaste's magical world!
 						</p>
 					</div>
@@ -97,14 +97,14 @@ export default function Login(): JSX.Element {
 								/>
 								<span className="text-xs text-red-400">* Required.</span>
 							</li>
-							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none">
+							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-dust-500 rounded-lg hover:bg-dust-600 focus:outline-none">
 								{loading ? <BarLoader /> : "Login"}
 							</button>
 							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg items-center">
 								<span className="text-xs">
 									Don't have an account?{" "}
 									<Link href="/signup">
-										<span className="text-pink-600 cursor-pointer hover:text-pink-400">
+										<span className="text-dust-600 cursor-pointer hover:text-dust-400">
 											Sign Up
 										</span>
 									</Link>

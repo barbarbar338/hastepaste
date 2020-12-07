@@ -53,10 +53,10 @@ export default function Signup(): JSX.Element {
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Sign Up" />
 			<div>
-				<div className="bg-pink-500">
+				<div className="bg-dust-500">
 					<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
 						<h1 className="text-3xl font-medium text-white">Sign Up</h1>
-						<p className="text-pink-100 ">Join the magical world of HastePaste!</p>
+						<p className="text-dust-100 ">Join the magical world of HastePaste!</p>
 					</div>
 				</div>
 				<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
@@ -101,21 +101,21 @@ export default function Signup(): JSX.Element {
 									<span className="ml-2 text-gray-700">
 										I have read and accept the{" "}
 										<Link href="/tos">
-											<span className="text-pink-400 cursor-pointer">terms of use</span>
+											<span className="text-dust-400 cursor-pointer">terms of use</span>
 										</Link>
 										.
 									</span>
 								</label>
 								<span className="text-xs text-red-400">* Required.</span>
 							</li>
-							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none">
+							<button className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-dust-500 rounded-lg hover:bg-dust-600 focus:outline-none">
 								{loading ? <BarLoader /> : "Sign Up"}
 							</button>
 							<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg items-center">
 								<span className="text-xs">
 									Already have an account?{" "}
 									<Link href="/login">
-										<span className="text-pink-600 cursor-pointer hover:text-pink-400">
+										<span className="text-dust-600 cursor-pointer hover:text-dust-400">
 											Login
 										</span>
 									</Link>

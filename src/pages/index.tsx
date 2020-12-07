@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import BarLoader from "@components/BarLoader";
 import CONFIG from "src/config";
 import Layout from "@components/Layout/index";
+import styles from "@styles/index.module.scss";
 
 export default function IndexPage(): JSX.Element {
 	const [title, setTitle] = useState("");
@@ -38,51 +39,43 @@ export default function IndexPage(): JSX.Element {
 	return (
 		<Layout user={user} loading={userLoading}>
 			<NextSeo title="Create Paste" />
-			<div>
-				<div className="bg-pink-500">
-					<div className="container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0">
-						<h1 className="text-3xl font-medium text-white">Create Paste</h1>
-						<p className="text-pink-100 ">
-							Take your content on a journey through the magic world of HastePaste!
-						</p>
-					</div>
+			<div className={styles.hero}>
+				<div>
+					<h1>Create Paste</h1>
+					<p>
+						Take your content on a journey through the magic world of HastePaste!
+					</p>
 				</div>
-				<div className="container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0">
-					<ul className="grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-2 -gap-4">
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-							<p className="text-gray-900">Paste Name</p>
-							<input
-								className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none"
-								placeholder="My awesome paste!"
-								onChange={(e) => setTitle(e.target.value)}
-							/>
-							<span className="text-xs text-red-400">* Required.</span>
-						</li>
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
-							<p className="text-gray-900">Description</p>
-							<input
-								className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md text-md focus:outline-none"
-								placeholder="Take a look at this paste"
-								onChange={(e) => setDescription(e.target.value)}
-							/>
-						</li>
-						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg">
-							<p className="text-gray-900">Paste Content</p>
-							<textarea
-								className="w-full px-5 py-3 text-sm text-gray-600 placeholder-gray-300 bg-transparent border border-gray-300 rounded-md h-72 text-md focus:outline-none"
-								placeholder="Hey take a look at this"
-								onChange={(e) => setPaste(e.target.value)}
-							/>
-							<span className="text-xs text-red-400">* Required.</span>
-						</li>
-						<button
-							onClick={createPaste}
-							className="w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none"
-						>
-							{loading ? <BarLoader /> : "Create!"}
-						</button>
-					</ul>
-				</div>
+			</div>
+			<div className={styles.content}>
+				<ul className={styles.list}>
+					<li className={styles.smInput}>
+						<p>Paste Name</p>
+						<input
+							placeholder="My awesome paste!"
+							onChange={(e) => setTitle(e.target.value)}
+						/>
+						<span className={styles.required}>* Required.</span>
+					</li>
+					<li className={styles.smInput}>
+						<p>Description</p>
+						<input
+							placeholder="Take a look at this paste"
+							onChange={(e) => setDescription(e.target.value)}
+						/>
+					</li>
+					<li className={styles.paste}>
+						<p>Paste Content</p>
+						<textarea
+							placeholder="Hey take a look at this"
+							onChange={(e) => setPaste(e.target.value)}
+						/>
+						<span className={styles.required}>* Required.</span>
+					</li>
+					<button onClick={createPaste}>
+						{loading ? <BarLoader /> : "Create!"}
+					</button>
+				</ul>
 			</div>
 		</Layout>
 	);

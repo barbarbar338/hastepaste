@@ -1,5 +1,5 @@
 .bg {
-	@apply bg-pink-500;
+	@apply bg-dust-500;
 	.wrapper {
 		@apply container max-w-screen-xl px-4 py-12 mx-auto md:px-0;
 		.myCont {
@@ -16,15 +16,15 @@
 						@apply text-2xl font-semibold text-white;
 					}
 					p {
-						@apply text-sm font-normal text-pink-100;
+						@apply text-sm font-normal text-dust-100;
 					}
 				}
 				.button {
 					@apply flex items-center justify-end flex-1;
 					button {
-						@apply text-pink-500 text-sm bg-white flex items-center rounded-lg px-4 md:px-8 py-2.5 focus:outline-none;
+						@apply text-dust-500 text-sm bg-white flex items-center rounded-lg px-4 md:px-8 py-2.5 focus:outline-none;
 						span {
-							@apply mr-1 text-pink-500;
+							@apply mr-1 text-dust-500;
 						}
 					}
 				}

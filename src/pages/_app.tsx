@@ -20,7 +20,7 @@ class App extends NextApp {
 					buttonText="Close"
 					cookieName="cookie_alert_disable"
 					style={{
-						background: "#ff414d",
+						background: "#666666",
 					}}
 					buttonStyle={{
 						background: "white",

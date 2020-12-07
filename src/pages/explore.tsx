@@ -131,7 +131,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 						<li className="flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg lg:col-span-1">
 							<button
 								onClick={handleDelete}
-								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-pink-500 rounded-lg hover:bg-pink-600 focus:outline-none ${
+								className={`w-full col-span-3 px-3 py-3 text-sm font-medium text-white transition duration-150 bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none ${
 									!canEdit || loading ? "cursor-not-allowed" : "cursor-pointer"
 								}`}
 							>

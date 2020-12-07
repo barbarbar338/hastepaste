@@ -16,7 +16,7 @@
 				.link {
 					@apply my-2;
 					span {
-						@apply text-pink-600 cursor-pointer hover:text-pink-400;
+						@apply text-blue-600 cursor-pointer hover:text-blue-400;
 					}
 				}
 			}
@@ -30,10 +30,10 @@
 			p {
 				@apply text-sm mb-2;
 				.copy {
-					@apply text-pink-300;
+					@apply text-blue-300;
 				}
 				.link {
-					@apply text-pink-300 cursor-pointer hover:text-pink-200;
+					@apply text-blue-300 cursor-pointer hover:text-blue-200;
 				}
 			}
 		}

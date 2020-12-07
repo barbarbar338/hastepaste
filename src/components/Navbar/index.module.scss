@@ -2,7 +2,7 @@
 	height: 50px;
 	width: 100%;
 	position: relative;
-	@apply bg-pink-500;
+	@apply bg-dust-500;
 	.navHeader {
 		display: inline;
 		.navTitle {
@@ -56,7 +56,7 @@
 			}
 			label:hover,
 			.nav .navCheck:checked ~ .navButton > label {
-				@apply bg-pink-700;
+				@apply bg-dust-700;
 			}
 		}
 		.navLinks {
@@ -68,7 +68,7 @@
 			overflow-y: hidden;
 			top: 50px;
 			left: 0px;
-			@apply bg-pink-700;
+			@apply bg-dust-700;
 			.linkItem {
 				display: block;
 				width: 100%;
