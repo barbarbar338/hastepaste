@@ -19,8 +19,6 @@ export default function IndexPage(): JSX.Element {
 	const parser = new LocaleParser(router.locale);
 
 	const createPaste = async () => {
-		console.log(router.locale);
-		return;
 		if (loading) return;
 		if (!title)
 			return toast.error(
