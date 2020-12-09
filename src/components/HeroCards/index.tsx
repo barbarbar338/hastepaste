@@ -1,5 +1,7 @@
 import Published from "@components/HeroCardItem/published";
 import Saved from "@components/HeroCardItem/saved";
+import { LocaleParser } from "@libs/localeParser";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import styles from "./index.module.scss";
 
@@ -13,6 +15,8 @@ export interface IHeroCard {
 }
 
 const HeroCards: FC<IHeroCard> = ({ paste }) => {
+	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
 	const published = paste
 		.filter((i) => !i.fork_id)
 		.sort((a, b) => {
@@ -26,7 +30,9 @@ const HeroCards: FC<IHeroCard> = ({ paste }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.publishedWrapper}>
-				<p className={styles.header}>Your published last files</p>
+				<p className={styles.header}>
+					{parser.get("components_hero_cards_last_published")}
+				</p>
 				<div className={styles.cards}>
 					{published.map((i, idx) => (
 						<Published
@@ -39,7 +45,7 @@ const HeroCards: FC<IHeroCard> = ({ paste }) => {
 				</div>
 			</div>
 			<div className={styles.forkedWrapper}>
-				<p className={styles.header}>Your forks</p>
+				<p className={styles.header}>{parser.get("components_hero_cards_forks")}</p>
 				<div className={styles.cards}>
 					{forks.map((i, idx) => (
 						<Saved

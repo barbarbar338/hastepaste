@@ -11,6 +11,10 @@ export default {
 		USEFUL_LINKS: [
 			{ name: "Terms Of Service", path: "/tos" },
 			{ name: "Content Guide", path: "/guide" },
+			{
+				name: "Help Us To Translate",
+				path: "https://crowdin.com/project/hastepaste",
+			},
 			{ name: "Status", path: "https://status.hastepaste.xyz/" },
 		],
 		CONTACT_US: [

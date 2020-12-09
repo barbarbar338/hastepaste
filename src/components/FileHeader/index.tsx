@@ -5,6 +5,7 @@ import { useFetchUser } from "@libs/useFetchUser";
 import CONFIG from "src/config";
 import { useRouter } from "next/router";
 import styles from "./index.module.scss";
+import { LocaleParser } from "@libs/localeParser";
 
 export interface FileHeaderProps {
 	name: string;
@@ -18,15 +19,18 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 	const [loading, setLoading] = useState(false);
 	const { user } = useFetchUser(false);
 	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
 
 	const handleButton = async () => {
 		if (loading) return;
-		if (!user) return toast.error("❌ You need to be logged in to fork a paste.");
+		if (!user)
+			return toast.error(`❌ ${parser.get("components_fileheader_no_user")}`);
 		if (user.is_banned)
+			return toast.error(`❌ ${parser.get("components_fileheader_user_banned")}`);
+		if (!canFork)
 			return toast.error(
-				"❌ You cannot fork a paste because you are banned from the system.",
+				`❌ ${parser.get("components_fileheader_user_cant_fork")}`,
 			);
-		if (!canFork) return toast.error("❌ You can't fork this paste.");
 		setLoading(true);
 		const res = await fetch(`${CONFIG.API_URL}/paste/fork?id=${id}`, {
 			headers: {
@@ -38,13 +42,10 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 		if (
 			body.message === "This paste is reported and only can be forked by an admin"
 		)
-			return toast.error(
-				"❌ This paste is reported and only can be forked by an admin.",
-			);
+			return toast.error(`❌ ${parser.get("components_fileheader_reported")}`);
 		if (body.message === "You cannot fork your paste")
-			return toast.error("❌ You cannot fork your paste.");
-		if (!res.ok)
-			return toast.error("❌ An error occured. Please try again later");
+			return toast.error(`❌ ${parser.get("components_fileheader_self_fork")}`);
+		if (!res.ok) return toast.error(`❌ ${parser.get("api_error")}`);
 		router.push(`/explore?id=${encodeURIComponent(body.data.id)}`);
 	};
 
@@ -68,7 +69,15 @@ const FileHeader: FC<FileHeaderProps> = (props) => {
 								) : (
 									<span className="material-icons-round">highlight_off</span>
 								)}
-								{canFork ? loading ? <BarLoader dark /> : "Fork" : "Can't Fork"}
+								{canFork ? (
+									loading ? (
+										<BarLoader dark />
+									) : (
+										parser.get("components_fileheader_fork")
+									)
+								) : (
+									parser.get("components_fileheader_cant_fork")
+								)}
 							</button>
 						</div>
 					</div>

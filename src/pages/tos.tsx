@@ -2,19 +2,26 @@ import Layout from "@components/Layout";
 import { useFetchUser } from "@libs/useFetchUser";
 import { NextSeo } from "next-seo";
 import styles from "@styles/modules/tos.module.scss";
+import { LocaleParser } from "@libs/localeParser";
+import { useRouter } from "next/router";
 
 export default function ToS(): JSX.Element {
 	const { user, loading } = useFetchUser(false);
+	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
 
 	return (
 		<Layout user={user} loading={loading}>
-			<NextSeo title="Terms Of Service" />
+			<NextSeo title={parser.get("pagegs_tos_title") as string} />
 			<div className={styles.hero}>
 				<div>
-					<h1>Terms Of Service</h1>
+					<h1>{parser.get("pagegs_tos_title")}</h1>
 					<p>
-						By posting content on this site, you agree to comply with the following
-						terms. (Last Edit: 07/12/2020)
+						{parser.get("pages_tos_description")} (
+						{parser.get("pages_tos_last_edit", {
+							edit: new Date(1607344200000).toLocaleString(),
+						})}
+						)
 					</p>
 				</div>
 			</div>

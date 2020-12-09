@@ -1,5 +1,7 @@
+import { LocaleParser } from "@libs/localeParser";
 import { Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
+import { useRouter } from "next/router";
 import styles from "./index.module.scss";
 const array = new Array(24).fill("a");
 
@@ -25,10 +27,14 @@ function BulletLoader(): JSX.Element {
 }
 
 export default function HeroCards(): JSX.Element {
+	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.publishedWrapper}>
-				<p className={styles.header}>Your published last files</p>
+				<p className={styles.header}>
+					{parser.get("components_hero_cards_last_published")}
+				</p>
 				<div className={styles.cards}>
 					<BulletLoader />
 					<BulletLoader />
@@ -37,7 +43,7 @@ export default function HeroCards(): JSX.Element {
 				</div>
 			</div>
 			<div className={styles.forkedWrapper}>
-				<p className={styles.header}>Your forked files</p>
+				<p className={styles.header}>{parser.get("components_hero_cards_forks")}</p>
 				<div className={styles.cards}>
 					<BulletLoader />
 					<BulletLoader />

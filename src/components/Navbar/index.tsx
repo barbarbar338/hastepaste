@@ -1,25 +1,11 @@
 import ActiveClass from "@components/ActiveClass/index";
 import { IUser } from "@libs/useFetchUser";
+import { LocaleParser } from "@libs/localeParser";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { useCookies } from "react-cookie";
 import styles from "./index.module.scss";
-
-const links = [
-	{
-		label: "Home",
-		to: "/",
-	},
-	{
-		label: "GitHub",
-		to: "https://github.com/HastePasteApp/",
-	},
-	{
-		label: "ToS",
-		to: "/tos",
-	},
-];
 
 export interface INavbarProps {
 	user?: IUser;
@@ -30,6 +16,22 @@ const Navbar: FC<INavbarProps> = (props) => {
 	const { user, loading } = props;
 	const [, , removeCookie] = useCookies(["access_token"]);
 	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
+
+	const links = [
+		{
+			label: parser.get("componens_navbar_home"),
+			to: "/",
+		},
+		{
+			label: "GitHub",
+			to: "https://github.com/HastePasteApp/",
+		},
+		{
+			label: "ToS",
+			to: "/tos",
+		},
+	];
 
 	const handleLogOut = () => {
 		removeCookie("access_token");
@@ -62,19 +64,25 @@ const Navbar: FC<INavbarProps> = (props) => {
 				{loading || !user ? (
 					<>
 						<ActiveClass activeClassName="text-white" href="/login">
-							<span className={styles.linkItem}>Login</span>
+							<span className={styles.linkItem}>
+								{parser.get("componens_navbar_login")}
+							</span>
 						</ActiveClass>
 						<ActiveClass activeClassName="text-white" href="/signup">
-							<span className={styles.linkItem}>Sign Up</span>
+							<span className={styles.linkItem}>
+								{parser.get("componens_navbar_signup")}
+							</span>
 						</ActiveClass>
 					</>
 				) : (
 					<>
 						<ActiveClass activeClassName="text-white" href="/profile">
-							<span className={styles.linkItem}>Profile</span>
+							<span className={styles.linkItem}>
+								{parser.get("componens_navbar_profile")}
+							</span>
 						</ActiveClass>
 						<span className={styles.linkItem} onClick={handleLogOut}>
-							Logout
+							{parser.get("componens_navbar_logout")}
 						</span>
 					</>
 				)}

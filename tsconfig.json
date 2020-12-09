@@ -19,7 +19,8 @@
 			"@styles/*": ["src/styles/*"],
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
-			"@libs/*": ["src/libs/*"]
+			"@libs/*": ["src/libs/*"],
+			"@locales/*": ["src/locales/*"]
 		}
 	},
 	"exclude": ["dist", "node_modules"],

@@ -30,6 +30,7 @@
 		"next": "^10.0.3",
 		"next-optimized-images": "^2.6.2",
 		"next-seo": "^4.17.0",
+		"next-yaml": "^1.0.1",
 		"postcss": "^7",
 		"react": "^17.0.1",
 		"react-cookie": "^4.0.3",

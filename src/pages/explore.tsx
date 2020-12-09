@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BarLoader from "@components/BarLoader";
 import styles from "@styles/modules/explore.module.scss";
+import { LocaleParser } from "@libs/localeParser";
 
 export interface IFilePage {
 	error?: boolean;
@@ -31,6 +32,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 	const [loading, setLoading] = useState(false);
 	const [canEdit, setCanEdit] = useState(false);
 	const [canReport, setCanReport] = useState(false);
+	const parser = new LocaleParser(router.locale);
 
 	useEffect(() => {
 		if (!error && user && pasteData) {
@@ -41,13 +43,15 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 
 	const handleEdit = () => {
 		if (loading) return;
-		if (!canEdit) return toast.error("❌ You can't edit this paste.");
+		if (!canEdit)
+			return toast.error(`❌ ${parser.get("pages_explore_edit_handler_error")}`);
 		router.push(`/edit?id=${router.query.id}`);
 	};
 
 	const handleReport = async () => {
 		if (loading) return;
-		if (!canReport) return toast.error("❌ You can't report this paste.");
+		if (!canReport)
+			return toast.error(`❌ ${parser.get("pages_explore_report_handler_error")}`);
 		setLoading(true);
 		const res = await fetch(
 			`${CONFIG.API_URL}/paste/report?id=${router.query.id}`,
@@ -59,14 +63,15 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 		);
 		const body = await res.json();
 		setLoading(false);
-		if (!body.data) return toast.error("❌ Please try again later.");
-		toast.success("✔️ Thank you for reporting!");
+		if (!body.data) return toast.error(`❌ ${parser.get("api_error")}`);
+		toast.success(`✔️ ${parser.get("pages_explore_report_handler_success")}`);
 		router.push("/profile");
 	};
 
 	const handleDelete = async () => {
 		if (loading) return;
-		if (!canEdit) return toast.error("❌ You can't delete this paste.");
+		if (!canEdit)
+			return toast.error(`❌ ${parser.get("pages_explore_delete_error")}`);
 		setLoading(true);
 		const res = await fetch(`${CONFIG.API_URL}/paste`, {
 			method: "DELETE",
@@ -80,19 +85,22 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 		});
 		const body = await res.json();
 		setLoading(false);
-		if (!body.data) return toast.error("❌ Please try again later.");
+		if (!body.data) return toast.error(`❌ ${parser.get("api_error")}`);
 		router.push("/profile");
 	};
 
 	return (
 		<Layout user={user} loading={userLoading}>
-			<NextSeo title="Explore Paste" />
+			<NextSeo title={parser.get("pages_explore_title") as string} />
 			<FileHeader
-				name={error ? "Paste not found..." : pasteData.title}
+				name={
+					error ? (parser.get("pages_explore_not_found") as string) : pasteData.title
+				}
 				description={
 					error
-						? "We searched quite a lot for the paste you were looking for but couldn't find it"
-						: pasteData.description || "My awesome file!"
+						? (parser.get("pages_explore_description_not_found") as string)
+						: pasteData.description ||
+						  (parser.get("pages_explore_description_default") as string)
 				}
 				canFork={
 					(pasteData && pasteData.is_reported) || !user || user.is_banned
@@ -112,9 +120,9 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 							wrapLongLines={true}
 						>
 							{pasteData && pasteData.is_reported
-								? "This paste is reported and unavailable for now"
+								? (parser.get("pages_explore_content_reported") as string)
 								: error
-								? "There must have been some very cool and meaningful things written here... Anyways, why don't try something else?"
+								? (parser.get("pages_explore_content_not_found") as string)
 								: pasteData.paste}
 						</SyntaxHighlighter>
 					</li>
@@ -126,7 +134,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 								" bg-green-500 hover:bg-green-600"
 							}
 						>
-							{loading ? <BarLoader /> : "Edit"}
+							{loading ? <BarLoader /> : parser.get("pages_explore_edit")}
 						</button>
 					</li>
 					<li className={styles.buttonWrapper}>
@@ -137,7 +145,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 								" bg-red-500 hover:bg-red-600"
 							}
 						>
-							{loading ? <BarLoader /> : "Delete"}
+							{loading ? <BarLoader /> : parser.get("pages_explore_delete")}
 						</button>
 					</li>
 					<li className={styles.buttonWrapper}>
@@ -148,7 +156,7 @@ const FilePage: NextPage<IFilePage> = ({ error, pasteData }) => {
 								" bg-yellow-500 hover:bg-yellow-600"
 							}
 						>
-							{loading ? <BarLoader /> : "Report"}
+							{loading ? <BarLoader /> : parser.get("pages_explore_report")}
 						</button>
 					</li>
 				</ul>

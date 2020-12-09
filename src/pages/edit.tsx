@@ -8,6 +8,7 @@ import CONFIG from "src/config";
 import Layout from "@components/Layout/index";
 import { NextPage, NextPageContext } from "next";
 import styles from "@styles/modules/edit.module.scss";
+import { LocaleParser } from "@libs/localeParser";
 
 export interface IEditPage {
 	error?: boolean;
@@ -31,6 +32,7 @@ const EditPage: NextPage<IEditPage> = (props) => {
 	const { user, loading: userLoading } = useFetchUser(false);
 	const [canEdit, setCanEdit] = useState(false);
 	const router = useRouter();
+	const parser = new LocaleParser(router.locale);
 
 	useEffect(() => {
 		if (
@@ -45,7 +47,7 @@ const EditPage: NextPage<IEditPage> = (props) => {
 	const editPaste = async () => {
 		if (loading) return;
 		if (!title && !paste)
-			return toast.error("❌ Please update the title or content of your paste.");
+			return toast.error(`❌ ${parser.get("pages_edit_no_title_or_paste")}`);
 		setLoading(true);
 		const res = await fetch(`${CONFIG.API_URL}/paste`, {
 			method: "PATCH",
@@ -66,39 +68,39 @@ const EditPage: NextPage<IEditPage> = (props) => {
 			body.message ===
 			`Paste with id ${router.query.id} not found on ${user.user.id}'s account`
 		)
-			return toast.error("❌ You can't edit this paste.");
+			return toast.error(`❌ ${parser.get("pages_edit_cant_edit")}`);
 		if (
 			body.message === "This paste is reported and only can be edited by an admin"
 		)
-			return toast.error(
-				"❌ This paste is reported and only can be edited by an admin.",
-			);
-		if (body.message === "paste or title required")
-			toast.warning("⚠️ It looks like no changes have been made");
+			return toast.error(`❌ ${parser.get("pages_edit_reported")}`);
+		if (body.statusCode !== 200)
+			return toast.warning(`❌ ${parser.get("api_error")}`);
 		router.push(`/explore?id=${encodeURIComponent(router.query.id as string)}`);
 	};
 
 	return (
 		<Layout user={user} loading={userLoading}>
-			<NextSeo title="Edit Paste" />
+			<NextSeo title={parser.get("pages_edit_title") as string} />
 			<div className={styles.hero}>
 				<div>
 					<h1>
-						{!pasteData || !canEdit || error ? "Paste Not Found" : "Edit Paste"}
+						{!pasteData || !canEdit || error
+							? parser.get("pages_edit_hero_title_not_found")
+							: parser.get("pages_edit_hero_title_edit")}
 					</h1>
 					<p>
 						{!pasteData || error
-							? "We searched quite a lot for the paste you were looking for but couldn't find it"
+							? parser.get("pages_edit_hero_description_not_found")
 							: canEdit
-							? "Is there something missing in your paste? Fix it now!"
-							: "You Can't Edit This Paste"}
+							? parser.get("pages_edit_hero_description")
+							: parser.get("pages_edit_hero_description_not_allowed")}
 					</p>
 				</div>
 			</div>
 			<div className={styles.content}>
 				<ul>
 					<li className={styles.smInput}>
-						<p>Paste Name</p>
+						<p>{parser.get("pages_edit_content_paste_title")}</p>
 						<input
 							className={
 								!pasteData || error
@@ -109,10 +111,10 @@ const EditPage: NextPage<IEditPage> = (props) => {
 							}
 							placeholder={
 								!pasteData || error
-									? "You Can't Edit This Paste"
+									? (parser.get("pages_edit_content_paste_cant_edit") as string)
 									: canEdit
-									? "My awesome paste!"
-									: "You Can't Edit This Paste"
+									? (parser.get("pages_edit_content_paste_name_placeholder") as string)
+									: (parser.get("pages_edit_content_paste_cant_edit") as string)
 							}
 							defaultValue={pasteData ? pasteData.title : ""}
 							readOnly={!canEdit}
@@ -131,10 +133,12 @@ const EditPage: NextPage<IEditPage> = (props) => {
 							}
 							placeholder={
 								!pasteData || error
-									? "You Can't Edit This Paste"
+									? (parser.get("pages_edit_content_paste_cant_edit") as string)
 									: canEdit
-									? "Take a look at this paste"
-									: "You Can't Edit This Paste"
+									? (parser.get(
+											"pages_edit_content_paste_description_placeholder",
+									  ) as string)
+									: (parser.get("pages_edit_content_paste_cant_edit") as string)
 							}
 							defaultValue={
 								pasteData && pasteData.description ? pasteData.description : ""
@@ -155,10 +159,12 @@ const EditPage: NextPage<IEditPage> = (props) => {
 							}
 							placeholder={
 								!pasteData || error
-									? "You Can't Edit This Paste"
+									? (parser.get("pages_edit_content_paste_cant_edit") as string)
 									: canEdit
-									? "Hey take a look at this"
-									: "You Can't Edit This Paste"
+									? (parser.get(
+											"pages_edit_content_paste_content_placeholder",
+									  ) as string)
+									: (parser.get("pages_edit_content_paste_cant_edit") as string)
 							}
 							defaultValue={pasteData ? pasteData.paste : ""}
 							readOnly={!canEdit}
@@ -175,7 +181,7 @@ const EditPage: NextPage<IEditPage> = (props) => {
 								: "cursor-not-allowed"
 						}
 					>
-						{loading ? <BarLoader /> : "Update!"}
+						{loading ? <BarLoader /> : parser.get("pages_edit_content_update")}
 					</button>
 				</ul>
 			</div>
