@@ -1,0 +1,101 @@
+api_error: Bir hata oluştu, lütfen daha sonra tekrar deneyin...
+required: "* Gerekli."
+components_cards_your_files: Dosyaların
+components_fileheader_fork: Kopyala
+components_fileheader_cant_fork: Kopyalanamaz
+components_fileheader_no_user: Bu Paste'yi kopyalayabilmek için giriş yapmalısın.
+components_fileheader_user_banned: Sistemden banlandığın için bu Paste'yi kopyalayamazsın.
+components_fileheader_user_cant_fork: Bu Paste'yi kopyalayamazsın.
+components_fileheader_reported: Bu Paste şikayet edildi ve yalnızca bir admin tarafından kopyalanabilir.
+components_fileheader_self_fork: Kendi Paste'ni kopyalayamazsın.
+components_footer_follow_us: Bizi Takip Et
+components_footer_useful_links: Yararlı Bağlantılar
+components_footer_contact_us: Bize Ulaşın
+components_hero_header: Merhaba <span>%{mail}</span>
+components_hero_description: HastePaste adasına hoş geldiniz.
+components_hero_header_skeleton: Merhaba <span>Yabancı</span>
+components_hero_description_skeleton: Seni hatırlayabilmemiz için bize biraz zaman ver.
+components_hero_card_item_description: Benim harika dosyam!
+components_hero_cards_last_published: Yayınladığın son dosyaların
+components_hero_cards_forks: Kopyaların
+componens_navbar_home: Ana Sayfa
+componens_navbar_login: Giriş Yap
+componens_navbar_signup: Kayıt Ol
+componens_navbar_profile: Profil
+componens_navbar_logout: Çıkış Yap
+pages_404: Sayfa bulunamadı...
+pages_404_header: Sayfa Bulunamadı
+pages_edit_no_title_or_paste: Lütfen Paste'nizin içeriğini veya başlığını güncelleyin.
+pages_edit_cant_edit: Bu paste'yi düzenleyemezsiniz.
+pages_edit_reported: Bu Paste şikayet edildi ve yalnızca bir admin tarafından düzenlenebilir.
+pages_edit_title: Paste'yi düzenle
+pages_edit_hero_title_edit: Paste'yi düzenle
+pages_edit_hero_title_not_found: Paste Bulunamadı
+pages_edit_hero_description_not_allowed: Bu Paste'yi düzenleyemezsiniz
+pages_edit_hero_description: Paste'nizde eksik bir şey mi var? Hemen düzeltin!
+pages_edit_hero_description_not_found: Aradığınız Paste'yi epeyce aradık ama bulamadık
+pages_edit_content_paste_title: Paste Adı
+pages_edit_content_paste_cant_edit: Bu Paste'yi düzenleyemezsiniz
+pages_edit_content_paste_name_placeholder: Benim harika Pastem!
+pages_edit_content_paste_description_placeholder: Şu Paste'ye bir bak
+pages_edit_content_paste_content_placeholder: Hey şuna bir bak
+pages_edit_content_update: Güncelle!
+pages_explore_edit_handler_error: Bu Paste'yi düzenleyemezsiniz.
+pages_explore_report_handler_error: Bu Paste'yi şikayet edemezsiniz.
+pages_explore_report_handler_success: Şikayetiniz için teşekkürler!
+pages_explore_delete_error: Bu Paste'yi silemezsiniz.
+pages_explore_title: Paste'yi İncele
+pages_explore_not_found: Paste Bulunamadı...
+pages_explore_description_not_found: Aradığınız Paste'yi epeyce aradık ama bulamadık
+pages_explore_description_default: Benim harika dosyam!
+pages_explore_content_not_found: Burada yazılmış çok güzel ve anlamlı şeyler olmalı... Her neyse, neden başka bir şey denemiyorsun?
+pages_explore_content_reported: Bu Paste bildirildi ve şimdilik kullanılamıyor
+pages_explore_edit: Düzenle
+pages_explore_delete: Sil
+pages_explore_report: Şikayet Et
+pages_index_create_handler_title_error: Lütfen Paste'nizin başlığını belirtin.
+pages_index_create_handler_content_error: Lütfen Paste'nizin içeriğini belirtin.
+pages_index_title: Paste Oluştur
+pages_index_description: İçeriğinizi HastePaste'in sihirli dünyasında bir yolculuğa çıkarın!
+pages_index_content_paste_name: Paste Adı
+pages_index_content_paste_name_placeholder: Benim harika Pastem!
+pages_index_content_paste_description: Açıklama
+pages_index_content_paste_description_placeholder: Şu Paste'ye bir bak
+pages_index_content_paste_content: Paste İçeriği
+pages_index_content_paste_content_placeholder: Hey şuna bir bak
+pages_index_create: Oluştur!
+pages_profile_loading: Yükleniyor
+pages_profile_title: Profil
+pages_login_form_robot_error: Bir robot musun?
+pages_login_form_mail_error: Lütfen geçerli bir e-posta adresi belirtin.
+pages_login_form_password_error: Lütfen şifrenizi belirtin.
+pages_login_form_password_length_error: Şifreniz 8 karakterden uzun olmalıdır.
+pages_login_form_invalid_mail_or_password: E-posta adresini ve şifreni doğru girdiğine emin ol.
+pages_login_title: Giriş Yap
+pages_login_description: HastePaste'in büyülü dünyasına tekrar hoş geldiniz!
+pages_login_form_fields_mail: E-Posta
+pages_login_form_fields_password: Şifre
+pages_login_form_button: Giriş Yap
+pages_login_sign_up_message: Bir hesabınız yok mu?
+pages_login_sign_up: Kayıt Ol
+pages_guide_title: Paste Yönergeleri
+pages_guide_description: Bir Paste oluştururken izlemeniz gereken kaynak
+pages_guide_last_edit: "Son Güncelleme: %{edit}"
+pagegs_tos_title: Kullanım Şartları
+pages_tos_last_edit: "Son Güncelleme: %{edit}"
+pages_tos_description: Bu siteyi ziyaret ederek, aşağıdaki şartlara uymayı kabul etmiş olursunuz.
+pages_signup_title: Kayıt Ol
+pages_signup_description: HastePaste'in büyülü dünyasına katılın!
+pages_signup_form_mail: E-Posta
+pages_signup_form_password: Şifre
+pages_signup_read_tos: Okudum ve kabul ediyorum
+pages_signup_tos: ToS
+pages_signup_has_account: Zaten hesabınız var mı?
+pages_signup_button: Kayıt Ol
+pages_signup_button_login: Giriş Yap
+pages_signup_error_tos: Kullanım şartlarını kabul ettiğinizi onaylayın.
+pages_signup_error_robot: Bir robot musun?
+pages_signup_error_mail: Lütfen geçerli bir e-posta adresi belirtin.
+pages_signup_error_password: Lütfen şifrenizi belirtin.
+pages_signup_error_password_length: Şifreniz 8 karakterden uzun olmalıdır.
+pages_signup_error_mail_in_use: Bu e-mail zaten kullanılıyor.
