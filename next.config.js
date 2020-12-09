@@ -10,7 +10,7 @@ module.exports = withPlugins(
 		distDir: "../dist",
 		cssModules: true,
 		i18n: {
-			locales: ["en", "tr"],
+			locales: ["en"],
 			defaultLocale: "en",
 		}
 	},
