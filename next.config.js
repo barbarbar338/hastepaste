@@ -12,26 +12,6 @@ module.exports = withPlugins(
 		i18n: {
 			locales: ["en", "tr"],
 			defaultLocale: "en",
-			domains: [
-				{
-					domain: "localhost:3000",
-					defaultLocale: "en"
-				},
-				{
-					domain: "hastepaste.xyz",
-					defaultLocale: "en"
-				},
-				/*
-				{
-					domain: "localhost:3000",
-					defaultLocale: "tr"
-				},
-				{
-					domain: "hastepaste.xyz",
-					defaultLocale: "tr"
-				}
-				*/
-			]
 		}
 	},
 );
