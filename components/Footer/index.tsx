@@ -1,7 +1,7 @@
 import { LocaleParser } from "@libs/localeParser";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 import styles from "./index.module.scss";
 
 export default function Footer(): JSX.Element {

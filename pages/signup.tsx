@@ -3,7 +3,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 import { useCookies } from "react-cookie";
 import Recaptcha from "react-recaptcha";
 import Link from "next/link";

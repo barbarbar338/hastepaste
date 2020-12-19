@@ -1,6 +1,6 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useCookies } from "react-cookie";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 
 export interface LooseObject {
 	[key: string]: unknown;

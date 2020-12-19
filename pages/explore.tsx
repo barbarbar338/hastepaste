@@ -5,7 +5,7 @@ import { NextSeo } from "next-seo";
 import { NextPage, NextPageContext } from "next";
 import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 import Layout from "@components/Layout/index";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";

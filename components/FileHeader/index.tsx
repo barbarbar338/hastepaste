@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import BarLoader from "@components/BarLoader";
 import { toast } from "react-toastify";
 import { useFetchUser } from "@libs/useFetchUser";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 import { useRouter } from "next/router";
 import styles from "./index.module.scss";
 import { LocaleParser } from "@libs/localeParser";

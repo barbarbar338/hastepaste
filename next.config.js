@@ -6,8 +6,6 @@ const withYAML = require("next-yaml");
 module.exports = withPlugins(
 	[[optimizedImages, { optimizeImages: false }], [withYAML]],
 	{
-		dir: "src",
-		distDir: "../dist",
 		cssModules: true,
 		target: "serverless",
 		i18n: {

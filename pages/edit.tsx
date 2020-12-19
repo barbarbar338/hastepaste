@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useFetchUser } from "@libs/useFetchUser";
 import { useRouter } from "next/router";
 import BarLoader from "@components/BarLoader";
-import CONFIG from "src/config";
+import CONFIG from "@base/config";
 import Layout from "@components/Layout/index";
 import { NextPage, NextPageContext } from "next";
 import styles from "@styles/modules/edit.module.scss";
