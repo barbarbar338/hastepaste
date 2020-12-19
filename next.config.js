@@ -9,6 +9,7 @@ module.exports = withPlugins(
 		dir: "src",
 		distDir: "../dist",
 		cssModules: true,
+		target: "serverless",
 		i18n: {
 			locales: [ "en", "tr", "ru" ],
 			defaultLocale: "en",
