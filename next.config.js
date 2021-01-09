@@ -16,17 +16,17 @@ module.exports = withPlugins(
 				{
 					source: "/github",
 					destination: "https://github.com/HastePasteApp/",
-					permanent: true,
+					permanent: false,
 				},
 				{
 					source: "/crowdin",
 					destination: "https://crowdin.com/project/hastepaste",
-					permanent: true,
+					permanent: false,
 				},
 				{
 					source: "/status",
 					destination: "https://status.hastepaste.xyz",
-					permanent: true,
+					permanent: false,
 				},
 			];
 		} 
