@@ -1,41 +1,38 @@
-.footer {
-	@apply bg-white relative pt-1 mt-6;
-	.wrapper {
-		@apply container mx-auto px-6;
-	}
-
-	.upper {
-		@apply sm:flex sm:mt-8;
-		.wrapper {
-			@apply mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between;
-			.column {
-				@apply flex flex-col;
-				.header {
-					@apply font-bold text-gray-700 uppercase;
-				}
-				.link {
-					@apply my-2;
-					span {
-						@apply text-blue-600 cursor-pointer hover:text-blue-400;
-					}
+.wrapper {
+	@apply flex justify-center px-4;
+	.content {
+		@apply container;
+		.items {
+			@apply flex flex-col items-center justify-between md:flex-row;
+			span {
+				@apply text-sm font-bold;
+			}
+			.right {
+				@apply flex mt-4 md:m-0;
+				.text {
+					@apply mx-4 text-sm;
 				}
 			}
 		}
 	}
+}
 
-	.lower {
-		@apply mt-16 border-t-2 border-gray-300 flex flex-col items-center;
-		.wrapper {
-			@apply sm:w-2/3 text-center py-6;
-			p {
-				@apply text-sm mb-2;
-				.copy {
-					@apply text-blue-300;
-				}
-				.link {
-					@apply text-blue-300 cursor-pointer hover:text-blue-200;
-				}
-			}
-		}
-	}
+.red {
+	@apply text-red-500;
+}
+
+.pink {
+	@apply text-pink-500 cursor-pointer;
+}
+
+.gray {
+	@apply text-gray-500 cursor-pointer;
+}
+
+.blue {
+	@apply text-blue-500 cursor-pointer;
+}
+
+.green {
+	@apply text-green-500 cursor-pointer;
 }

@@ -1,46 +1,43 @@
-import Layout from "@components/Layout";
-import { useFetchUser } from "@libs/useFetchUser";
-import { NextSeo } from "next-seo";
-import styles from "@styles/modules/tos.module.scss";
 import { LocaleParser } from "@libs/localeParser";
-import { useRouter } from "next/router";
+import Layout from "@components/Layout";
+import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
+import styles from "@styles/modules/tos.module.scss";
 
-export default function ToS(): JSX.Element {
-	const { user, loading } = useFetchUser(false);
+export default function TosPage(): JSX.Element {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
-
 	return (
-		<Layout user={user} loading={loading}>
-			<NextSeo title={parser.get("pagegs_tos_title") as string} />
-			<div className={styles.hero}>
-				<div>
-					<h1>{parser.get("pagegs_tos_title")}</h1>
-					<p>
-						{parser.get("pages_tos_description")} (
-						{parser.get("pages_tos_last_edit", {
-							edit: new Date(1607344200000).toLocaleString(),
-						})}
-						)
-					</p>
-				</div>
-			</div>
-			<div className={styles.content}>
-				<ul className={styles.listWrapper}>
-					<li className={styles.listItem}>
-						<h1>Terms</h1>
+		<Layout title={parser.get("tos") as string}>
+			<h1 className={styles.title}>{parser.get("tos_long")}</h1>
+			<p className={styles.desc}>
+				{parser.get("tos_desc", {
+					edit: new Date("04-01-2021 20:00:00").toLocaleString(),
+				})}
+			</p>
+			<div className={styles.wrapper}>
+				<ul>
+					<li>
+						<h3>Terms</h3>
 						<p>
-							By accessing this Website, accessible at https://hastepaste.xyz, you
-							agree to be bound by these Website Terms and Conditions of Use and to be
-							responsible for the agreement with all applicable local laws. If you do
-							not agree with any of these terms, you are prohibited from accessing this
-							site. The contents on this Website are protected by copyright and
-							trademark law. These Terms of Service were created with the help of the
-							Terms of Service Generator and the Terms and Conditions Example.
+							By accessing this Website, accessible at{" "}
+							<Link href="/">
+								<span className="cursor-pointer text-pink-500">
+									https://hastepaste.xyz
+								</span>
+							</Link>
+							, you agree to be bound by these Website Terms and Conditions of Use and
+							to be responsible for the agreement with all applicable local laws. If
+							you do not agree with any of these terms, you are prohibited from
+							accessing this site. The contents on this Website are protected by
+							copyright and trademark law. These Terms of Service were created with the
+							help of the Terms of Service Generator and the Terms and Conditions
+							Example.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>License</h1>
+
+					<li>
+						<h3>License</h3>
 						<p>
 							HastePaste users are permitted to temporarily download one copy of the
 							contents on the Website for personal, non-commercial transitory viewing
@@ -71,8 +68,8 @@ export default function ToS(): JSX.Element {
 							possession whether it is printed or electronic format.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Disclaimer</h1>
+					<li>
+						<h3>Disclaimer</h3>
 						<p>
 							All the contents on HastePaste's are provided "as is". HastePaste makes
 							no warranties, may it be expressed or implied, therefore negates all
@@ -82,8 +79,8 @@ export default function ToS(): JSX.Element {
 							sites linked to this Website.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Limitations</h1>
+					<li>
+						<h3>Limitations</h3>
 						<p>
 							HastePaste or its suppliers will not be hold accountable for any damages
 							that will arise with the use or inability to use the contents on
@@ -94,8 +91,8 @@ export default function ToS(): JSX.Element {
 							limitations may not apply to you.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Revisions</h1>
+					<li>
+						<h3>Revisions</h3>
 						<p>
 							All content shared on HastePaste is checked periodically, but it should
 							be remembered that these contents can change after the check. HastePaste
@@ -105,8 +102,8 @@ export default function ToS(): JSX.Element {
 							commitment to update the contents.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Links</h1>
+					<li>
+						<h3>Links</h3>
 						<p>
 							HastePaste has not reviewed all of the sites linked to its Website and is
 							not responsible for the contents of any such linked site. The presence of
@@ -114,31 +111,32 @@ export default function ToS(): JSX.Element {
 							any linked website is at the user’s own risk.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Terms of Use Modifications</h1>
+					<li>
+						<h3>Terms of Use Modifications</h3>
 						<p>
 							HastePaste may revise these Terms of Use for the Website at any time
 							without prior notice. By using this Website, you agree to be bound by the
 							current version of these Terms and Conditions of Use.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Governing Law</h1>
+					<li>
+						<h3>Governing Law</h3>
 						<p>
 							Any claim related to HastePaste's Website shall be governed by the laws
 							of Turkey without regards to its conflict of law provisions.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>Your Privacy</h1>
+					<li>
+						<h3>Your Privacy</h3>
 						<p>
-							The e-mail and password you used while registering on the site are
-							encrypted on our servers and stored in our database after being
-							encrypted. The e-mail you use while registering on the site is used only
-							to identify you and to own the shared content and cannot be seen by any
-							other user. This information you have shared with us is used for
-							identification purposes only and is not shared with third parties.
-							However, all the pastes you share can be seen by others.
+							The GitHub account you use to register and log in to the site is not
+							saved anywhere and shared with anyone. It is completely collected on a
+							temporary memory. Naturally, GitHub's privacy policy fully applies. The
+							account you use while registering on the site is used only to identify
+							you and to own the shared content and cannot be seen by any other user.
+							This information you have shared with us is used for identification
+							purposes only and is not shared with third parties. However, all the
+							pastes you share can be seen by others.
 						</p>
 					</li>
 				</ul>

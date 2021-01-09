@@ -1,33 +1,25 @@
-.hero {
-	@apply bg-dust-500;
-	div {
-		@apply container flex flex-col max-w-screen-xl px-5 py-16 mx-auto lg:px-0;
-		h1 {
-			@apply text-3xl font-medium text-white;
+.title {
+	@apply text-gray-700 text-3xl font-medium;
+}
+
+.desc {
+	@apply text-gray-500;
+}
+
+.wrapper {
+	@apply mt-4 p-4 bg-white rounded-lg shadow;
+	li {
+		h3 {
+			@apply text-gray-700 mt-4 text-xl font-medium;
 		}
 		p {
-			@apply text-dust-100;
+			@apply text-sm text-gray-500;
 		}
 	}
-}
-.content {
-	@apply container max-w-screen-xl px-5 mx-auto -mt-10 lg:px-0;
-	.listWrapper {
-		@apply grid w-full grid-cols-1 px-5 py-5 bg-white rounded-lg lg:grid-cols-2;
-		.listItem {
-			@apply flex flex-col w-full col-span-3 px-5 py-5 space-y-2 bg-transparent rounded-lg;
-			h1 {
-				@apply text-gray-900 text-xl;
-			}
-			p {
-				@apply text-gray-600;
-			}
-		}
-		.discList {
-			@apply list-disc;
-			li {
-				@apply text-gray-500;
-			}
+	.discList {
+		@apply list-disc;
+		li {
+			@apply text-sm text-gray-500 mx-8;
 		}
 	}
 }

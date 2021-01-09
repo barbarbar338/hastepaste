@@ -1,34 +1,23 @@
-import Layout from "@components/Layout";
-import { useFetchUser } from "@libs/useFetchUser";
-import { NextSeo } from "next-seo";
-import styles from "@styles/modules/guide.module.scss";
-import { useRouter } from "next/router";
 import { LocaleParser } from "@libs/localeParser";
+import Layout from "@components/Layout";
+import { useRouter } from "next/dist/client/router";
+import styles from "@styles/modules/guide.module.scss";
 
-export default function Guides(): JSX.Element {
-	const { user, loading } = useFetchUser(false);
+export default function GuidePage(): JSX.Element {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
-
 	return (
-		<Layout user={user} loading={loading}>
-			<NextSeo title={parser.get("pages_guide_title") as string} />
-			<div className={styles.hero}>
-				<div>
-					<h1>{parser.get("pages_guide_title")}</h1>
-					<p>
-						{parser.get("pages_guide_description")} (
-						{parser.get("pages_guide_last_edit", {
-							edit: new Date(1607344200000).toLocaleString(),
-						})}
-						)
-					</p>
-				</div>
-			</div>
-			<div className={styles.content}>
-				<ul className={styles.listWrapper}>
-					<li className={styles.listItem}>
-						<h1>Legal disclaimer</h1>
+		<Layout title={parser.get("guide_short") as string}>
+			<h1 className={styles.title}>{parser.get("guide_long")}</h1>
+			<p className={styles.desc}>
+				{parser.get("guide_desc", {
+					edit: new Date("07-12-2020 15:30:00").toLocaleString(),
+				})}
+			</p>
+			<div className={styles.wrapper}>
+				<ul>
+					<li>
+						<h3>Legal disclaimer</h3>
 						<p>
 							Our only goal is for people to share their content with their friends
 							safely and quickly. To keep our website safe for everyone, we regularly
@@ -42,8 +31,8 @@ export default function Guides(): JSX.Element {
 							account can be disabled forever.
 						</p>
 					</li>
-					<li className={styles.listItem}>
-						<h1>What you can do with a paste</h1>
+					<li>
+						<h3>What you can do with a paste</h3>
 						<ul className={styles.discList}>
 							<li>You can share a code.</li>
 							<li>You can share a note.</li>
@@ -53,8 +42,8 @@ export default function Guides(): JSX.Element {
 							<li>And you can share almost anything you can think of.</li>
 						</ul>
 					</li>
-					<li className={styles.listItem}>
-						<h1>What you can't do with a paste</h1>
+					<li>
+						<h3>What you can't do with a paste</h3>
 						<p>
 							If we encounter content shared for the purposes stated below, the content
 							will be removed from our system forever and the owner of the content will

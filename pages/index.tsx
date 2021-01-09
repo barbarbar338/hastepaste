@@ -1,94 +1,100 @@
-import { NextSeo } from "next-seo";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { useFetchUser } from "@libs/useFetchUser";
-import { useRouter } from "next/router";
-import BarLoader from "@components/BarLoader";
-import CONFIG from "@base/config";
-import Layout from "@components/Layout/index";
-import styles from "@styles/modules/index.module.scss";
 import { LocaleParser } from "@libs/localeParser";
+import Layout from "@components/Layout";
+import { useRouter } from "next/dist/client/router";
+import styles from "@styles/modules/index.module.scss";
+import { FormEvent, useState } from "react";
+import { useSession } from "next-auth/client";
+import { supabase } from "@libs/initSupabase";
+import { toast } from "react-toastify";
+import Preloader from "@assets/preloader.gif";
+import { generate as randomString } from "@libs/randomString";
+import Editor from "react-simple-code-editor";
+import { highlight, languages } from "prismjs";
 
 export default function IndexPage(): JSX.Element {
-	const [title, setTitle] = useState("");
+	const [content, setContent] = useState("");
 	const [description, setDescription] = useState("");
-	const [paste, setPaste] = useState("");
+	const [title, setTitle] = useState("");
+	const [checked, setChecked] = useState(false);
+	const [session] = useSession();
 	const [loading, setLoading] = useState(false);
-	const { user, loading: userLoading } = useFetchUser(false);
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
 
-	const createPaste = async () => {
+	const submit = async (e: FormEvent<HTMLFormElement>): Promise<unknown> => {
+		e.preventDefault();
 		if (loading) return;
-		if (!title)
-			return toast.error(
-				`❌ ${parser.get("pages_index_create_handler_title_error")}`,
-			);
-		if (!paste)
-			return toast.error(
-				`❌ ${parser.get("pages_index_create_handler_content_error")}`,
-			);
+		if (!checked) return toast.error(parser.get("agree_terms"));
+		if (!title) return toast.error(parser.get("specify_title"));
+		if (!content) return toast.error(parser.get("specify_content"));
 		setLoading(true);
-		const headers = { "Content-Type": "application/json" };
-		if (user && user.access_token) headers["Authorization"] = user.access_token;
-		const res = await fetch(`${CONFIG.API_URL}/paste`, {
-			method: "POST",
-			headers,
-			body: JSON.stringify({ paste, title, description }),
-		});
-		if (!res.ok) return toast.error(`❌ ${parser.get("api_error")}`);
-		const body = await res.json();
+		const id = randomString();
+		const { data, status } = await supabase
+			.from("Pastes")
+			.insert({
+				id,
+				owner: session ? session.user.email : null,
+				fork: null,
+				reported: false,
+				description,
+				content,
+				title,
+			})
+			.single();
 		setLoading(false);
-		router.push(`/explore?id=${encodeURIComponent(body.data.id)}`);
+		if (status < 200 || status > 299)
+			return toast.warning(parser.get("api_error"));
+		router.push(`/${encodeURIComponent(data.id)}`);
 	};
 
 	return (
-		<Layout user={user} loading={userLoading}>
-			<NextSeo title={parser.get("pages_index_title") as string} />
-			<div className={styles.hero}>
-				<div>
-					<h1>{parser.get("pages_index_title")}</h1>
-					<p>{parser.get("pages_index_description")}</p>
+		<Layout title={parser.get("index") as string}>
+			<form className={styles.form} onSubmit={submit}>
+				<h3 className={styles.title}>{parser.get("index")}</h3>
+				<p className={styles.desc}>{parser.get("index_desc")}</p>
+				<input
+					type="text"
+					placeholder={parser.get("paste_name") as string}
+					onChange={(e) => setTitle(e.target.value)}
+					className={styles.input}
+				/>
+				<input
+					type="text"
+					placeholder={parser.get("paste_description") as string}
+					onChange={(e) => setDescription(e.target.value)}
+					className={styles.input}
+				/>
+				<Editor
+                    className={styles.code}
+                    value={content}
+                    onValueChange={code => setContent(code)}
+                    highlight={code => highlight(code, languages.js, "js")}
+                    padding={10}
+					placeholder={parser.get("paste_content") as string}
+                    style={{
+                        fontFamily: '"Fira code", "Fira Mono", monospace',
+                    }}
+                />
+				<div className={styles.tosWrapper}>
+					<input
+						type="checkbox"
+						className={styles.check}
+						onClick={() => setChecked(!checked)}
+						defaultChecked={checked}
+					/>
+					<p
+						dangerouslySetInnerHTML={{
+							__html: parser.get("accept_tos", {
+								tos: `<a href="/tos">${parser.get("tos_long")}</a>.`,
+							}) as string,
+						}}
+					/>
 				</div>
-			</div>
-			<div className={styles.content}>
-				<ul className={styles.list}>
-					<li className={styles.smInput}>
-						<p>{parser.get("pages_index_content_paste_name")}</p>
-						<input
-							placeholder={
-								parser.get("pages_index_content_paste_name_placeholder") as string
-							}
-							onChange={(e) => setTitle(e.target.value)}
-						/>
-						<span className={styles.required}>{parser.get("required")}</span>
-					</li>
-					<li className={styles.smInput}>
-						<p>{parser.get("pages_index_content_paste_description")}</p>
-						<input
-							placeholder={
-								parser.get(
-									"pages_index_content_paste_description_placeholder",
-								) as string
-							}
-							onChange={(e) => setDescription(e.target.value)}
-						/>
-					</li>
-					<li className={styles.paste}>
-						<p>{parser.get("pages_index_content_paste_content")}</p>
-						<textarea
-							placeholder={
-								parser.get("pages_index_content_paste_content_placeholder") as string
-							}
-							onChange={(e) => setPaste(e.target.value)}
-						/>
-						<span className={styles.required}>{parser.get("required")}</span>
-					</li>
-					<button onClick={createPaste}>
-						{loading ? <BarLoader /> : parser.get("pages_index_create")}
-					</button>
-				</ul>
-			</div>
+				<button className={`${styles.btn} ld-over${loading ? " running" : ""}`}>
+					<img src={Preloader} className="ld" />
+					{parser.get("create")}
+				</button>
+			</form>
 		</Layout>
 	);
 }

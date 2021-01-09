@@ -4,175 +4,57 @@
 # Crowdin: https://crowdin.com/project/hastepaste
 #
 
-#####################
-# Global translates #
-#####################
-api_error: An error occured, please try again later...
-required: "* Required."
-
-####################
-# components/Cards #
-####################
-components_cards_your_files: Your Files
-
-#########################
-# components/FileHeader #
-#########################
-components_fileheader_fork: Fork
-components_fileheader_cant_fork: Can't Fork
-components_fileheader_no_user: You need to be logged in to fork a paste.
-components_fileheader_user_banned: You cannot fork a paste because you are banned from the system.
-components_fileheader_user_cant_fork: You can't fork this paste.
-components_fileheader_reported: This paste is reported and only can be forked by an admin.
-components_fileheader_self_fork: You can't fork your paste.
-
-# COMPONENTS #
-
-#####################
-# components/Footer #
-#####################
-components_footer_follow_us: Follow Us
-components_footer_useful_links: Useful Links
-components_footer_contact_us: Contact Us
-
-###################
-# components/Hero #
-###################
-components_hero_header: Hello <span>%{mail}</span>
-components_hero_description: Welcome to the island of HastePaste.
-components_hero_header_skeleton: Hello <span>Stranger</span>
-components_hero_description_skeleton: Give us some time to remember you.
-
-###########################
-# components/HeroCardItem #
-###########################
-components_hero_card_item_description: My awesome file!
-
-########################
-# components/HeroCards #
-########################
-components_hero_cards_last_published: Your published last files
-components_hero_cards_forks: Your Forks
-
-#####################
-# components/Navbar #
-#####################
-componens_navbar_home: Home
-componens_navbar_login: Login
-componens_navbar_signup: Sign Up
-componens_navbar_profile: Profile
-componens_navbar_logout: Logout
-
-# PAGES #
-
-#############
-# pages/404 #
-#############
-pages_404: Page not found...
-pages_404_header: Page Not Found
-
-##############
-# pages/edit #
-##############
-pages_edit_no_title_or_paste: Please update the title or content of your paste.
-pages_edit_cant_edit: You can't edit this paste.
-pages_edit_reported: This paste is reported and only can be edited by an admin.
-pages_edit_title: Edit paste
-pages_edit_hero_title_edit: Edit Paste
-pages_edit_hero_title_not_found: Paste Not Found
-pages_edit_hero_description_not_allowed: You Can't Edit This Paste
-pages_edit_hero_description: Is there something missing in your paste? Fix it now!
-pages_edit_hero_description_not_found: We searched quite a lot for the paste you were looking for but couldn't find it
-pages_edit_content_paste_title: Paste Name
-pages_edit_content_paste_cant_edit: You Can't Edit This Paste
-pages_edit_content_paste_name_placeholder: My awesome paste!
-pages_edit_content_paste_description_placeholder: Take a look at this paste
-pages_edit_content_paste_content_placeholder: Hey take a look at this
-pages_edit_content_update: Update!
-
-#################
-# pages/explore #
-#################
-pages_explore_edit_handler_error: You can't edit this paste.
-pages_explore_report_handler_error: You can't report this paste.
-pages_explore_report_handler_success: Thank you for your report!
-pages_explore_delete_error: You can't delete this paste.
-pages_explore_title: Explore Paste
-pages_explore_not_found: Paste not found...
-pages_explore_description_not_found: We searched quite a lot for the paste you were looking for but couldn't find it
-pages_explore_description_default: My awesome file!
-pages_explore_content_not_found: There must have been some very cool and meaningful things written here... Anyways, why don't try something else?
-pages_explore_content_reported: This paste is reported and unavailable for now
-pages_explore_edit: Edit
-pages_explore_delete: Delete
-pages_explore_report: Report
-
-###############
-# pages/index #
-###############
-pages_index_create_handler_title_error: Please specify the title of your paste.
-pages_index_create_handler_content_error: Please specify the content of your paste.
-pages_index_title: Create Paste
-pages_index_description: Take your content on a journey through the magic world of HastePaste!
-pages_index_content_paste_name: Paste Name
-pages_index_content_paste_name_placeholder: My awesome paste!
-pages_index_content_paste_description: Description
-pages_index_content_paste_description_placeholder: Take a look at this paste
-pages_index_content_paste_content: Paste Content
-pages_index_content_paste_content_placeholder: Hey take a look at this
-pages_index_create: Create!
-
-#################
-# pages/profile #
-#################
-pages_profile_loading: Loading
-pages_profile_title: Profile
-
-###############
-# pages/login #
-###############
-pages_login_form_robot_error: Are you a robot?
-pages_login_form_mail_error: Please provide a valid e-mail address.
-pages_login_form_password_error: Please provide your password.
-pages_login_form_password_length_error: Your password must be longer than 8 characters.
-pages_login_form_invalid_mail_or_password: Make sure you enter your email and password correctly.
-pages_login_title: Login
-pages_login_description: Welcome back to HastePaste's magical world!
-pages_login_form_fields_mail: E-Mail
-pages_login_form_fields_password: Password
-pages_login_form_button: Login
-pages_login_sign_up_message: Don't have an account?
-pages_login_sign_up: Sign Up
-
-###############
-# pages/guide #
-###############
-pages_guide_title: Paste Guidelines
-pages_guide_description: The resource you should follow when creating a paste
-pages_guide_last_edit: "Last Edit: %{edit}"
-
-#############
-# pages/tos #
-#############
-pagegs_tos_title: Terms Of Service
-pages_tos_last_edit: "Last Edit: %{edit}"
-pages_tos_description: By visiting this site, you agree to comply with the following terms.
-
-################
-# pages/signup #
-################
-pages_signup_title: Sign Up
-pages_signup_description: Join the magical world of HastePaste!
-pages_signup_form_mail: E-Mail
-pages_signup_form_password: Password
-pages_signup_read_tos: I have read and accept the
-pages_signup_tos: ToS
-pages_signup_has_account: Already have an account?
-pages_signup_button: Sign Up
-pages_signup_button_login: Login
-pages_signup_error_tos: Confirm that you accept the terms of use.
-pages_signup_error_robot: Are you a robot?
-pages_signup_error_mail: Please provide a valid e-mail address.
-pages_signup_error_password: Please provide your password.
-pages_signup_error_password_length: Your password must be longer than 8 characters.
-pages_signup_error_mail_in_use: This e-mail is already in use.
+api_error: ⚠ An error occured, please try again later...
+profile: Profile
+logout: Logout
+login: Login
+home: Home
+tos: Tos
+guide: Content Guide
+translate: Translate
+status: Status
+team: Team
+tos_long: Terms of Service
+tos_desc: "By visiting this site, you agree to comply with the following terms. (Last Edit: %{edit})"
+guide_short: Guide
+guide_long: Paste Guidelines
+guide_desc: "The resource you should follow when creating a paste (Last Edit: %{edit})"
+index: Create Paste
+agree_terms: ❌ Agree to the terms of service.
+specify_title: ❌ Specify the title of your content.
+specify_content: ❌ Specify your content.
+index_desc: Take your content on a journey through the magic world of HastePaste!
+paste_name: Paste Name (required)
+paste_description: Paste Description
+paste_content: Paste Content (required)
+accept_tos: I have read and accept the %{tos}
+create: Create
+not_found_desc: Sorry we couldn't find this page.
+not_found_long_desc: This page may have been deleted or even never been created before.
+go_home: Go home
+dashboard: Dashboard
+total_files: Total Files
+forks: Forks
+your_files: Your Files
+reported: Reported
+active: Active
+view: View
+title: Title
+description: Description
+explore: Explore
+fork: Fork
+report: Report
+delete: Delete
+edit: Edit
+reported_content: This paste is reported and can only seen by admins
+fork_error: ❌ You can't fork this paste.
+forked: ✔ Paste forked with id %{id}! Redirecting...
+forked_from: (Forked from %{id})
+report_error: ❌ You can't report this paste.
+reported_success: ✔ Paste with id %{id} is reported! Thanks...
+delete_error: ❌ You can't delete this paste.
+deleted: ✔ Paste with id %{id} is deleted.
+edit_error: ❌ You can't edit this paste.
+edit_paste: Edit Paste
+edit_desc: Is there something missing in your paste? Fix it now!
+save: Save Paste

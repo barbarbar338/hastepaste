@@ -29,15 +29,18 @@ class CustomDocument extends Document {
 					<meta name="twitter:image" content={TwitterImage} />
 					<link rel="icon" href={Favicon} />
 					<link rel="canonical" href="https://hastepaste.xyz/" />
-					<link
-						href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-						rel="stylesheet"
+					<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSDKSXHVKS"></script>
+					<script 
+						dangerouslySetInnerHTML={{
+							__html: `
+								window.dataLayer = window.dataLayer || [];
+								function gtag(){dataLayer.push(arguments);}
+								gtag("js", new Date());
+
+								gtag("config", "G-PSDKSXHVKS");
+							`
+						}}
 					/>
-					<script
-						src="https://www.google.com/recaptcha/api.js?render=explicit"
-						async
-						defer
-					></script>
 				</Head>
 				<body>
 					<Main />

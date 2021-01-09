@@ -16,7 +16,6 @@
 		"typeRoots": ["node_modules/@types", "@types", "node-env.d.ts"],
 		"baseUrl": ".",
 		"paths": {
-			"@base/*": [ "./*" ],
 			"@styles/*": ["styles/*"],
 			"@assets/*": ["assets/*"],
 			"@components/*": ["components/*"],
