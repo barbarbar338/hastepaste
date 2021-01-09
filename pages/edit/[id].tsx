@@ -12,15 +12,15 @@ import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
 
 export interface IEditPage {
-    paste: {
+	paste: {
 		fork?: string;
 		title: string;
 		description?: string;
 		reported?: boolean;
 		id: string;
-        content: string;
+		content: string;
 		owner?: string;
-	}
+	};
 }
 
 const EditPage: NextPage<IEditPage> = ({ paste }) => {
@@ -41,8 +41,8 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 		setLoading(true);
 		const { status } = await supabase
 			.from("Pastes")
-            .update({ title, description, content })
-            .eq("id", paste.id);
+			.update({ title, description, content })
+			.eq("id", paste.id);
 		setLoading(false);
 		if (status < 200 || status > 299)
 			return toast.warning(parser.get("api_error"));
@@ -59,26 +59,26 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 					placeholder={parser.get("paste_name") as string}
 					onChange={(e) => setTitle(e.target.value)}
 					className={styles.input}
-                    defaultValue={title}
+					defaultValue={title}
 				/>
 				<input
 					type="text"
 					placeholder={parser.get("paste_description") as string}
 					onChange={(e) => setDescription(e.target.value)}
 					className={styles.input}
-                    defaultValue={description}
+					defaultValue={description}
 				/>
-                <Editor
-                    className={styles.code}
-                    value={content}
-                    onValueChange={code => setContent(code)}
-                    highlight={code => highlight(code, languages.js, "js")}
-                    padding={10}
+				<Editor
+					className={styles.code}
+					value={content}
+					onValueChange={(code) => setContent(code)}
+					highlight={(code) => highlight(code, languages.js, "js")}
+					padding={10}
 					placeholder={parser.get("paste_content") as string}
-                    style={{
-                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                    }}
-                />
+					style={{
+						fontFamily: '"Fira code", "Fira Mono", monospace',
+					}}
+				/>
 				<div className={styles.tosWrapper}>
 					<input
 						type="checkbox"
@@ -101,31 +101,31 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 			</form>
 		</Layout>
 	);
-}
+};
 
 EditPage.getInitialProps = async (ctx) => {
-    const session = await getSession(ctx);
+	const session = await getSession(ctx);
 	if (!session) {
 		ctx.res.writeHead(302, {
-			Location: "/api/auth/signin"
+			Location: "/api/auth/signin",
 		});
 		ctx.res.end();
 	}
-    const id = typeof ctx.query.id === "string" ? ctx.query.id : ctx.query.id[0];
+	const id = typeof ctx.query.id === "string" ? ctx.query.id : ctx.query.id[0];
 	const { data } = await supabase
 		.from("Pastes")
 		.select("*")
 		.eq("id", id)
-        .single();
+		.single();
 	if (!data || data.reported) {
 		ctx.res.writeHead(302, {
-			Location: "/404"
+			Location: "/404",
 		});
 		ctx.res.end();
 	}
 	return {
-		paste: data
-	}
-}
+		paste: data,
+	};
+};
 
 export default EditPage;

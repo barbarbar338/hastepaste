@@ -1,39 +1,39 @@
 .wrapper {
-    @apply p-4 my-10 relative;
-    .title {
-        @apply pb-4;
-        h2 {
-            @apply text-xl;
-        }
-        p {
-            @apply text-sm text-gray-500;
-        }
-    }
-    .btnWrapper {
-        @apply flex flex-wrap;
-        button {
-            @apply px-8 py-2 ml-4 mb-4 rounded max-w-max shadow-sm hover:shadow-lg outline-none;
-        }
-        .blue {
-            @apply bg-blue-300 text-blue-600;
-        }
-        .yellow {
-            @apply bg-yellow-300 text-yellow-600;
-        }
-        .red {
-            @apply bg-red-300 text-red-600;
-        }
-        .green {
-            @apply bg-green-300 text-green-600;
-        }
-        .notAllowed {
-            @apply cursor-not-allowed line-through;
-        }
-    }
-    .paste {
-        @apply bg-white rounded-md p-3;
-        .round {
-            @apply rounded-md;
-        }
-    }
+	@apply p-4 my-10 relative;
+	.title {
+		@apply pb-4;
+		h2 {
+			@apply text-xl;
+		}
+		p {
+			@apply text-sm text-gray-500;
+		}
+	}
+	.btnWrapper {
+		@apply flex flex-wrap;
+		button {
+			@apply px-8 py-2 ml-4 mb-4 rounded max-w-max shadow-sm hover:shadow-lg outline-none;
+		}
+		.blue {
+			@apply bg-blue-300 text-blue-600;
+		}
+		.yellow {
+			@apply bg-yellow-300 text-yellow-600;
+		}
+		.red {
+			@apply bg-red-300 text-red-600;
+		}
+		.green {
+			@apply bg-green-300 text-green-600;
+		}
+		.notAllowed {
+			@apply cursor-not-allowed line-through;
+		}
+	}
+	.paste {
+		@apply bg-white rounded-md p-3;
+		.round {
+			@apply rounded-md;
+		}
+	}
 }

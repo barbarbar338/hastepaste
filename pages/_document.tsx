@@ -29,8 +29,11 @@ class CustomDocument extends Document {
 					<meta name="twitter:image" content={TwitterImage} />
 					<link rel="icon" href={Favicon} />
 					<link rel="canonical" href="https://hastepaste.xyz/" />
-					<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSDKSXHVKS"></script>
-					<script 
+					<script
+						async
+						src="https://www.googletagmanager.com/gtag/js?id=G-PSDKSXHVKS"
+					></script>
+					<script
 						dangerouslySetInnerHTML={{
 							__html: `
 								window.dataLayer = window.dataLayer || [];
@@ -38,7 +41,7 @@ class CustomDocument extends Document {
 								gtag("js", new Date());
 
 								gtag("config", "G-PSDKSXHVKS");
-							`
+							`,
 						}}
 					/>
 				</Head>

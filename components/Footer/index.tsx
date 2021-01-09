@@ -22,8 +22,8 @@ export default function Footer(): JSX.Element {
 							,{" "}
 							<Link href="https://tailwindcss.com/">
 								<span className={styles.blue}>TailwindCSS</span>
-							</Link>
-							{" "}and{" "}
+							</Link>{" "}
+							and{" "}
 							<Link href="https://supabase.io/">
 								<span className={styles.green}>Supabase</span>
 							</Link>

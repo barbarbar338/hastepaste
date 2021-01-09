@@ -19,13 +19,13 @@ export interface IExplorePage {
 		description?: string;
 		reported?: boolean;
 		id: string;
-        content: string;
+		content: string;
 		owner?: string;
-	}
+	};
 }
 
 const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
-    const [session] = useSession();
+	const [session] = useSession();
 	const [fork, setFork] = useState(false);
 	const [report, setReport] = useState(false);
 	const [del, setDelete] = useState(false);
@@ -36,10 +36,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 
 	useEffect(() => {
 		if (session) {
-			if (
-				paste.owner !== session.user.email &&
-				!paste.reported
-			) {
+			if (paste.owner !== session.user.email && !paste.reported) {
 				setFork(true);
 				setReport(true);
 				setDelete(false);
@@ -65,7 +62,9 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 		}
 	});
 
-	const handleFork = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+	const handleFork = async (
+		e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+	) => {
 		e.preventDefault();
 		if (loading) return;
 		setLoading(true);
@@ -75,14 +74,12 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 			return;
 		}
 		const id = randomString();
-		const { error } = await supabase
-			.from("Pastes")
-			.insert({
-				...paste,
-				id,
-				fork: paste.id,
-				owner: session.user.email
-			});
+		const { error } = await supabase.from("Pastes").insert({
+			...paste,
+			id,
+			fork: paste.id,
+			owner: session.user.email,
+		});
 		if (error) {
 			toast.warning(parser.get("api_error"));
 			setLoading(false);
@@ -91,9 +88,11 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 		setLoading(false);
 		toast.success(parser.get("forked", { id }));
 		router.push(`/${encodeURIComponent(id)}`);
-	}
+	};
 
-	const handleReport = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+	const handleReport = async (
+		e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+	) => {
 		e.preventDefault();
 		if (loading) return;
 		setLoading(true);
@@ -105,7 +104,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 		const { error } = await supabase
 			.from("Pastes")
 			.update({ reported: true })
-			.eq("id", paste.id)
+			.eq("id", paste.id);
 
 		if (error) {
 			toast.warning(parser.get("api_error"));
@@ -115,9 +114,11 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 		setLoading(false);
 		toast.success(parser.get("reported_success", { id: paste.id }));
 		router.push("/");
-	}
+	};
 
-	const handleDelete = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+	const handleDelete = async (
+		e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+	) => {
 		e.preventDefault();
 		if (loading) return;
 		setLoading(true);
@@ -126,10 +127,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 			setLoading(false);
 			return;
 		}
-		const { error } = await supabase
-			.from("Pastes")
-			.delete()
-			.eq("id", paste.id)
+		const { error } = await supabase.from("Pastes").delete().eq("id", paste.id);
 
 		if (error) {
 			toast.warning(parser.get("api_error"));
@@ -139,84 +137,101 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 		setLoading(false);
 		toast.success(parser.get("deleted", { id: paste.id }));
 		router.push("/");
-	}
+	};
 
-	const handleEdit = async (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+	const handleEdit = async (
+		e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
+	) => {
 		e.preventDefault();
 		if (loading) return;
 		if (!edit) return toast.error(parser.get("edit_error"));
 		router.push(`/edit/${encodeURIComponent(paste.id)}`);
-	}
+	};
 
 	return (
 		<Layout title={parser.get("explore") as string}>
-            <div className={styles.wrapper}>
+			<div className={styles.wrapper}>
 				<div className={styles.title}>
-					<h2>{paste.title} {paste.fork && parser.get("forked_from", { id: paste.fork })}</h2>
+					<h2>
+						{paste.title}{" "}
+						{paste.fork && parser.get("forked_from", { id: paste.fork })}
+					</h2>
 					<p>{paste.description}</p>
 				</div>
 				<div className={styles.btnWrapper}>
-					<button 
-						className={[styles.blue, "ld-over"].join(" ") + (loading ? " running" : "") + (fork ? "" : ` ${styles.notAllowed}`)}
+					<button
+						className={
+							[styles.blue, "ld-over"].join(" ") +
+							(loading ? " running" : "") +
+							(fork ? "" : ` ${styles.notAllowed}`)
+						}
 						onClick={handleFork}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("fork")}
 					</button>
-					<button 
-						className={[styles.yellow, "ld-over"].join(" ") + (loading ? " running" : "") + (report ? "" : ` ${styles.notAllowed}`)}
-						onClick={handleReport}	
+					<button
+						className={
+							[styles.yellow, "ld-over"].join(" ") +
+							(loading ? " running" : "") +
+							(report ? "" : ` ${styles.notAllowed}`)
+						}
+						onClick={handleReport}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("report")}
 					</button>
-					<button 
-						className={[styles.red, "ld-over"].join(" ")  + (loading ? " running" : "") + (del ? "" : ` ${styles.notAllowed}`)}
-						onClick={handleDelete}	
+					<button
+						className={
+							[styles.red, "ld-over"].join(" ") +
+							(loading ? " running" : "") +
+							(del ? "" : ` ${styles.notAllowed}`)
+						}
+						onClick={handleDelete}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("delete")}
 					</button>
-					<button 
-						className={[styles.green, "ld-over"].join(" ") + (loading ? " running" : "") + (edit ? "" : ` ${styles.notAllowed}`)}
+					<button
+						className={
+							[styles.green, "ld-over"].join(" ") +
+							(loading ? " running" : "") +
+							(edit ? "" : ` ${styles.notAllowed}`)
+						}
 						onClick={handleEdit}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("edit")}
 					</button>
 				</div>
-                <div className={styles.paste}>
-                    <SyntaxHighlighter
-                        style={tomorrowNight}
-						className={styles.round}
-                    >
-                        {paste && paste.reported
-                            ? (parser.get("reported_content") as string)
-                            : paste.content
-                        }
-                    </SyntaxHighlighter>
-                </div>
-            </div>
+				<div className={styles.paste}>
+					<SyntaxHighlighter style={tomorrowNight} className={styles.round}>
+						{paste && paste.reported
+							? (parser.get("reported_content") as string)
+							: paste.content}
+					</SyntaxHighlighter>
+				</div>
+			</div>
 		</Layout>
 	);
-}
+};
 
 ExplorePage.getInitialProps = async (ctx) => {
-    const id = typeof ctx.query.id === "string" ? ctx.query.id : ctx.query.id[0];
+	const id = typeof ctx.query.id === "string" ? ctx.query.id : ctx.query.id[0];
 	const { data } = await supabase
 		.from("Pastes")
 		.select("*")
 		.eq("id", id)
-        .single();
+		.single();
 	if (!data) {
 		ctx.res.writeHead(302, {
-			Location: "/404"
+			Location: "/404",
 		});
 		ctx.res.end();
 	}
 	return {
-		paste: data
-	}
-}
+		paste: data,
+	};
+};
 
 export default ExplorePage;

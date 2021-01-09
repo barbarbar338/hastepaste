@@ -65,16 +65,16 @@ export default function IndexPage(): JSX.Element {
 					className={styles.input}
 				/>
 				<Editor
-                    className={styles.code}
-                    value={content}
-                    onValueChange={code => setContent(code)}
-                    highlight={code => highlight(code, languages.js, "js")}
-                    padding={10}
+					className={styles.code}
+					value={content}
+					onValueChange={(code) => setContent(code)}
+					highlight={(code) => highlight(code, languages.js, "js")}
+					padding={10}
 					placeholder={parser.get("paste_content") as string}
-                    style={{
-                        fontFamily: '"Fira code", "Fira Mono", monospace',
-                    }}
-                />
+					style={{
+						fontFamily: '"Fira code", "Fira Mono", monospace',
+					}}
+				/>
 				<div className={styles.tosWrapper}>
 					<input
 						type="checkbox"

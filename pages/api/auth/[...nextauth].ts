@@ -11,8 +11,8 @@ const options: InitOptions = {
 		}),
 		Providers.Discord({
 			clientId: constants.DISCORD_ID,
-			clientSecret: constants.DISCORD_SECRET
-		})
+			clientSecret: constants.DISCORD_SECRET,
+		}),
 	],
 	secret: constants.SECRET,
 	jwt: {

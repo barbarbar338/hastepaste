@@ -10,11 +10,11 @@ import { supabase } from "@libs/initSupabase";
 
 export interface IDashboardPage {
 	pastes: {
-		fork?: string,
-		title: string,
-		description?: string,
-		reported?: boolean,
-		id: string
+		fork?: string;
+		title: string;
+		description?: string;
+		reported?: boolean;
+		id: string;
 	}[];
 }
 
@@ -26,9 +26,9 @@ const DashboardPage: NextPage<IDashboardPage> = ({ pastes }) => {
 		<Layout title={parser.get("dashboard") as string}>
 			<h3 className={styles.header}>{parser.get("dashboard")}</h3>
 			<DashboardStats
-				total={pastes.length} 
-				fork={pastes.filter(paste => paste.fork).length}
-				paste={pastes.filter(paste => !paste.fork).length}
+				total={pastes.length}
+				fork={pastes.filter((paste) => paste.fork).length}
+				paste={pastes.filter((paste) => !paste.fork).length}
 			/>
 			<div className={styles.wrapper}>
 				<div className={styles.content}>
@@ -37,24 +37,16 @@ const DashboardPage: NextPage<IDashboardPage> = ({ pastes }) => {
 							<thead>
 								<tr>
 									<th className={styles.thEmpty}></th>
-									<th className={styles.th}>
-										{parser.get("title")}
-									</th>
-									<th className={styles.th}>
-										{parser.get("description")}
-									</th>
-									<th className={styles.th}>
-										{parser.get("status")}
-									</th>
+									<th className={styles.th}>{parser.get("title")}</th>
+									<th className={styles.th}>{parser.get("description")}</th>
+									<th className={styles.th}>{parser.get("status")}</th>
 									<th className={styles.thEmpty}></th>
 								</tr>
 							</thead>
 							<tbody>
-								{
-									pastes.map((paste, idx) => 
-										<DashboardItem key={idx} {...paste}/>
-									)
-								}
+								{pastes.map((paste, idx) => (
+									<DashboardItem key={idx} {...paste} />
+								))}
 							</tbody>
 						</table>
 					</div>
@@ -62,24 +54,24 @@ const DashboardPage: NextPage<IDashboardPage> = ({ pastes }) => {
 			</div>
 		</Layout>
 	);
-}
+};
 
 DashboardPage.getInitialProps = async (ctx) => {
-	const session = await getSession(ctx)
+	const session = await getSession(ctx);
 	if (!session) {
 		ctx.res.writeHead(302, {
-			Location: "/api/auth/signin"
-		})
+			Location: "/api/auth/signin",
+		});
 		ctx.res.end();
 	}
 	const { data } = await supabase
 		.from("Pastes")
 		.select("*")
-		.eq("owner", session.user.email)
+		.eq("owner", session.user.email);
 
 	return {
-		pastes: data
-	}
-}
+		pastes: data,
+	};
+};
 
 export default DashboardPage;
