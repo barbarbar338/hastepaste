@@ -10,6 +10,44 @@ import Preloader from "@assets/preloader.gif";
 import { generate as randomString } from "@libs/randomString";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
+import { motion, Variants } from "framer-motion";
+
+const container: Variants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const itemY: Variants = {
+	hidden: {
+		y: 20,
+		opacity: 0,
+	},
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
+};
+
+const itemX: Variants = {
+	hidden: {
+		x: 20,
+		opacity: 0,
+	},
+	visible: {
+		x: 0,
+		opacity: 1,
+	},
+};
 
 export default function IndexPage(): JSX.Element {
 	const [content, setContent] = useState("");
@@ -49,33 +87,45 @@ export default function IndexPage(): JSX.Element {
 
 	return (
 		<Layout title={parser.get("index") as string}>
-			<form className={styles.form} onSubmit={submit}>
-				<h3 className={styles.title}>{parser.get("index")}</h3>
-				<p className={styles.desc}>{parser.get("index_desc")}</p>
-				<input
+			<motion.form
+				className={styles.form}
+				onSubmit={submit}
+				variants={container}
+				initial="hidden"
+				animate="visible"
+			>
+				<motion.div variants={itemX}>
+					<h3 className={styles.title}>{parser.get("index")}</h3>
+					<p className={styles.desc}>{parser.get("index_desc")}</p>
+				</motion.div>
+				<motion.input
 					type="text"
 					placeholder={parser.get("paste_name") as string}
 					onChange={(e) => setTitle(e.target.value)}
 					className={styles.input}
+					variants={itemY}
 				/>
-				<input
+				<motion.input
 					type="text"
 					placeholder={parser.get("paste_description") as string}
 					onChange={(e) => setDescription(e.target.value)}
 					className={styles.input}
+					variants={itemY}
 				/>
-				<Editor
-					className={styles.code}
-					value={content}
-					onValueChange={(code) => setContent(code)}
-					highlight={(code) => highlight(code, languages.js, "js")}
-					padding={10}
-					placeholder={parser.get("paste_content") as string}
-					style={{
-						fontFamily: '"Fira code", "Fira Mono", monospace',
-					}}
-				/>
-				<div className={styles.tosWrapper}>
+				<motion.div variants={itemY}>
+					<Editor
+						className={styles.code}
+						value={content}
+						onValueChange={(code) => setContent(code)}
+						highlight={(code) => highlight(code, languages.js, "js")}
+						padding={10}
+						placeholder={parser.get("paste_content") as string}
+						style={{
+							fontFamily: '"Fira code", "Fira Mono", monospace',
+						}}
+					/>
+				</motion.div>
+				<motion.div className={styles.tosWrapper} variants={itemX}>
 					<input
 						type="checkbox"
 						className={styles.check}
@@ -89,12 +139,15 @@ export default function IndexPage(): JSX.Element {
 							}) as string,
 						}}
 					/>
-				</div>
-				<button className={`${styles.btn} ld-over${loading ? " running" : ""}`}>
+				</motion.div>
+				<motion.button
+					className={`${styles.btn} ld-over${loading ? " running" : ""}`}
+					variants={itemX}
+				>
 					<img src={Preloader} className="ld" />
 					{parser.get("create")}
-				</button>
-			</form>
+				</motion.button>
+			</motion.form>
 		</Layout>
 	);
 }

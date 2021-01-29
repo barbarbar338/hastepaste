@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import styles from "./index.module.scss";
+import { motion, Variants } from "framer-motion";
 
 export interface ITeamCard {
 	name: string;
@@ -12,12 +13,23 @@ export interface ITeamCard {
 	avatar: string;
 }
 
+const item: Variants = {
+	hidden: {
+		x: 20,
+		opacity: 0,
+	},
+	visible: {
+		x: 0,
+		opacity: 1,
+	},
+};
+
 const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
 
 	return (
-		<div className={styles.wrapper}>
+		<motion.div className={styles.wrapper} variants={item}>
 			<div className={styles.content}>
 				<div className={styles.photoWrapper}>
 					<img src={avatar} alt="Avatar" />
@@ -53,7 +65,7 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 					</table>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

@@ -3,6 +3,7 @@ import Layout from "@components/Layout";
 import { useRouter } from "next/router";
 import TeamCard from "@components/TeamCard";
 import styles from "@styles/modules/team.module.scss";
+import { motion, Variants } from "framer-motion";
 
 const users = [
 	{
@@ -27,17 +28,37 @@ const users = [
 	},
 ];
 
+const container: Variants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
 export default function TeamPage(): JSX.Element {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
 
 	return (
 		<Layout title={parser.get("team") as string}>
-			<div className={styles.wrapper}>
+			<motion.div
+				className={styles.wrapper}
+				variants={container}
+				initial="hidden"
+				animate="visible"
+			>
 				{users.map((user, idx) => (
 					<TeamCard key={idx} {...user} />
 				))}
-			</div>
+			</motion.div>
 		</Layout>
 	);
 }

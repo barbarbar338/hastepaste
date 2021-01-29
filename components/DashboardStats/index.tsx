@@ -3,6 +3,33 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import Counter from "react-countup";
 import styles from "./index.module.scss";
+import { motion, Variants } from "framer-motion";
+
+const container: Variants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const item: Variants = {
+	hidden: {
+		x: 20,
+		opacity: 0,
+	},
+	visible: {
+		x: 0,
+		opacity: 1,
+	},
+};
 
 export interface IDashboardStats {
 	total: number;
@@ -16,36 +43,42 @@ const DashboardStats: FC<IDashboardStats> = ({ total, fork, paste }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.content}>
-				<div className={styles.first}>
+				<motion.div className={styles.first} variants={container}>
 					<div className={styles.item}>
 						<div className={styles.itemContent}>
-							<h4>
+							<motion.h4 variants={item}>
 								<Counter end={total} />
-							</h4>
-							<div className={styles.text}>{parser.get("total_files")}</div>
+							</motion.h4>
+							<motion.div className={styles.text} variants={item}>
+								{parser.get("total_files")}
+							</motion.div>
 						</div>
 					</div>
-				</div>
-				<div className={styles.second}>
+				</motion.div>
+				<motion.div className={styles.second} variants={container}>
 					<div className={styles.item}>
 						<div className={styles.itemContent}>
-							<h4>
+							<motion.h4 variants={item}>
 								<Counter end={fork} />
-							</h4>
-							<div className={styles.text}>{parser.get("forks")}</div>
+							</motion.h4>
+							<motion.div className={styles.text} variants={item}>
+								{parser.get("forks")}
+							</motion.div>
 						</div>
 					</div>
-				</div>
-				<div className={styles.third}>
+				</motion.div>
+				<motion.div className={styles.third} variants={container}>
 					<div className={styles.item}>
 						<div className={styles.itemContent}>
-							<h4>
+							<motion.h4 variants={item}>
 								<Counter end={paste} />
-							</h4>
-							<div className={styles.text}>{parser.get("your_files")}</div>
+							</motion.h4>
+							<motion.div className={styles.text} variants={item}>
+								{parser.get("your_files")}
+							</motion.div>
 						</div>
 					</div>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

@@ -11,6 +11,33 @@ import styles from "@styles/modules/explore.module.scss";
 import Preloader from "@assets/preloader.gif";
 import { toast } from "react-toastify";
 import { generate as randomString } from "@libs/randomString";
+import { motion, Variants } from "framer-motion";
+
+const container: Variants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const item: Variants = {
+	hidden: {
+		x: 20,
+		opacity: 0,
+	},
+	visible: {
+		x: 0,
+		opacity: 1,
+	},
+};
 
 export interface IExplorePage {
 	paste: {
@@ -150,68 +177,77 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 
 	return (
 		<Layout title={parser.get("explore") as string}>
-			<div className={styles.wrapper}>
-				<div className={styles.title}>
+			<motion.div
+				className={styles.wrapper}
+				variants={container}
+				initial="hidden"
+				animate="visible"
+			>
+				<motion.div className={styles.title} variants={item}>
 					<h2>
 						{paste.title}{" "}
 						{paste.fork && parser.get("forked_from", { id: paste.fork })}
 					</h2>
 					<p>{paste.description}</p>
-				</div>
+				</motion.div>
 				<div className={styles.btnWrapper}>
-					<button
+					<motion.button
 						className={
 							[styles.blue, "ld-over"].join(" ") +
 							(loading ? " running" : "") +
 							(fork ? "" : ` ${styles.notAllowed}`)
 						}
 						onClick={handleFork}
+						variants={item}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("fork")}
-					</button>
-					<button
+					</motion.button>
+					<motion.button
 						className={
 							[styles.yellow, "ld-over"].join(" ") +
 							(loading ? " running" : "") +
 							(report ? "" : ` ${styles.notAllowed}`)
 						}
 						onClick={handleReport}
+						variants={item}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("report")}
-					</button>
-					<button
+					</motion.button>
+					<motion.button
 						className={
 							[styles.red, "ld-over"].join(" ") +
 							(loading ? " running" : "") +
 							(del ? "" : ` ${styles.notAllowed}`)
 						}
 						onClick={handleDelete}
+						variants={item}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("delete")}
-					</button>
-					<button
+					</motion.button>
+					<motion.button
 						className={
 							[styles.green, "ld-over"].join(" ") +
 							(loading ? " running" : "") +
 							(edit ? "" : ` ${styles.notAllowed}`)
 						}
 						onClick={handleEdit}
+						variants={item}
 					>
 						<img src={Preloader} className="ld" />
 						{parser.get("edit")}
-					</button>
+					</motion.button>
 				</div>
-				<div className={styles.paste}>
+				<motion.div className={styles.paste} variants={container}>
 					<SyntaxHighlighter style={tomorrowNight} className={styles.round}>
 						{paste && paste.reported
 							? (parser.get("reported_content") as string)
 							: paste.content}
 					</SyntaxHighlighter>
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</Layout>
 	);
 };

@@ -7,6 +7,33 @@ import Sidebar from "@components/Sidebar";
 import NavbarDropdown from "../NavbarDropdown";
 import styles from "./index.module.scss";
 import Footer from "../Footer";
+import { motion, Variants } from "framer-motion";
+
+const container: Variants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+	},
+	visible: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delayChildren: 0.3,
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const item: Variants = {
+	hidden: {
+		y: 20,
+		opacity: 0,
+	},
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
+};
 
 export interface ILayoutProps {
 	title: string;
@@ -37,8 +64,12 @@ const Layout: FC<ILayoutProps> = ({ title, children }) => {
 						</div>
 					</header>
 					<main>
-						<div className={styles.contentWrapper}>{children}</div>
-						<Footer />
+						<motion.div variants={container} initial="hidden" animate="visible">
+							<div className={styles.contentWrapper}>{children}</div>
+							<motion.div variants={item}>
+								<Footer />
+							</motion.div>
+						</motion.div>
 					</main>
 				</div>
 			</div>
