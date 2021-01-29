@@ -1,0 +1,6 @@
+Light Blue: #d9ecf2
+Blue: #1aa6b7
+Light Pink: #f56a79
+Pink: #ff414d
+Light Purple: #bc6ff1
+Purple: #52057b
