@@ -30,7 +30,7 @@ const Sidebar: FC<ISidebar> = ({ open }) => {
 		},
 		{
 			name: "GitHub",
-			path: "/github",
+			path: "https://github.com/barbarbar338/hastepaste",
 			icon: faGithub,
 		},
 		{
@@ -45,12 +45,12 @@ const Sidebar: FC<ISidebar> = ({ open }) => {
 		},
 		{
 			name: parser.get("translate") as string,
-			path: "/crowdin",
+			path: "https://crowdin.com/project/hastepaste",
 			icon: faGlobe,
 		},
 		{
 			name: parser.get("status") as string,
-			path: "/status",
+			path: "https://status.hastepaste.xyz",
 			icon: faInfo,
 		},
 		{

@@ -15,20 +15,20 @@ module.exports = withPlugins(
 			return [
 				{
 					source: "/github",
-					destination: "https://github.com/HastePasteApp/",
-					permanent: false,
+					destination: "https://github.com/barbarbar338/hastepaste",
+					permanent: true,
 				},
 				{
 					source: "/crowdin",
 					destination: "https://crowdin.com/project/hastepaste",
-					permanent: false,
+					permanent: true,
 				},
 				{
 					source: "/status",
 					destination: "https://status.hastepaste.xyz",
-					permanent: false,
+					permanent: true,
 				},
 			];
-		} 
+		},
 	},
 );
