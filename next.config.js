@@ -8,7 +8,7 @@ module.exports = withPlugins(
 	{
 		cssModules: true,
 		i18n: {
-			locales: ["en", "tr"],
+			locales: ["en", "tr", "ru"],
 			defaultLocale: "en",
 		},
 		async redirects() {

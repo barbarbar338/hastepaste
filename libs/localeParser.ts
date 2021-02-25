@@ -1,8 +1,9 @@
 import en from "@locales/en.yaml";
 import tr from "@locales/tr.yaml";
+import ru from "@locales/ru.yaml";
 import constants from "@locales/constants.yaml";
 
-const locales = { en, tr };
+const locales = { en, tr, ru };
 
 export interface LooseObject {
 	[param: string]: unknown;
