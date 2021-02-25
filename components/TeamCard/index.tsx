@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { motion, Variants } from "framer-motion";
+import Tilt from "react-tilt";
 
 export interface ITeamCard {
 	name: string;
@@ -30,41 +31,50 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 
 	return (
 		<motion.div className={styles.wrapper} variants={item}>
-			<div className={styles.content}>
-				<div className={styles.photoWrapper}>
-					<img src={avatar} alt="Avatar" />
-				</div>
-				<div className={styles.cardBody}>
-					<h3>{name}</h3>
-					<div className={styles.title}>
-						<p>{title}</p>
+			<Tilt
+				className="Tilt"
+				options={{
+					max: 40,
+					reverse: false,
+					scale: 1.05,
+				}}
+			>
+				<div className={styles.content}>
+					<div className={styles.photoWrapper}>
+						<img src={avatar} alt="Avatar" />
 					</div>
-					<table className={styles.table}>
-						<tbody>
-							<tr>
-								<td className={styles.tableTitle}>Website</td>
-								<td className={styles.tableContent}>
-									{site ? (
-										<Link href={site}>
-											<span className={styles.link}>{site}</span>
+					<div className={styles.cardBody}>
+						<h3>{name}</h3>
+						<div className={styles.title}>
+							<p>{title}</p>
+						</div>
+						<table className={styles.table}>
+							<tbody>
+								<tr>
+									<td className={styles.tableTitle}>Website</td>
+									<td className={styles.tableContent}>
+										{site ? (
+											<Link href={site}>
+												<span className={styles.link}>{site}</span>
+											</Link>
+										) : (
+											parser.get("not_found")
+										)}
+									</td>
+								</tr>
+								<tr>
+									<td className={styles.tableTitle}>GitHub</td>
+									<td className={styles.tableContent}>
+										<Link href={`https://github.com/${github}`}>
+											<span className={styles.link}>@{github}</span>
 										</Link>
-									) : (
-										parser.get("not_found")
-									)}
-								</td>
-							</tr>
-							<tr>
-								<td className={styles.tableTitle}>GitHub</td>
-								<td className={styles.tableContent}>
-									<Link href={`https://github.com/${github}`}>
-										<span className={styles.link}>@{github}</span>
-									</Link>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
+			</Tilt>
 		</motion.div>
 	);
 };

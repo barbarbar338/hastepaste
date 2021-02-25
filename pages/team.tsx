@@ -14,17 +14,11 @@ const users = [
 		avatar: "https://avatars1.githubusercontent.com/u/35371155",
 	},
 	{
-		name: "Amil ALEKBEROV",
-		title: "UI/UX Designer",
-		site: "http://roi-portfolio.vercel.app/",
-		github: "thisisroi",
-		avatar: "https://avatars1.githubusercontent.com/u/48417958",
-	},
-	{
-		name: "Barış GÖKTEPE",
-		title: "Back-End Developer",
-		github: "bckd00r",
-		avatar: "https://avatars3.githubusercontent.com/u/48347237",
+		name: "nicotinexgucci",
+		title: "Russian Translator",
+		site: "https://nicotinetranslation.xyz/",
+		github: "nicotinexgucci",
+		avatar: "https://avatars1.githubusercontent.com/u/78096621",
 	},
 ];
 

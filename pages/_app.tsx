@@ -7,6 +7,7 @@ import { Provider } from "next-auth/client";
 import "react-toastify/dist/ReactToastify.css";
 import "ldbutton/dist/ldbtn.min.css";
 import "prismjs/themes/prism-solarizedlight.css";
+import "tippy.js/dist/tippy.css";
 import "@styles/tailwind.css";
 import "@styles/index.scss";
 
