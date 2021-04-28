@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import NextAuth, { InitOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import Providers from "next-auth/providers";
 import constants from "@libs/constants";
 
-const options: InitOptions = {
+const options: NextAuthOptions = {
 	providers: [
 		Providers.GitHub({
 			clientId: constants.GITHUB_ID,
