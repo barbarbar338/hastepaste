@@ -6,6 +6,9 @@ const withYAML = require("next-yaml");
 module.exports = withPlugins(
 	[[optimizedImages, { optimizeImages: false }], [withYAML]],
 	{
+		future: {
+			webpack5: true,
+		},
 		cssModules: true,
 		i18n: {
 			locales: ["en", "tr", "ru"],

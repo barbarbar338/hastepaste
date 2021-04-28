@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 import Link from "next/link";
 import styles from "./index.module.scss";
@@ -11,6 +11,10 @@ export default function NavbarDropdown(): JSX.Element {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
 
+	useEffect(() => {
+		console.log(session);
+	});
+
 	return (
 		<div className={styles.wrapper}>
 			{session ? (
@@ -18,7 +22,13 @@ export default function NavbarDropdown(): JSX.Element {
 					<button onClick={() => setDropdown(!dropdown)} className={styles.imageBtn}>
 						<img
 							className="h-full w-full object-cover"
-							src={session.user.image}
+							src={
+								session.user.image
+									? session.user.image
+									: session.user.email
+									? `https://avatars.dicebear.com/api/avataaars/${session.user.email}.svg`
+									: "https://avatars.dicebear.com/api/avataaars/hastepaste.svg"
+							}
 							alt="Avatar"
 						/>
 					</button>

@@ -13,11 +13,16 @@ const options: InitOptions = {
 			clientId: constants.DISCORD_ID,
 			clientSecret: constants.DISCORD_SECRET,
 		}),
+		Providers.Email({
+			from: constants.EMAIL_FROM,
+			server: constants.EMAIL_SERVER,
+		}),
 	],
 	secret: constants.SECRET,
 	jwt: {
 		secret: constants.SECRET,
 	},
+	database: constants.MONGODB_URI,
 };
 
 export default (req: NextApiRequest, res: NextApiResponse): Promise<void> =>
