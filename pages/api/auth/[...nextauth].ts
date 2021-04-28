@@ -25,5 +25,5 @@ const options: NextAuthOptions = {
 	database: constants.MONGODB_URI,
 };
 
-export default (req: NextApiRequest, res: NextApiResponse): Promise<void> =>
+export default (req: NextApiRequest, res: NextApiResponse) =>
 	NextAuth(req, res, options);
