@@ -188,7 +188,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						{paste.title}{" "}
 						{paste.fork && parser.get("forked_from", { id: paste.fork })}
 					</h2>
-					<p>{paste.description}</p>
+					<p>{paste.description} {paste.reported ? `| ${parser.get("reported_content") as string}` : ""}</p>
 				</motion.div>
 				<div className={styles.btnWrapper}>
 					<motion.button
@@ -242,9 +242,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 				</div>
 				<motion.div className={styles.paste} variants={container}>
 					<SyntaxHighlighter style={tomorrowNight} className={styles.round}>
-						{paste && paste.reported
-							? (parser.get("reported_content") as string)
-							: paste.content}
+						{paste.content}
 					</SyntaxHighlighter>
 				</motion.div>
 			</motion.div>
