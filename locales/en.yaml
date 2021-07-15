@@ -46,7 +46,7 @@ fork: Fork
 report: Report
 delete: Delete
 edit: Edit
-reported_content: This paste is reported and can only seen by admins
+reported_content: This paste is reported and can only edited by admins
 fork_error: ❌ You can't fork this paste.
 forked: ✔ Paste forked with id %{id}! Redirecting...
 forked_from: (Forked from %{id})
