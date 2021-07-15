@@ -14,6 +14,13 @@ const users = [
 		avatar: "https://avatars1.githubusercontent.com/u/35371155",
 	},
 	{
+		name: "Barış GÖKTEPE",
+		title: "Back-End Developer",
+		site: "https://github.com/bckd00r",
+		github: "bckd00r",
+		avatar: "https://avatars1.githubusercontent.com/u/48347237",
+	},
+	{
 		name: "nicotinexgucci",
 		title: "Russian Translator",
 		site: "https://nicotinetranslation.xyz/",
