@@ -46,7 +46,7 @@ fork: Kopyala
 report: Şikayet Et
 delete: Sil
 edit: Düzenle
-reported_content: Bu paste bildirildi ve yalnızca yöneticiler tarafından görülebilir
+reported_content: Bu paste bildirildi ve yalnızca yöneticiler tarafından düzenlenebilir
 fork_error: ❌ Bu pasteyi kopyalayamazsın.
 forked: ✔ Paste %{id} ID'si ile kopyalandı! Yönlendiriliyorsunuz...
 forked_from: (%{id}'den Kopyalandı)
