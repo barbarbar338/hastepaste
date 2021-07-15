@@ -242,9 +242,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 				</div>
 				<motion.div className={styles.paste} variants={container}>
 					<SyntaxHighlighter style={tomorrowNight} className={styles.round}>
-						{paste && paste.reported
-							? (parser.get("reported_content") as string)
-							: paste.content}
+						{paste.content}
 					</SyntaxHighlighter>
 				</motion.div>
 			</motion.div>
