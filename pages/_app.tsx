@@ -3,6 +3,7 @@ import { DefaultSeo } from "next-seo";
 import CookieConsent from "react-cookie-consent";
 import { ToastContainer } from "react-toastify";
 import { Provider } from "next-auth/client";
+import NextNProgress from "nextjs-progressbar";
 
 import "react-toastify/dist/ReactToastify.css";
 import "ldbutton/dist/ldbtn.min.css";
@@ -16,6 +17,7 @@ class App extends NextApp {
 		const { Component, pageProps } = this.props;
 		return (
 			<Provider session={pageProps.session}>
+				<NextNProgress color="#8d53b5" />
 				<DefaultSeo titleTemplate="%s - HastePaste" />
 				<Component {...pageProps} />
 				<CookieConsent

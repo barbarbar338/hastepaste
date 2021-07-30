@@ -36,6 +36,7 @@
 		"next-optimized-images": "^2.6.2",
 		"next-seo": "^4.24.0",
 		"next-yaml": "^1.0.1",
+		"nextjs-progressbar": "^0.0.11",
 		"postcss": "^8.2.13",
 		"prismjs": "^1.23.0",
 		"react": "^17.0.2",
