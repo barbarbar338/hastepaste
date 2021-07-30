@@ -38,9 +38,9 @@ export default function NavbarDropdown(): JSX.Element {
 					/>
 					<div className={dropdown ? styles.dropdownOpen : styles.dropdownClose}>
 						<Link href="/dashboard">
-							<span className={`${styles.linkItem} cursor-pointer`}>
+							<a className={`${styles.linkItem} cursor-pointer`}>
 								{parser.get("dashboard")}
-							</span>
+							</a>
 						</Link>
 						<button
 							className={`${styles.linkItem} text-left w-full`}

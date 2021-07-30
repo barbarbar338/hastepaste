@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "./index.module.scss";
 
 export default function Footer(): JSX.Element {
@@ -12,21 +11,21 @@ export default function Footer(): JSX.Element {
 					<div className={styles.right}>
 						<div className={styles.text}>
 							Made with <span className={styles.red}>❤</span> by{" "}
-							<Link href="https://github.com/barbarbar338">
-								<span className={styles.pink}>barbarbar338</span>
-							</Link>{" "}
+							<a href="https://github.com/barbarbar338" className={styles.pink}>
+								barbarbar338
+							</a>{" "}
 							using{" "}
-							<Link href="http://nextjs.org/">
-								<span className={styles.gray}>NextJS</span>
-							</Link>
+							<a href="http://nextjs.org/" className={styles.gray}>
+								NextJS
+							</a>
 							,{" "}
-							<Link href="https://tailwindcss.com/">
-								<span className={styles.blue}>TailwindCSS</span>
-							</Link>{" "}
+							<a href="https://tailwindcss.com/" className={styles.blue}>
+								TailwindCSS
+							</a>{" "}
 							and{" "}
-							<Link href="https://supabase.io/">
-								<span className={styles.green}>Supabase</span>
-							</Link>
+							<a href="https://supabase.io/" className={styles.green}>
+								Supabase
+							</a>
 						</div>
 					</div>
 				</div>

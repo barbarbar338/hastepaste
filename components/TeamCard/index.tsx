@@ -55,7 +55,7 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 									<td className={styles.tableContent}>
 										{site ? (
 											<Link href={site}>
-												<span className={styles.link}>{site}</span>
+												<a className={styles.link}>{site}</a>
 											</Link>
 										) : (
 											parser.get("not_found")
@@ -65,9 +65,9 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 								<tr>
 									<td className={styles.tableTitle}>GitHub</td>
 									<td className={styles.tableContent}>
-										<Link href={`https://github.com/${github}`}>
-											<span className={styles.link}>@{github}</span>
-										</Link>
+										<a href={`https://github.com/${github}`} className={styles.link}>
+											@{github}
+										</a>
 									</td>
 								</tr>
 							</tbody>

@@ -50,7 +50,7 @@ const DashboardItem: FC<IDasboardItem> = ({
 			</td>
 			<td className={styles.linkWrapper}>
 				<Link href={`/${encodeURIComponent(id)}`}>
-					<span>{parser.get("view")}</span>
+					<a>{parser.get("view")}</a>
 				</Link>
 			</td>
 		</tr>

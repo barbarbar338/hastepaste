@@ -50,9 +50,9 @@ export default function NotFoundPage(): JSX.Element {
 						<p className={styles.long}>{parser.get("not_found_long_desc")}</p>
 
 						<Link href="/">
-							<motion.span className={styles.btn} variants={item}>
+							<motion.a className={styles.btn} variants={item}>
 								{parser.get("go_home")}
-							</motion.span>
+							</motion.a>
 						</Link>
 					</div>
 				</div>

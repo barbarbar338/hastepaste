@@ -62,11 +62,11 @@ const Sidebar: FC<ISidebar> = ({ open }) => {
 
 	return (
 		<div className={open ? styles.navbarOpen : styles.navbarClose}>
-			<Link href="/">
+			<Link href="/" passHref>
 				<div className={styles.navBanner}>
 					<div className={styles.wrapper}>
 						<img src={Icon} />
-						<span>HastePaste</span>
+						<a>HastePaste</a>
 					</div>
 				</div>
 			</Link>
