@@ -63,9 +63,9 @@ export default function TosPage(): JSX.Element {
 							<p>
 								By accessing this Website, accessible at{" "}
 								<Link href="/">
-									<span className="cursor-pointer text-pink-500">
+									<a className="cursor-pointer text-pink-500">
 										https://hastepaste.xyz
-									</span>
+									</a>
 								</Link>
 								, you agree to be bound by these Website Terms and Conditions of Use and
 								to be responsible for the agreement with all applicable local laws. If

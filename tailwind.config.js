@@ -1,7 +1,8 @@
 /* eslint-disable */
 const forms = require("@tailwindcss/forms");
 module.exports = {
-	purge: false,
+	mode: "jit",
+	purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
 	darkMode: false,
 	theme: {
 		extend: {

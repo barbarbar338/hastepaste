@@ -13,10 +13,10 @@ export interface ISidebarItem {
 const SidebarItem: FC<ISidebarItem> = ({ path, name, icon }) => {
 	return (
 		<Link href={path}>
-			<span className={styles.wrapper}>
+			<a className={styles.wrapper}>
 				<FontAwesomeIcon icon={icon} className={styles.icon} />
 				<span>{name}</span>
-			</span>
+			</a>
 		</Link>
 	);
 };
