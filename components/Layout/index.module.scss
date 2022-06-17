@@ -13,7 +13,7 @@
 			.left {
 				@apply flex items-center;
 				.title {
-					@apply relative mx-4 lg:mx-0 text-lg font-semibold;
+					@apply relative mx-4 lg:mx-0 md:text-lg text-base font-semibold;
 				}
 				.collapse {
 					@apply text-gray-500 focus:outline-none lg:hidden;
