@@ -1,9 +1,9 @@
 .wrapper {
-	@apply flex justify-center px-4;
+	@apply flex justify-center px-4 mb-2 md:mb-0;
 	.content {
 		@apply container;
 		.items {
-			@apply flex flex-col items-center justify-between md:flex-row;
+			@apply flex flex-col items-center justify-between text-center md:text-left md:flex-row;
 			span {
 				@apply text-sm font-bold;
 			}

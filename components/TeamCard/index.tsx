@@ -32,7 +32,7 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 	return (
 		<motion.div className={styles.wrapper} variants={item}>
 			<Tilt
-				className="Tilt"
+				className="Tilt w-72"
 				options={{
 					max: 40,
 					reverse: false,
