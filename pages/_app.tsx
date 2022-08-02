@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "ldbutton/index.min.css";
 import "prismjs/themes/prism-solarizedlight.css";
 import "tippy.js/dist/tippy.css";
+import "@styles/satoshi.css";
 import "@styles/tailwind.css";
 import "@styles/index.scss";
 
