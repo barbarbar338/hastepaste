@@ -3,9 +3,6 @@ const { withPlugins } = require("next-compose-plugins");
 const withYAML = require("next-yaml");
 
 module.exports = withPlugins([[withYAML]], {
-	future: {
-		webpack5: true,
-	},
 	cssModules: true,
 	i18n: {
 		locales: ["en", "tr", "ru"],

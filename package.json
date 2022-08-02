@@ -26,7 +26,7 @@
 		"draft-js": "^0.11.7",
 		"draftjs-to-html": "^0.9.1",
 		"framer-motion": "^6.5.1",
-		"html-to-draftjs": "^1.5.0",
+		"html-to-draftjs": "1.4.0",
 		"ldbutton": "^2.0.1",
 		"mongodb": "^4.8.1",
 		"next": "^12.2.3",

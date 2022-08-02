@@ -242,9 +242,12 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 					</motion.button>
 				</div>
 				<motion.div className={styles.paste} variants={container}>
-					<div className={styles.container} dangerouslySetInnerHTML={{
-						__html: paste.content
-					}} />
+					<div
+						className={styles.container}
+						dangerouslySetInnerHTML={{
+							__html: paste.content,
+						}}
+					/>
 				</motion.div>
 			</motion.div>
 		</Layout>

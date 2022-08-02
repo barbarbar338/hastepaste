@@ -65,8 +65,9 @@ export default function IndexPage(): JSX.Element {
 		if (loading) return;
 		if (!checked) return toast.error(parser.get("agree_terms"));
 		if (!title) return toast.error(parser.get("specify_title"));
-		const draft = (convertToRaw(content.getCurrentContent()));
-		if (!draft.blocks.map(block => block.text.trim()).filter(Boolean).length) return toast.error(parser.get("specify_content"));
+		const draft = convertToRaw(content.getCurrentContent());
+		if (!draft.blocks.map((block) => block.text.trim()).filter(Boolean).length)
+			return toast.error(parser.get("specify_content"));
 		setLoading(true);
 		const id = randomString();
 		const { data, status } = await supabase
@@ -115,7 +116,7 @@ export default function IndexPage(): JSX.Element {
 					variants={itemY}
 				/>
 				<motion.div variants={itemY}>
-					<Editor editorState={content} setEditorState={setContent}/>
+					<Editor editorState={content} setEditorState={setContent} />
 				</motion.div>
 				<motion.div className={styles.tosWrapper} variants={itemX}>
 					<input

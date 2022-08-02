@@ -2,7 +2,7 @@ import { LocaleParser } from "@libs/localeParser";
 import Layout from "@components/Layout";
 import { useRouter } from "next/dist/client/router";
 import styles from "@styles/modules/index.module.scss";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
@@ -64,9 +64,7 @@ export interface IEditPage {
 }
 
 const EditPage: NextPage<IEditPage> = ({ paste }) => {
-	const draft = htmlToDraft(paste.content);
-	const contentState = ContentState.createFromBlockArray(draft.contentBlocks, draft.entityMap);
-	const [content, setContent] = useState(EditorState.createWithContent(contentState));
+	const [content, setContent] = useState(EditorState.createEmpty());
 	const [description, setDescription] = useState(paste.description);
 	const [title, setTitle] = useState(paste.title);
 	const [checked, setChecked] = useState(false);
@@ -74,13 +72,24 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
 
+	useEffect(() => {
+		const draft = htmlToDraft(paste.content);
+		const contentState = ContentState.createFromBlockArray(
+			draft.contentBlocks,
+			draft.entityMap,
+		);
+		const state = EditorState.createWithContent(contentState);
+		setContent(state);
+	}, []);
+
 	const submit = async (e: FormEvent<HTMLFormElement>): Promise<unknown> => {
 		e.preventDefault();
 		if (loading) return;
 		if (!checked) return toast.error(parser.get("agree_terms"));
 		if (!title) return toast.error(parser.get("specify_title"));
-		const draft = (convertToRaw(content.getCurrentContent()));
-		if (!draft.blocks.map(block => block.text.trim()).filter(Boolean).length) return toast.error(parser.get("specify_content"));
+		const draft = convertToRaw(content.getCurrentContent());
+		if (!draft.blocks.map((block) => block.text.trim()).filter(Boolean).length)
+			return toast.error(parser.get("specify_content"));
 		setLoading(true);
 		const { status } = await supabase
 			.from("Pastes")
@@ -122,7 +131,7 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 					variants={itemY}
 				/>
 				<motion.div variants={itemY}>
-					<Editor editorState={content} setEditorState={setContent}/>
+					<Editor editorState={content} setEditorState={setContent} />
 				</motion.div>
 				<motion.div className={styles.tosWrapper} variants={itemX}>
 					<input
