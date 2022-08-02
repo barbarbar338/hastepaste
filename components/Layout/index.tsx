@@ -1,8 +1,7 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { NextSeo } from "next-seo";
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FiMenu } from "react-icons/fi";
 import Sidebar from "@components/Sidebar";
 import Donate from "@components/Donate";
 import NavbarDropdown from "../NavbarDropdown";
@@ -38,6 +37,7 @@ const item: Variants = {
 
 export interface ILayoutProps {
 	title: string;
+	children: ReactNode;
 }
 
 const Layout: FC<ILayoutProps> = ({ title, children }) => {
@@ -55,29 +55,17 @@ const Layout: FC<ILayoutProps> = ({ title, children }) => {
 				<div className={styles.content}>
 					<header>
 						<div className={styles.left}>
-							<button
-								className={styles.collapse}
-								onClick={() => setSidebar(true)}
-							>
-								<FontAwesomeIcon
-									className={styles.icon}
-									icon={faBars}
-								/>
+							<button className={styles.collapse} onClick={() => setSidebar(true)}>
+								<FiMenu className={styles.icon} />
 							</button>
-							<div className={styles.title}>
-								{title} - HastePaste
-							</div>
+							<div className={styles.title}>{title} - HastePaste</div>
 						</div>
 						<div className={styles.right}>
 							<NavbarDropdown />
 						</div>
 					</header>
 					<main>
-						<motion.div
-							variants={container}
-							initial="hidden"
-							animate="visible"
-						>
+						<motion.div variants={container} initial="hidden" animate="visible">
 							<div className={styles.contentWrapper}>
 								<Donate />
 								{children}

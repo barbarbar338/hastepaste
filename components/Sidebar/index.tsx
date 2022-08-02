@@ -2,18 +2,18 @@ import { FC } from "react";
 import SidebarItem from "../SidebarItem";
 import Icon from "@assets/icons/default-defaultnobg2048.png";
 import styles from "./index.module.scss";
-import {
-	faBalanceScale,
-	faFileContract,
-	faGlobe,
-	faHome,
-	faInfo,
-	faUsers,
-} from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/dist/client/router";
 import { LocaleParser } from "@libs/localeParser";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+	FiGithub,
+	FiHome,
+	FiGlobe,
+	FiInfo,
+	FiUsers,
+	FiFile,
+} from "react-icons/fi";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface ISidebar {
 	open: boolean;
@@ -26,37 +26,37 @@ const Sidebar: FC<ISidebar> = ({ open }) => {
 		{
 			name: parser.get("home") as string,
 			path: "/",
-			icon: faHome,
+			Icon: FiHome,
 		},
 		{
 			name: "GitHub",
 			path: "https://github.com/barbarbar338/hastepaste",
-			icon: faGithub,
+			Icon: FiGithub,
 		},
 		{
 			name: parser.get("tos") as string,
 			path: "/tos",
-			icon: faBalanceScale,
+			Icon: FiInfo,
 		},
 		{
 			name: parser.get("guide") as string,
 			path: "/guide",
-			icon: faFileContract,
+			Icon: FiFile,
 		},
 		{
 			name: parser.get("translate") as string,
 			path: "https://crowdin.com/project/hastepaste",
-			icon: faGlobe,
+			Icon: FiGlobe,
 		},
 		{
 			name: parser.get("status") as string,
 			path: "https://status.hastepaste.xyz",
-			icon: faInfo,
+			Icon: FiInfo,
 		},
 		{
 			name: parser.get("team") as string,
 			path: "/team",
-			icon: faUsers,
+			Icon: FiUsers,
 		},
 	];
 
@@ -65,8 +65,16 @@ const Sidebar: FC<ISidebar> = ({ open }) => {
 			<Link href="/" passHref>
 				<div className={styles.navBanner}>
 					<div className={styles.wrapper}>
-						<img src={Icon} />
-						<a>HastePaste</a>
+						<div className="w-24 h-24">
+							<Image
+								src={Icon.src}
+								alt="HastePaste"
+								blurDataURL={Icon.blurDataURL}
+								width={Icon.width}
+								height={Icon.height}
+							/>
+						</div>
+						<a className="text-white">HastePaste</a>
 					</div>
 				</div>
 			</Link>

@@ -3,14 +3,14 @@ import Layout from "@components/Layout";
 import { useRouter } from "next/dist/client/router";
 import styles from "@styles/modules/index.module.scss";
 import { FormEvent, useState } from "react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
-import Preloader from "@assets/preloader.gif";
 import { generate as randomString } from "@libs/randomString";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
 import { motion, Variants } from "framer-motion";
+import { Loader } from "@components/Loader";
 
 const container: Variants = {
 	hidden: {
@@ -54,7 +54,7 @@ export default function IndexPage(): JSX.Element {
 	const [description, setDescription] = useState("");
 	const [title, setTitle] = useState("");
 	const [checked, setChecked] = useState(false);
-	const [session] = useSession();
+	const { data: session } = useSession();
 	const [loading, setLoading] = useState(false);
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
@@ -144,7 +144,7 @@ export default function IndexPage(): JSX.Element {
 					className={`${styles.btn} ld-over${loading ? " running" : ""}`}
 					variants={itemX}
 				>
-					<img src={Preloader} className="ld" />
+					<Loader />
 					{parser.get("create")}
 				</motion.button>
 			</motion.form>

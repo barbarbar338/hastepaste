@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCut, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { FiScissors, FiFolder } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { LocaleParser } from "@libs/localeParser";
 import styles from "./index.module.scss";
@@ -29,9 +28,9 @@ const DashboardItem: FC<IDasboardItem> = ({
 			<td className={styles.td}>
 				<div className={styles.iconWrapper}>
 					{fork ? (
-						<FontAwesomeIcon icon={faCut} className={styles.icon} />
+						<FiScissors className={styles.icon} />
 					) : (
-						<FontAwesomeIcon icon={faFileAlt} className={styles.icon} />
+						<FiFolder className={styles.icon} />
 					)}
 				</div>
 			</td>

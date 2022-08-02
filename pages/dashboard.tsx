@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import DashboardItem from "@components/DashboardItem";
 import styles from "@styles/modules/dashboard.module.scss";
 import { NextPage } from "next";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { motion, Variants } from "framer-motion";
 

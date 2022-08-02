@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { motion, Variants } from "framer-motion";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
+import Image from "next/image";
 
 export interface ITeamCard {
 	name: string;
@@ -33,15 +34,13 @@ const TeamCard: FC<ITeamCard> = ({ name, title, site, github, avatar }) => {
 		<motion.div className={styles.wrapper} variants={item}>
 			<Tilt
 				className="Tilt w-72"
-				options={{
-					max: 40,
-					reverse: false,
-					scale: 1.05,
-				}}
+				scale={1.1}
+				tiltMaxAngleX={15}
+				tiltMaxAngleY={20}
 			>
 				<div className={styles.content}>
 					<div className={styles.photoWrapper}>
-						<img src={avatar} alt="Avatar" />
+						<Image src={avatar} alt={name} width={2048} height={2048} />
 					</div>
 					<div className={styles.cardBody}>
 						<h3>{name}</h3>

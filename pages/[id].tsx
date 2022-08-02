@@ -3,7 +3,7 @@ import Layout from "@components/Layout";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { supabase } from "@libs/initSupabase";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { MouseEvent, useEffect, useState } from "react";
@@ -12,6 +12,8 @@ import Preloader from "@assets/preloader.gif";
 import { toast } from "react-toastify";
 import { generate as randomString } from "@libs/randomString";
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
+import { Loader } from "@components/Loader";
 
 const container: Variants = {
 	hidden: {
@@ -52,7 +54,7 @@ export interface IExplorePage {
 }
 
 const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
-	const [session] = useSession();
+	const { data: session } = useSession();
 	const [fork, setFork] = useState(false);
 	const [report, setReport] = useState(false);
 	const [del, setDelete] = useState(false);
@@ -188,7 +190,10 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						{paste.title}{" "}
 						{paste.fork && parser.get("forked_from", { id: paste.fork })}
 					</h2>
-					<p>{paste.description} {paste.reported ? `| ${parser.get("reported_content") as string}` : ""}</p>
+					<p>
+						{paste.description}{" "}
+						{paste.reported ? `| ${parser.get("reported_content") as string}` : ""}
+					</p>
 				</motion.div>
 				<div className={styles.btnWrapper}>
 					<motion.button
@@ -200,7 +205,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						onClick={handleFork}
 						variants={item}
 					>
-						<img src={Preloader} className="ld" />
+						<Loader />
 						{parser.get("fork")}
 					</motion.button>
 					<motion.button
@@ -212,7 +217,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						onClick={handleReport}
 						variants={item}
 					>
-						<img src={Preloader} className="ld" />
+						<Loader />
 						{parser.get("report")}
 					</motion.button>
 					<motion.button
@@ -224,7 +229,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						onClick={handleDelete}
 						variants={item}
 					>
-						<img src={Preloader} className="ld" />
+						<Loader />
 						{parser.get("delete")}
 					</motion.button>
 					<motion.button
@@ -236,7 +241,7 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 						onClick={handleEdit}
 						variants={item}
 					>
-						<img src={Preloader} className="ld" />
+						<Loader />
 						{parser.get("edit")}
 					</motion.button>
 				</div>

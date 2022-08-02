@@ -3,7 +3,7 @@ import Layout from "@components/Layout";
 import { useRouter } from "next/dist/client/router";
 import styles from "@styles/modules/index.module.scss";
 import { FormEvent, useState } from "react";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
 import Preloader from "@assets/preloader.gif";
@@ -11,6 +11,8 @@ import { NextPage } from "next";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
+import { Loader } from "@components/Loader";
 
 const container: Variants = {
 	hidden: {
@@ -148,7 +150,7 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 					className={`${styles.btn} ld-over${loading ? " running" : ""}`}
 					variants={itemX}
 				>
-					<img src={Preloader} className="ld" />
+					<Loader />
 					{parser.get("save")}
 				</motion.button>
 			</motion.form>

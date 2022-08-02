@@ -1,20 +1,19 @@
 import Link from "next/link";
 import { FC } from "react";
 import styles from "./index.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { IconType } from "react-icons";
 
 export interface ISidebarItem {
 	name: string;
 	path: string;
-	icon: IconProp;
+	Icon: IconType;
 }
 
-const SidebarItem: FC<ISidebarItem> = ({ path, name, icon }) => {
+const SidebarItem: FC<ISidebarItem> = ({ path, name, Icon }) => {
 	return (
 		<Link href={path}>
 			<a className={styles.wrapper}>
-				<FontAwesomeIcon icon={icon} className={styles.icon} />
+				<Icon className={styles.icon} />
 				<span>{name}</span>
 			</a>
 		</Link>
