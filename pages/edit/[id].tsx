@@ -6,12 +6,10 @@ import { FormEvent, useState } from "react";
 import { getSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
-import Preloader from "@assets/preloader.gif";
 import { NextPage } from "next";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
 import { motion, Variants } from "framer-motion";
-import Image from "next/image";
 import { Loader } from "@components/Loader";
 
 const container: Variants = {

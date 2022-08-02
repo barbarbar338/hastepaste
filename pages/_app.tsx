@@ -15,7 +15,6 @@ import "prismjs/themes/prism-solarizedlight.css";
 import "tippy.js/dist/tippy.css";
 import "@styles/tailwind.css";
 import "@styles/index.scss";
-import Script from "next/script";
 
 class App extends NextApp {
 	render(): JSX.Element {
@@ -44,21 +43,6 @@ class App extends NextApp {
 					<meta name="twitter:image" content={TwitterImage.src} />
 					<link rel="icon" href={Favicon.src} />
 					<link rel="canonical" href="https://hastepaste.xyz/" />
-					<Script
-						async
-						src="https://www.googletagmanager.com/gtag/js?id=G-PSDKSXHVKS"
-					/>
-					<Script
-						dangerouslySetInnerHTML={{
-							__html: `
-								window.dataLayer = window.dataLayer || [];
-								function gtag(){dataLayer.push(arguments);}
-								gtag("js", new Date());
-
-								gtag("config", "G-PSDKSXHVKS");
-							`,
-						}}
-					/>
 				</Head>
 				<SessionProvider session={pageProps.session}>
 					<NextNProgress color="#8d53b5" />

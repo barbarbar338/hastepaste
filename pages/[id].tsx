@@ -8,11 +8,9 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { MouseEvent, useEffect, useState } from "react";
 import styles from "@styles/modules/explore.module.scss";
-import Preloader from "@assets/preloader.gif";
 import { toast } from "react-toastify";
 import { generate as randomString } from "@libs/randomString";
 import { motion, Variants } from "framer-motion";
-import Image from "next/image";
 import { Loader } from "@components/Loader";
 
 const container: Variants = {
