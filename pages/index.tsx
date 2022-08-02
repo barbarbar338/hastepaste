@@ -7,10 +7,11 @@ import { useSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
 import { generate as randomString } from "@libs/randomString";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs";
 import { motion, Variants } from "framer-motion";
 import { Loader } from "@components/Loader";
+import { Editor } from "@components/Editor";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const container: Variants = {
 	hidden: {
@@ -50,7 +51,7 @@ const itemX: Variants = {
 };
 
 export default function IndexPage(): JSX.Element {
-	const [content, setContent] = useState("");
+	const [content, setContent] = useState(EditorState.createEmpty());
 	const [description, setDescription] = useState("");
 	const [title, setTitle] = useState("");
 	const [checked, setChecked] = useState(false);
@@ -64,7 +65,8 @@ export default function IndexPage(): JSX.Element {
 		if (loading) return;
 		if (!checked) return toast.error(parser.get("agree_terms"));
 		if (!title) return toast.error(parser.get("specify_title"));
-		if (!content) return toast.error(parser.get("specify_content"));
+		const draft = (convertToRaw(content.getCurrentContent()));
+		if (!draft.blocks.map(block => block.text.trim()).filter(Boolean).length) return toast.error(parser.get("specify_content"));
 		setLoading(true);
 		const id = randomString();
 		const { data, status } = await supabase
@@ -75,7 +77,7 @@ export default function IndexPage(): JSX.Element {
 				fork: null,
 				reported: false,
 				description,
-				content,
+				content: draftToHtml(draft),
 				title,
 			})
 			.single();
@@ -113,17 +115,7 @@ export default function IndexPage(): JSX.Element {
 					variants={itemY}
 				/>
 				<motion.div variants={itemY}>
-					<Editor
-						className={styles.code}
-						value={content}
-						onValueChange={(code) => setContent(code)}
-						highlight={(code) => highlight(code, languages.js, "js")}
-						padding={10}
-						placeholder={parser.get("paste_content") as string}
-						style={{
-							fontFamily: '"Fira code", "Fira Mono", monospace',
-						}}
-					/>
+					<Editor editorState={content} setEditorState={setContent}/>
 				</motion.div>
 				<motion.div className={styles.tosWrapper} variants={itemX}>
 					<input

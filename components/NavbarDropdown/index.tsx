@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import styles from "./index.module.scss";
@@ -11,10 +11,6 @@ export default function NavbarDropdown(): JSX.Element {
 	const { data: session } = useSession();
 	const router = useRouter();
 	const parser = new LocaleParser(router.locale);
-
-	useEffect(() => {
-		console.log(session);
-	});
 
 	return (
 		<div className={styles.wrapper}>

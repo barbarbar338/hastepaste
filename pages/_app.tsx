@@ -9,9 +9,9 @@ import Favicon from "@assets/icons/default-defaultnobg2048.png";
 import TwitterImage from "@assets/icons/default-default2048.png";
 import Banner from "@assets/banners/default-wavewhite1024x512.png";
 
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "react-toastify/dist/ReactToastify.css";
 import "ldbutton/index.min.css";
-import "prismjs/themes/prism-solarizedlight.css";
 import "tippy.js/dist/tippy.css";
 import "@styles/satoshi.css";
 import "@styles/tailwind.css";

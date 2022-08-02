@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { supabase } from "@libs/initSupabase";
 import { useSession } from "next-auth/react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { tomorrowNight } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { MouseEvent, useEffect, useState } from "react";
 import styles from "@styles/modules/explore.module.scss";
 import { toast } from "react-toastify";
@@ -244,9 +242,9 @@ const ExplorePage: NextPage<IExplorePage> = ({ paste }) => {
 					</motion.button>
 				</div>
 				<motion.div className={styles.paste} variants={container}>
-					<SyntaxHighlighter style={tomorrowNight} className={styles.round}>
-						{paste.content}
-					</SyntaxHighlighter>
+					<div className={styles.container} dangerouslySetInnerHTML={{
+						__html: paste.content
+					}} />
 				</motion.div>
 			</motion.div>
 		</Layout>

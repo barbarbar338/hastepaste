@@ -7,10 +7,12 @@ import { getSession } from "next-auth/react";
 import { supabase } from "@libs/initSupabase";
 import { toast } from "react-toastify";
 import { NextPage } from "next";
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs";
 import { motion, Variants } from "framer-motion";
 import { Loader } from "@components/Loader";
+import { ContentState, convertToRaw, EditorState } from "draft-js";
+import { Editor } from "@components/Editor";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 
 const container: Variants = {
 	hidden: {
@@ -62,7 +64,9 @@ export interface IEditPage {
 }
 
 const EditPage: NextPage<IEditPage> = ({ paste }) => {
-	const [content, setContent] = useState(paste.content);
+	const draft = htmlToDraft(paste.content);
+	const contentState = ContentState.createFromBlockArray(draft.contentBlocks, draft.entityMap);
+	const [content, setContent] = useState(EditorState.createWithContent(contentState));
 	const [description, setDescription] = useState(paste.description);
 	const [title, setTitle] = useState(paste.title);
 	const [checked, setChecked] = useState(false);
@@ -75,11 +79,12 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 		if (loading) return;
 		if (!checked) return toast.error(parser.get("agree_terms"));
 		if (!title) return toast.error(parser.get("specify_title"));
-		if (!content) return toast.error(parser.get("specify_content"));
+		const draft = (convertToRaw(content.getCurrentContent()));
+		if (!draft.blocks.map(block => block.text.trim()).filter(Boolean).length) return toast.error(parser.get("specify_content"));
 		setLoading(true);
 		const { status } = await supabase
 			.from("Pastes")
-			.update({ title, description, content })
+			.update({ title, description, content: draftToHtml(draft) })
 			.eq("id", paste.id);
 		setLoading(false);
 		if (status < 200 || status > 299)
@@ -117,17 +122,7 @@ const EditPage: NextPage<IEditPage> = ({ paste }) => {
 					variants={itemY}
 				/>
 				<motion.div variants={itemY}>
-					<Editor
-						className={styles.code}
-						value={content}
-						onValueChange={(code) => setContent(code)}
-						highlight={(code) => highlight(code, languages.js, "js")}
-						padding={10}
-						placeholder={parser.get("paste_content") as string}
-						style={{
-							fontFamily: '"Fira code", "Fira Mono", monospace',
-						}}
-					/>
+					<Editor editorState={content} setEditorState={setContent}/>
 				</motion.div>
 				<motion.div className={styles.tosWrapper} variants={itemX}>
 					<input
